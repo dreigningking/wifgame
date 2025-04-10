@@ -5,7 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdministrativeController;
 use App\Http\Controllers\Admin\UserManagementController;
 
-Route::group(['as' => 'admin.','prefix'=> 'admin','middleware'=> ['auth','role:admin']],function () {
+Route::group(['as' => 'admin.','prefix'=> 'admin','middleware'=> ['auth','role:superadmin']],function () {
     Route::get('dashboard', [AdministrativeController::class,'dashboard'])->name('dashboard');
     Route::get('settings', [AdministrativeController::class,'settings'])->name('settings');
     Route::post('settings/store', [AdministrativeController::class,'settings_store'])->name('settings.store');

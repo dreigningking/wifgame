@@ -2,15 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Models\Role;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Validation\Rules\Password;
+use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -34,53 +30,43 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
     public function __construct()
     {
         $this->middleware('guest');
     }
 
-    public function showRegistrationForm()
-    {
-        return view('frontend.auth.register');
-    }
-
-    public function register(Request $request)
-    {
-        $validator = $this->validator($request->all());
-        if ($validator->fails()) {
-            return redirect()->route('register')
-                        ->withErrors($validator)
-                        ->withInput();
-        }
-        event(new Registered($user = $this->create($request->all(),'customer')));
-
-        $this->guard()->login($user);
-
-        return $this->registered($request, $user)
-                        ?: redirect($this->redirectPath());
-    }
-
+    /**
+     * Get a validator for an incoming registration request.
+     *
+     * @param  array  $data
+     * @return \Illuminate\Contracts\Validation\Validator
+     */
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'surname' => ['required', 'string', 'max:255'],
-            'firstname' => ['required', 'string', 'max:255'],
+            'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required',Password::min(8)->letters()->mixedCase()->numbers()->symbols()],
-            'role_id' => ['required', 'string'],
-        ]);
-    }
-    
-    protected function create(array $data)
-    {
-        return User::create([
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-            'surname' => $data['surname'],
-            'firstname' => $data['firstname'],
-            'role_id' => $data['role_id'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
 
-    
+    /**
+     * Create a new user instance after a valid registration.
+     *
+     * @param  array  $data
+     * @return \App\Models\User
+     */
+    protected function create(array $data)
+    {
+        return User::create([
+            'name' => $data['name'],
+            'email' => $data['email'],
+            'password' => Hash::make($data['password']),
+        ]);
+    }
 }

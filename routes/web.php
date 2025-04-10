@@ -2,9 +2,9 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\FinanceCalculatorController;
-use App\Http\Controllers\GrowthCalculatorController;
-use App\Http\Controllers\OperationsCalculatorController;
+use App\Http\Controllers\User\FinanceCalculatorController;
+use App\Http\Controllers\User\GrowthCalculatorController;
+use App\Http\Controllers\User\OperationsCalculatorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,7 +17,7 @@ use App\Http\Controllers\OperationsCalculatorController;
 |
 */
 Route::get('/', function () {return view('frontend.index'); })->name('index');
-Route::get('dashboard', function () {return view('user.dashboard.overview'); })->name('dashboard');
+Route::get('dashboard', function () {return view('frontend.dashboard.overview'); })->name('dashboard');
 
 // Finance Calculators
 Route::prefix('finance')->as('finance.')->group(function () {
@@ -62,7 +62,6 @@ Route::group(['prefix' => 'operations', 'as' => 'operations.'], function () {
 
 Auth::routes();
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
-
-
+include('admin.php');

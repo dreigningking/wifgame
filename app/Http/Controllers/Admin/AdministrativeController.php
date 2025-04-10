@@ -14,7 +14,7 @@ class AdministrativeController extends Controller
     }
 
     public function dashboard(){
-        return view('admin.dashboard');
+        return view('backend.dashboard');
     }
 
     public function settings(){

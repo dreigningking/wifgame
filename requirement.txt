@@ -73,16 +73,26 @@ This approach ensures your platform becomes a go-to resource for data-backed dec
 encouraging repeat visits through actionable insights and real-time data integration. 
 Laravel’s scalability will support adding niche tools as your user base grows.
 
+=============================================
+in ROI, add country
 
-1. change currency of the website
-2. ask deepseek for the inputs and outputs of each of the calculators 
-3. e.g roi - industry benchmark % should be added for each industry 
+
+FRONTEND
+1. change currency of the website- DONE
+2. ask deepseek for the inputs and outputs of each of the calculators - DONE
+3. e.g roi - industry benchmark % should be added for each industry - DONE
+6. every page has proper header & meta tags for seo 
+
+
+
+BACKEND
 4. ask to send a detailed report of the calculation, which can 
 involve pdf format, containing charts and tables.
-5. figure out what will be in the advanced functionalities for each calculator. 
-6. every page has proper header & meta tags for seo 
+5. figure out what will be in the advanced functionalities for each calculator.
 7. every page should have adverts
+
 8. hire services of professionals that are specialized in this industry
 9. ask people to suggest new calculators
 10. take online course in something relevant to that calculator
+
 11. 

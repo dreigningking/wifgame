@@ -2,10 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -25,7 +22,7 @@ class LoginController extends Controller
 
     /**
      * Where to redirect users after login.
-     *                // dd('hellow');
+     *
      * @var string
      */
     protected $redirectTo = '/home';
@@ -38,12 +35,11 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        $this->middleware('auth')->only('logout');
     }
 
     public function showLoginForm()
     {
-        return view('frontend.auth.login');
+        return view('backend.auth.login');
     }
-
-
 }

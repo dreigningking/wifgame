@@ -92,11 +92,9 @@ class User extends Authenticatable
         return 'users.'.$this->id;
     }
     public function isRole($role){
-        return $this->role->name == $role;
+        return $this->role == $role;
     }
-    public function staff(){
-        return $this->hasMany(BusinessUser::class);
-    }
+    
 
     public function subscription(): HasOne
     {
