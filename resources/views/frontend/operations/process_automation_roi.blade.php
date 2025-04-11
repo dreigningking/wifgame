@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Process Automation ROI Calculator - Evaluate the financial benefits of automating business processes. Analyze current process costs, automation investment, and expected improvements.')
+@section('meta_keywords', 'Process Automation ROI Calculator, automation, business processes, financial benefits, process costs, automation investment, expected improvements')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Process Automation ROI Calculator</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -131,64 +141,145 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About Process Automation ROI</h3>
-            </div>
-            <div class="card-body">
-                <p class="text-gray-600">
-                    The Process Automation ROI Calculator helps you evaluate the financial benefits of automating business processes. It provides insights by analyzing:
-                </p>
-                <ul class="text-gray-600">
-                    <li>Current process costs and inefficiencies</li>
-                    <li>Automation investment requirements</li>
-                    <li>Expected improvements in efficiency</li>
-                    <li>Cost savings and productivity gains</li>
-                    <li>Return on investment timeline</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
                 <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Total Investment:</span>
-                        <span class="fw-bold" id="totalInvestment">$0</span>
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsSection" class="d-none">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Investment:</span>
+                            <span class="fw-bold" id="totalInvestment">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Annual Cost Savings:</span>
+                            <span class="fw-bold" id="annualCostSavings">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Cost Savings:</span>
+                            <span class="fw-bold" id="totalCostSavings">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">ROI:</span>
+                            <span class="fw-bold" id="roi">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Payback Period:</span>
+                            <span class="fw-bold" id="paybackPeriod">0 years</span>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Annual Cost Savings:</span>
-                        <span class="fw-bold" id="annualCostSavings">$0</span>
+
+                    <!-- Efficiency Gains -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Efficiency Gains</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Time Reduction:</span>
+                            <span class="fw-bold" id="timeReduction">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Error Reduction:</span>
+                            <span class="fw-bold" id="errorReduction">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Employee Reduction:</span>
+                            <span class="fw-bold" id="employeeReduction">0%</span>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Total Cost Savings:</span>
-                        <span class="fw-bold" id="totalCostSavings">$0</span>
+
+                    <!-- Cost Analysis -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Cost Analysis</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Software License Cost:</span>
+                            <span class="fw-bold" id="softwareLicenseCost">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Implementation Cost:</span>
+                            <span class="fw-bold" id="implementationCost">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Training Cost:</span>
+                            <span class="fw-bold" id="trainingCost">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Maintenance Cost:</span>
+                            <span class="fw-bold" id="maintenanceCost">$0</span>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">ROI:</span>
-                        <span class="fw-bold" id="roi">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Payback Period:</span>
-                        <span class="fw-bold" id="paybackPeriod">0 years</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Investment Recommendation:</span>
-                        <span class="fw-bold" id="recommendation">-</span>
+
+                    <!-- Investment Recommendation -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Investment Recommendation</h4>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Recommendation:</span>
+                            <span class="fw-bold" id="recommendation">-</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
     </div>
 </div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About Process Automation ROI Calculator</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-600">
+                    The Process Automation ROI Calculator helps organizations evaluate the financial benefits of automating business processes by analyzing:
+                </p>
+                <ul class="text-gray-600">
+                    <li>Current process costs and inefficiencies</li>
+                    <li>Automation investment requirements</li>
+                    <li>Expected efficiency improvements</li>
+                    <li>Cost savings and productivity gains</li>
+                    <li>Return on investment timeline</li>
+                </ul>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Components</h4>
+                <ul class="text-gray-600">
+                    <li>Current Process Costs: Labor, error, and processing time</li>
+                    <li>Automation Investment: Software, implementation, and training</li>
+                    <li>Expected Improvements: Time, error, and employee reduction</li>
+                    <li>Cost Analysis: Detailed breakdown of expenses</li>
+                    <li>ROI Metrics: Payback period and return on investment</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Consider both direct cost savings and indirect benefits like improved accuracy and employee satisfaction when evaluating automation ROI. A comprehensive analysis will help make better investment decisions.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 
 @push('scripts')
@@ -217,18 +308,37 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                // Update results
-                $('#totalInvestment').text(`$${data.totalInvestment}`);
-                $('#annualCostSavings').text(`$${data.annualCostSavings}`);
-                $('#totalCostSavings').text(`$${data.totalCostSavings}`);
-                $('#roi').text(`${data.roi}%`);
-                $('#paybackPeriod').text(`${data.paybackPeriod} years`);
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
+                
+                // Basic Metrics
+                $('#totalInvestment').text(`${symbol}${data.totalInvestment.toLocaleString()}`);
+                $('#annualCostSavings').text(`${symbol}${data.annualCostSavings.toLocaleString()}`);
+                $('#totalCostSavings').text(`${symbol}${data.totalCostSavings.toLocaleString()}`);
+                $('#roi').text(`${data.roi.toFixed(1)}%`);
+                $('#paybackPeriod').text(`${data.paybackPeriod.toFixed(1)} years`);
+
+                // Efficiency Gains
+                $('#timeReduction').text(`${data.timeReduction.toFixed(1)}%`);
+                $('#errorReduction').text(`${data.errorReduction.toFixed(1)}%`);
+                $('#employeeReduction').text(`${data.employeeReduction.toFixed(1)}%`);
+
+                // Cost Analysis
+                $('#softwareLicenseCost').text(`${symbol}${data.softwareLicenseCost.toLocaleString()}`);
+                $('#implementationCost').text(`${symbol}${data.implementationCost.toLocaleString()}`);
+                $('#trainingCost').text(`${symbol}${data.trainingCost.toLocaleString()}`);
+                $('#maintenanceCost').text(`${symbol}${data.maintenanceCost.toLocaleString()}`);
+
+                // Investment Recommendation
                 $('#recommendation').text(data.recommendation);
 
-                // Show results section
-                $('#resultsSection').show();
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsSection').removeClass('d-none');
             },
             error: function(xhr, status, error) {
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
                 console.error('Error:', error);
                 alert('An error occurred while calculating ROI. Please try again.');
             },

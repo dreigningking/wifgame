@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\FinanceCalculatorController;
 use App\Http\Controllers\User\GrowthCalculatorController;
 use App\Http\Controllers\User\OperationsCalculatorController;
+use App\Http\Controllers\User\ProfessionalController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +61,15 @@ Route::group(['prefix' => 'operations', 'as' => 'operations.'], function () {
     Route::get('/employee-productivity', [OperationsCalculatorController::class, 'employeeProductivityAnalyzer'])->name('employee-productivity');
     Route::post('/employee-productivity/calculate', [OperationsCalculatorController::class, 'calculateEmployeeProductivity'])->name('employee-productivity.calculate');
 });
+
+// Professional Routes
+Route::prefix('professionals')->name('professionals.')->group(function () {
+    Route::get('become', [ProfessionalController::class, 'becomeProfessional'])->name('become');
+    Route::post('store', [ProfessionalController::class, 'storeProfessional'])->name('store');
+    Route::get('{professional}', [ProfessionalController::class, 'show'])->name('show');
+    Route::post('{professional}/consult', [ProfessionalController::class, 'storeConsultation'])->name('consult');
+});
+
 
 Auth::routes();
 

@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Debt vs. Equity Analysis Calculator - Evaluate the cost implications of different capital structure choices. Analyze debt and equity costs, weighted average cost of capital, and financial leverage.')
+@section('meta_keywords', 'Debt vs. Equity Analysis, capital structure, cost of capital, financial leverage, weighted average cost of capital')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Debt vs. Equity Analysis</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -123,15 +133,85 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
+        <!-- Results Card -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About Debt vs. Equity Analysis</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsContent" class="d-none">
+                    <div class="d-flex flex-column">
+                        <!-- Cost Analysis -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Cost of Debt (After Tax):</span>
+                            <span class="fw-bold" id="costOfDebt">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Cost of Equity:</span>
+                            <span class="fw-bold" id="costOfEquity">0%</span>
+                        </div>
+                        <div class="separator my-5"></div>
+
+                        <!-- Capital Structure -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Debt Weight:</span>
+                            <span class="fw-bold" id="debtWeight">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Equity Weight:</span>
+                            <span class="fw-bold" id="equityWeight">0%</span>
+                        </div>
+                        <div class="separator my-5"></div>
+
+                        <!-- Key Metrics -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Weighted Average Cost of Capital (WACC):</span>
+                            <span class="fw-bold" id="wacc">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Annual Interest Payment:</span>
+                            <span class="fw-bold" id="annualInterest">$0</span>
+                        </div>
+                        <div class="separator my-5"></div>
+
+                        <!-- Recommendation -->
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Capital Structure Recommendation:</span>
+                            <span class="fw-bold" id="recommendation">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About Debt vs. Equity Analysis</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <p class="text-gray-600">
                     The Debt vs. Equity Analysis Calculator helps you evaluate the cost implications of different capital structure choices. It provides insights by analyzing:
                 </p>
@@ -142,45 +222,22 @@
                     <li>Issuance costs</li>
                     <li>Capital structure optimization</li>
                 </ul>
-            </div>
-        </div>
-
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
-                <h3 class="card-title">Calculation Results</h3>
-            </div>
-            <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Cost of Debt (After Tax):</span>
-                        <span class="fw-bold" id="costOfDebt">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Cost of Equity:</span>
-                        <span class="fw-bold" id="costOfEquity">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Debt Weight:</span>
-                        <span class="fw-bold" id="debtWeight">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Equity Weight:</span>
-                        <span class="fw-bold" id="equityWeight">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Weighted Average Cost of Capital (WACC):</span>
-                        <span class="fw-bold" id="wacc">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Annual Interest Payment:</span>
-                        <span class="fw-bold" id="annualInterest">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Capital Structure Recommendation:</span>
-                        <span class="fw-bold" id="recommendation">-</span>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Components</h4>
+                <ul class="text-gray-600">
+                    <li>Debt Costs: Interest rates, terms, and tax effects</li>
+                    <li>Equity Costs: Expected returns, dividends, and growth</li>
+                    <li>Capital Structure: Optimal debt-to-equity ratio</li>
+                    <li>Risk Assessment: Financial leverage impact</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Balance the tax benefits of debt against financial risk. Consider industry standards and company growth stage when determining optimal capital structure.
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -213,21 +270,46 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                // Update results
-                $('#costOfDebt').text(`${data.costOfDebt}%`);
-                $('#costOfEquity').text(`${data.costOfEquity}%`);
-                $('#debtWeight').text(`${data.debtWeight}%`);
-                $('#equityWeight').text(`${data.equityWeight}%`);
-                $('#wacc').text(`${data.wacc}%`);
-                $('#annualInterest').text(`$${data.annualInterest}`);
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsContent').removeClass('d-none');
+
+                // Format currency based on user's preference
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
+
+                // Update Cost Analysis
+                $('#costOfDebt').text(`${data.costOfDebt.toLocaleString()}%`);
+                $('#costOfEquity').text(`${data.costOfEquity.toLocaleString()}%`);
+
+                // Update Capital Structure
+                $('#debtWeight').text(`${data.debtWeight.toLocaleString()}%`);
+                $('#equityWeight').text(`${data.equityWeight.toLocaleString()}%`);
+
+                // Update Key Metrics
+                $('#wacc').text(`${data.wacc.toLocaleString()}%`);
+                $('#annualInterest').text(`${symbol}${data.annualInterest.toLocaleString()}`);
+
+                // Update Recommendation
                 $('#recommendation').text(data.recommendation);
 
-                // Show results section
-                $('#resultsSection').show();
+                // Add fade-in animation
+                $('#resultsContent').fadeIn();
             },
             error: function(xhr, status, error) {
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
                 console.error('Error:', error);
-                alert('An error occurred while calculating capital costs. Please try again.');
+                
+                Swal.fire({
+                    text: 'An error occurred while calculating capital costs. Please try again.',
+                    icon: 'error',
+                    buttonsStyling: false,
+                    confirmButtonText: 'Ok, got it!',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    }
+                });
             },
             complete: function() {
                 // Reset button state

@@ -127,11 +127,11 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="pages/user-profile/overview.html">
+                                <a class="menu-link" href="{{ route('admin.ads.index') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">Running Ads</span>
+                                    <span class="menu-title">All Ads</span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
@@ -139,14 +139,15 @@
                             <!--begin:Menu item-->
                             <div class="menu-item">
                                 <!--begin:Menu link-->
-                                <a class="menu-link" href="pages/user-profile/projects.html">
+                                <a class="menu-link" href="{{ route('admin.ads.create') }}">
                                     <span class="menu-bullet">
                                         <span class="bullet bullet-dot"></span>
                                     </span>
-                                    <span class="menu-title">Expired Ads</span>
+                                    <span class="menu-title">New Ad</span>
                                 </a>
                                 <!--end:Menu link-->
                             </div>
+                            <!--end:Menu item-->
                             
                         </div>
                         <!--end:Menu sub-->

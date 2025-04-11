@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Cross-Border Tax Estimator - Evaluate tax liabilities across different jurisdictions and optimize your tax strategy. Analyze domestic and foreign tax calculations, tax credits, and deductions.')
+@section('meta_keywords', 'Cross-Border Tax Estimator, tax liabilities, tax strategy, tax calculations, tax credits, deductions')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Cross-Border Tax Estimator</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -119,60 +129,96 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About Tax Estimator</h3>
-            </div>
-            <div class="card-body">
-                <p class="text-gray-600">
-                    The Cross-Border Tax Estimator helps you evaluate your tax liabilities across different jurisdictions. It provides insights by analyzing:
-                </p>
-                <ul class="text-gray-600">
-                    <li>Domestic and foreign tax rates</li>
-                    <li>Cross-border transactions</li>
-                    <li>Tax credits and deductions</li>
-                    <li>Effective tax rates</li>
-                    <li>Tax optimization opportunities</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
                 <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Domestic Tax Liability:</span>
-                        <span class="fw-bold" id="domesticTax">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Foreign Tax Liability:</span>
-                        <span class="fw-bold" id="foreignTax">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Total Tax Credits:</span>
-                        <span class="fw-bold" id="totalTaxCredits">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Net Tax Liability:</span>
-                        <span class="fw-bold" id="netTaxLiability">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Effective Tax Rate:</span>
-                        <span class="fw-bold" id="effectiveTaxRate">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Tax Optimization Recommendation:</span>
-                        <span class="fw-bold" id="taxRecommendation">-</span>
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsSection" class="d-none">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Domestic Tax Liability:</span>
+                            <span class="fw-bold" id="domesticTax">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Foreign Tax Liability:</span>
+                            <span class="fw-bold" id="foreignTax">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Tax Credits:</span>
+                            <span class="fw-bold" id="totalTaxCredits">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Net Tax Liability:</span>
+                            <span class="fw-bold" id="netTaxLiability">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Effective Tax Rate:</span>
+                            <span class="fw-bold" id="effectiveTaxRate">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Tax Optimization Recommendation:</span>
+                            <span class="fw-bold" id="taxRecommendation">-</span>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About Cross-Border Tax Estimator</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-600">
+                    The Cross-Border Tax Estimator helps you evaluate tax liabilities across different jurisdictions and optimize your tax strategy. It provides comprehensive analysis through:
+                </p>
+                <ul class="text-gray-600">
+                    <li>Domestic and foreign tax calculations</li>
+                    <li>Tax credit optimization</li>
+                    <li>Effective tax rate analysis</li>
+                    <li>Cross-border transaction impact</li>
+                    <li>Tax planning recommendations</li>
+                </ul>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Components</h4>
+                <ul class="text-gray-600">
+                    <li>Company Details: Revenue and operating costs</li>
+                    <li>Tax Jurisdictions: Home and foreign country tax rates</li>
+                    <li>Cross-Border Transactions: International revenue and costs</li>
+                    <li>Tax Credits & Deductions: Available tax benefits</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Consider both direct tax implications and indirect effects such as transfer pricing and withholding taxes when planning cross-border operations.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -205,18 +251,24 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                // Update results
-                $('#domesticTax').text(`$${data.domesticTax}`);
-                $('#foreignTax').text(`$${data.foreignTax}`);
-                $('#totalTaxCredits').text(`$${data.totalTaxCredits}`);
-                $('#netTaxLiability').text(`$${data.netTaxLiability}`);
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
+                
+                // Update results with current currency symbol
+                $('#domesticTax').text(`${symbol}${data.domesticTax}`);
+                $('#foreignTax').text(`${symbol}${data.foreignTax}`);
+                $('#totalTaxCredits').text(`${symbol}${data.totalTaxCredits}`);
+                $('#netTaxLiability').text(`${symbol}${data.netTaxLiability}`);
                 $('#effectiveTaxRate').text(`${data.effectiveTaxRate}%`);
                 $('#taxRecommendation').text(data.taxRecommendation);
 
-                // Show results section
-                $('#resultsSection').show();
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsSection').removeClass('d-none');
             },
             error: function(xhr, status, error) {
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
                 console.error('Error:', error);
                 alert('An error occurred while calculating tax liability. Please try again.');
             },

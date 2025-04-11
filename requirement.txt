@@ -86,13 +86,21 @@ FRONTEND
 
 
 BACKEND
-4. ask to send a detailed report of the calculation, which can 
-involve pdf format, containing charts and tables.
-5. figure out what will be in the advanced functionalities for each calculator.
-7. every page should have adverts
+every page should have adverts - DONE
+    - 
+hire services of professionals that are specialized in this industry 
+    -
+ask people to suggest new calculators
+    -
+take online course in something relevant to that calculator
+    -
+blog 
+    -
 
-8. hire services of professionals that are specialized in this industry
-9. ask people to suggest new calculators
-10. take online course in something relevant to that calculator
 
-11. 
+-enhance each calculator 
+    - ask to send a detailed report of the calculation
+    - involve pdf format, 
+    - containing charts and tables
+
+-figure out what will be in the advanced functionalities for each calculator.

@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Currency Hedging Calculator - Evaluate different hedging strategies for managing foreign exchange risks. Analyze forward contract costs, option pricing, and swap rates.')
+@section('meta_keywords', 'Currency Hedging, hedging strategies, foreign exchange risks, forward contracts, currency options, currency swaps')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Currency Hedging Calculator</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-3" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -137,15 +147,74 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About Currency Hedging Calculator</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsSection" class="d-none">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Days to Settlement:</span>
+                            <span class="fw-bold" id="daysToSettlement">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Forward Points:</span>
+                            <span class="fw-bold" id="forwardPoints">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Interest Rate Differential:</span>
+                            <span class="fw-bold" id="interestRateDifferential">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Hedging Cost:</span>
+                            <span class="fw-bold" id="hedgingCost">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Effective Rate:</span>
+                            <span class="fw-bold" id="effectiveRate">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Cost of Hedging (%):</span>
+                            <span class="fw-bold" id="costOfHedging">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Hedging Recommendation:</span>
+                            <span class="fw-bold" id="hedgingRecommendation">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About Currency Hedging Calculator</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <p class="text-gray-600">
                     The Currency Hedging Calculator helps you evaluate different hedging strategies for managing foreign exchange risks. It provides insights by analyzing:
                 </p>
@@ -156,45 +225,23 @@
                     <li>Interest rate differentials</li>
                     <li>Hedging effectiveness</li>
                 </ul>
-            </div>
-        </div>
-
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
-                <h3 class="card-title">Calculation Results</h3>
-            </div>
-            <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Days to Settlement:</span>
-                        <span class="fw-bold" id="daysToSettlement">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Forward Points:</span>
-                        <span class="fw-bold" id="forwardPoints">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Interest Rate Differential:</span>
-                        <span class="fw-bold" id="interestRateDifferential">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Hedging Cost:</span>
-                        <span class="fw-bold" id="hedgingCost">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Effective Rate:</span>
-                        <span class="fw-bold" id="effectiveRate">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Cost of Hedging (%):</span>
-                        <span class="fw-bold" id="costOfHedging">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Hedging Recommendation:</span>
-                        <span class="fw-bold" id="hedgingRecommendation">-</span>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Features</h4>
+                <ul class="text-gray-600">
+                    <li>Multiple hedging strategy options</li>
+                    <li>Real-time market data integration</li>
+                    <li>Cost-benefit analysis</li>
+                    <li>Risk assessment tools</li>
+                    <li>Customizable parameters</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Consider both the cost of hedging and the potential impact of currency fluctuations when choosing your hedging strategy.
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -248,17 +295,18 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                // Update results
+                // Update results with data
                 $('#daysToSettlement').text(data.daysToSettlement);
                 $('#forwardPoints').text(data.forwardPoints);
-                $('#interestRateDifferential').text(`${data.interestRateDifferential}%`);
-                $('#hedgingCost').text(`$${data.hedgingCost}`);
+                $('#interestRateDifferential').text(data.interestRateDifferential + '%');
+                $('#hedgingCost').text('$' + data.hedgingCost);
                 $('#effectiveRate').text(data.effectiveRate);
-                $('#costOfHedging').text(`${data.costOfHedging}%`);
+                $('#costOfHedging').text(data.costOfHedging + '%');
                 $('#hedgingRecommendation').text(data.hedgingRecommendation);
 
-                // Show results section
-                $('#resultsSection').show();
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsSection').removeClass('d-none');
             },
             error: function(xhr, status, error) {
                 console.error('Error:', error);

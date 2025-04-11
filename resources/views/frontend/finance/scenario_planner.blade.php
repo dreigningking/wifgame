@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Scenario Planner - Evaluate different business scenarios and their potential outcomes. Analyze financial projections, probability-weighted outcomes, market and economic factors, and risk-adjusted returns.')
+@section('meta_keywords', 'Scenario Planner, business scenarios, financial projections, probability-weighted outcomes, market and economic factors, risk-adjusted returns')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Scenario Planner</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -166,168 +176,186 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About Enhanced Scenario Planner</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
-                <p class="text-gray-600">
-                    The Enhanced Scenario Planner is a comprehensive tool for evaluating different business outcomes through:
-                </p>
-                
-                <div class="mt-4">
-                    <h4 class="text-gray-800 mb-2">Scenario Analysis</h4>
-                    <ul class="text-gray-600 mb-4">
-                        <li>Base case projections</li>
-                        <li>Optimistic growth scenarios</li>
-                        <li>Pessimistic risk scenarios</li>
-                        <li>Probability-weighted outcomes</li>
-                    </ul>
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
 
-                    <h4 class="text-gray-800 mb-2">Financial Metrics</h4>
-                    <ul class="text-gray-600 mb-4">
-                        <li>Profit margins and spreads</li>
-                        <li>Net Present Value (NPV)</li>
-                        <li>Risk-adjusted returns</li>
-                        <li>Volatility assessment</li>
-                    </ul>
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsSection" class="d-none">
+                    <!-- Base Scenario Results -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Base Scenario</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Profit:</span>
+                            <span class="fw-bold" id="baseProfit">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Profit Margin:</span>
+                            <span class="fw-bold" id="baseProfitMargin">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">NPV:</span>
+                            <span class="fw-bold" id="baseNPV">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Probability:</span>
+                            <span class="fw-bold" id="baseProbability">0%</span>
+                        </div>
+                    </div>
 
-                    <h4 class="text-gray-800 mb-2">Market Factors</h4>
-                    <ul class="text-gray-600 mb-4">
-                        <li>Competitive pressure analysis</li>
-                        <li>Market growth impact</li>
-                        <li>Operational efficiency</li>
-                        <li>Economic conditions</li>
-                    </ul>
+                    <!-- Optimistic Scenario Results -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Optimistic Scenario</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Profit:</span>
+                            <span class="fw-bold" id="optimisticProfit">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Profit Margin:</span>
+                            <span class="fw-bold" id="optimisticProfitMargin">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">NPV:</span>
+                            <span class="fw-bold" id="optimisticNPV">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Probability:</span>
+                            <span class="fw-bold" id="optimisticProbability">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Spread from Base:</span>
+                            <span class="fw-bold" id="optimisticSpread">0%</span>
+                        </div>
+                    </div>
+
+                    <!-- Pessimistic Scenario Results -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Pessimistic Scenario</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Profit:</span>
+                            <span class="fw-bold" id="pessimisticProfit">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Profit Margin:</span>
+                            <span class="fw-bold" id="pessimisticProfitMargin">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">NPV:</span>
+                            <span class="fw-bold" id="pessimisticNPV">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Probability:</span>
+                            <span class="fw-bold" id="pessimisticProbability">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Spread from Base:</span>
+                            <span class="fw-bold" id="pessimisticSpread">0%</span>
+                        </div>
+                    </div>
+
+                    <!-- Expected Values -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Expected Values</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Expected Profit:</span>
+                            <span class="fw-bold" id="expectedProfit">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Expected NPV:</span>
+                            <span class="fw-bold" id="expectedNPV">$0</span>
+                        </div>
+                    </div>
+
+                    <!-- Risk Metrics -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Risk Analysis</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Best Case:</span>
+                            <span class="fw-bold" id="bestCase">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Worst Case:</span>
+                            <span class="fw-bold" id="worstCase">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Range:</span>
+                            <span class="fw-bold" id="range">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Volatility:</span>
+                            <span class="fw-bold" id="volatility">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Risk Level:</span>
+                            <span class="fw-bold" id="riskLevel">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Recommendations</h4>
+                        <ul class="text-gray-600" id="recommendations">
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
 
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
-                <h3 class="card-title">Scenario Analysis Results</h3>
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About Scenario Planner</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="card-body">
-                <!-- Base Scenario Results -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Base Scenario</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Profit:</span>
-                        <span class="fw-bold" id="baseProfit">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Profit Margin:</span>
-                        <span class="fw-bold" id="baseProfitMargin">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">NPV:</span>
-                        <span class="fw-bold" id="baseNPV">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Probability:</span>
-                        <span class="fw-bold" id="baseProbability">0%</span>
-                    </div>
-                </div>
-
-                <!-- Optimistic Scenario Results -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Optimistic Scenario</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Profit:</span>
-                        <span class="fw-bold" id="optimisticProfit">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Profit Margin:</span>
-                        <span class="fw-bold" id="optimisticProfitMargin">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">NPV:</span>
-                        <span class="fw-bold" id="optimisticNPV">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Probability:</span>
-                        <span class="fw-bold" id="optimisticProbability">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Spread from Base:</span>
-                        <span class="fw-bold" id="optimisticSpread">0%</span>
+            <div class="modal-body">
+                <p class="text-gray-600">
+                    The Enhanced Scenario Planner is a sophisticated tool for evaluating different business scenarios and their potential outcomes. It helps in strategic decision-making by analyzing:
+                </p>
+                <ul class="text-gray-600">
+                    <li>Base case financial projections</li>
+                    <li>Optimistic and pessimistic scenarios</li>
+                    <li>Probability-weighted outcomes</li>
+                    <li>Market and economic factors</li>
+                    <li>Risk-adjusted returns</li>
+                </ul>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Components</h4>
+                <ul class="text-gray-600">
+                    <li>Base Scenario: Current financial position and performance</li>
+                    <li>Optimistic Scenario: Growth opportunities and upside potential</li>
+                    <li>Pessimistic Scenario: Risk factors and downside protection</li>
+                    <li>Market Factors: External influences and competitive dynamics</li>
+                    <li>Time Value: Long-term implications and discounting effects</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Use realistic probability weights for different scenarios and consider both internal capabilities and external market factors when developing scenarios.
                     </div>
                 </div>
-
-                <!-- Pessimistic Scenario Results -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Pessimistic Scenario</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Profit:</span>
-                        <span class="fw-bold" id="pessimisticProfit">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Profit Margin:</span>
-                        <span class="fw-bold" id="pessimisticProfitMargin">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">NPV:</span>
-                        <span class="fw-bold" id="pessimisticNPV">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Probability:</span>
-                        <span class="fw-bold" id="pessimisticProbability">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Spread from Base:</span>
-                        <span class="fw-bold" id="pessimisticSpread">0%</span>
-                    </div>
-                </div>
-
-                <!-- Expected Values -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Expected Values</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Expected Profit:</span>
-                        <span class="fw-bold" id="expectedProfit">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Expected NPV:</span>
-                        <span class="fw-bold" id="expectedNPV">$0</span>
-                    </div>
-                </div>
-
-                <!-- Risk Metrics -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Risk Analysis</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Best Case:</span>
-                        <span class="fw-bold" id="bestCase">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Worst Case:</span>
-                        <span class="fw-bold" id="worstCase">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Range:</span>
-                        <span class="fw-bold" id="range">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Volatility:</span>
-                        <span class="fw-bold" id="volatility">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Risk Level:</span>
-                        <span class="fw-bold" id="riskLevel">-</span>
-                    </div>
-                </div>
-
-                <!-- Recommendations -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Recommendations</h4>
-                    <ul class="text-gray-600" id="recommendations">
-                    </ul>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -340,33 +368,16 @@ $(document).ready(function() {
     $('#calculateScenarios').on('click', function(e) {
         e.preventDefault();
         
-        // Debug: Log form data before submission
-        const formElement = $('#scenarioPlannerForm')[0];
-        const formData = new FormData(formElement);
-        console.log('Form Data:', Object.fromEntries(formData));
-
-        // Validate required fields before submission
-        const requiredFields = formElement.querySelectorAll('[required]');
-        let hasErrors = false;
-        requiredFields.forEach(field => {
-            if (!field.value) {
-                hasErrors = true;
-                field.classList.add('is-invalid');
-            } else {
-                field.classList.remove('is-invalid');
-            }
-        });
-
-        if (hasErrors) {
-            alert('Please fill in all required fields.');
-            return;
-        }
-
+        // Show loading state
         const calculateBtn = $(this);
         const originalBtnText = calculateBtn.html();
         calculateBtn.prop('disabled', true);
         calculateBtn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Calculating...');
 
+        // Get form data
+        const formData = new FormData($('#scenarioPlannerForm')[0]);
+
+        // Make AJAX request
         $.ajax({
             url: $('#scenarioPlannerForm').attr('action'),
             type: 'POST',
@@ -377,94 +388,59 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                if (data.error) {
-                    console.error('Server Error:', data.error);
-                    Swal.fire({
-                        title: 'Calculation Error',
-                        text: data.error,
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                    return;
-                }
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
+                
+                // Base Scenario
+                $('#baseProfit').text(`${symbol}${data.baseScenario.profit.toLocaleString()}`);
+                $('#baseProfitMargin').text(`${data.baseScenario.profitMargin.toLocaleString()}%`);
+                $('#baseNPV').text(`${symbol}${data.baseScenario.npv.toLocaleString()}`);
+                $('#baseProbability').text(`${data.baseScenario.probability.toLocaleString()}%`);
 
-                try {
-                    // Base Scenario
-                    $('#baseProfit').text(`$${data.baseScenario.profit.toLocaleString()}`);
-                    $('#baseProfitMargin').text(`${data.baseScenario.profitMargin.toLocaleString()}%`);
-                    $('#baseNPV').text(`$${data.baseScenario.npv.toLocaleString()}`);
-                    $('#baseProbability').text(`${data.baseScenario.probability.toLocaleString()}%`);
+                // Optimistic Scenario
+                $('#optimisticProfit').text(`${symbol}${data.optimisticScenario.profit.toLocaleString()}`);
+                $('#optimisticProfitMargin').text(`${data.optimisticScenario.profitMargin.toLocaleString()}%`);
+                $('#optimisticNPV').text(`${symbol}${data.optimisticScenario.npv.toLocaleString()}`);
+                $('#optimisticProbability').text(`${data.optimisticScenario.probability.toLocaleString()}%`);
+                $('#optimisticSpread').text(`${data.optimisticScenario.spread.toLocaleString()}%`);
 
-                    // Optimistic Scenario
-                    $('#optimisticProfit').text(`$${data.optimisticScenario.profit.toLocaleString()}`);
-                    $('#optimisticProfitMargin').text(`${data.optimisticScenario.profitMargin.toLocaleString()}%`);
-                    $('#optimisticNPV').text(`$${data.optimisticScenario.npv.toLocaleString()}`);
-                    $('#optimisticProbability').text(`${data.optimisticScenario.probability.toLocaleString()}%`);
-                    $('#optimisticSpread').text(`${data.optimisticScenario.spread.toLocaleString()}%`);
+                // Pessimistic Scenario
+                $('#pessimisticProfit').text(`${symbol}${data.pessimisticScenario.profit.toLocaleString()}`);
+                $('#pessimisticProfitMargin').text(`${data.pessimisticScenario.profitMargin.toLocaleString()}%`);
+                $('#pessimisticNPV').text(`${symbol}${data.pessimisticScenario.npv.toLocaleString()}`);
+                $('#pessimisticProbability').text(`${data.pessimisticScenario.probability.toLocaleString()}%`);
+                $('#pessimisticSpread').text(`${data.pessimisticScenario.spread.toLocaleString()}%`);
 
-                    // Pessimistic Scenario
-                    $('#pessimisticProfit').text(`$${data.pessimisticScenario.profit.toLocaleString()}`);
-                    $('#pessimisticProfitMargin').text(`${data.pessimisticScenario.profitMargin.toLocaleString()}%`);
-                    $('#pessimisticNPV').text(`$${data.pessimisticScenario.npv.toLocaleString()}`);
-                    $('#pessimisticProbability').text(`${data.pessimisticScenario.probability.toLocaleString()}%`);
-                    $('#pessimisticSpread').text(`${data.pessimisticScenario.spread.toLocaleString()}%`);
+                // Expected Values
+                $('#expectedProfit').text(`${symbol}${data.expectedValues.profit.toLocaleString()}`);
+                $('#expectedNPV').text(`${symbol}${data.expectedValues.npv.toLocaleString()}`);
 
-                    // Expected Values
-                    $('#expectedProfit').text(`$${data.expectedValues.profit.toLocaleString()}`);
-                    $('#expectedNPV').text(`$${data.expectedValues.npv.toLocaleString()}`);
+                // Risk Metrics
+                $('#bestCase').text(`${symbol}${data.riskMetrics.bestCase.toLocaleString()}`);
+                $('#worstCase').text(`${symbol}${data.riskMetrics.worstCase.toLocaleString()}`);
+                $('#range').text(`${symbol}${data.riskMetrics.range.toLocaleString()}`);
+                $('#volatility').text(`${data.riskMetrics.volatility.toLocaleString()}%`);
+                $('#riskLevel').text(data.riskMetrics.riskLevel);
 
-                    // Risk Metrics
-                    $('#bestCase').text(`$${data.riskMetrics.bestCase.toLocaleString()}`);
-                    $('#worstCase').text(`$${data.riskMetrics.worstCase.toLocaleString()}`);
-                    $('#range').text(`$${data.riskMetrics.range.toLocaleString()}`);
-                    $('#volatility').text(`${data.riskMetrics.volatility.toLocaleString()}%`);
-                    $('#riskLevel').text(data.riskMetrics.riskLevel);
+                // Recommendations
+                const recommendationsList = $('#recommendations');
+                recommendationsList.empty();
+                data.recommendations.forEach(recommendation => {
+                    recommendationsList.append(`<li>${recommendation}</li>`);
+                });
 
-                    // Recommendations
-                    const recommendationsList = $('#recommendations');
-                    recommendationsList.empty();
-                    data.recommendations.forEach(recommendation => {
-                        recommendationsList.append(`<li>${recommendation}</li>`);
-                    });
-
-                    $('#resultsSection').show();
-                } catch (err) {
-                    console.error('Error processing response:', err);
-                    Swal.fire({
-                        title: 'Processing Error',
-                        text: 'Error processing calculation results. Please try again.',
-                        icon: 'error',
-                        confirmButtonText: 'OK'
-                    });
-                }
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsSection').removeClass('d-none');
             },
             error: function(xhr, status, error) {
-                console.error('AJAX Error:', {
-                    status: xhr.status,
-                    statusText: xhr.statusText,
-                    responseText: xhr.responseText
-                });
-
-                let errorMessage = 'An error occurred while calculating scenarios.';
-                try {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.message) {
-                        errorMessage = response.message;
-                    } else if (response.errors) {
-                        errorMessage = Object.values(response.errors).flat().join('\n');
-                    }
-                } catch (e) {
-                    console.error('Error parsing response:', e);
-                }
-
-                Swal.fire({
-                    title: 'Calculation Error',
-                    text: errorMessage,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
+                console.error('Error:', error);
+                alert('An error occurred while calculating scenarios. Please try again.');
             },
             complete: function() {
+                // Reset button state
                 calculateBtn.prop('disabled', false);
                 calculateBtn.html(originalBtnText);
             }

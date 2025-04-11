@@ -5,8 +5,8 @@
 		<title>Wifgame - Tools for Efficiency</title>
 		<meta charset="utf-8" />
 		<meta name="csrf-token" content="{{ csrf_token() }}">
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
+		<meta name="description" content="@yield('meta_description') " />
+		<meta name="keywords" content="@yield('meta_keywords') " />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<meta property="og:locale" content="en_US" />
 		<meta property="og:type" content="article" />
@@ -48,7 +48,11 @@
 						@include('frontend.layouts.toolbar')
 					<!--end::Toolbar-->
 					<!--begin::Container-->
-					@yield('content')
+					<div id="kt_content_container" class="d-flex flex-column-fluid align-items-start  container-xxl">
+						<div class="content flex-row-fluid" id="kt_content">
+							@yield('content')
+						</div>
+					</div>
 					<!--end::Container-->
 					<!--begin::Footer-->
 						@include('frontend.layouts.footer')

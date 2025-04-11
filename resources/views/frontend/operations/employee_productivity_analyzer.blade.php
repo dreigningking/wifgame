@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Employee Productivity Analyzer - Measure and optimize workforce efficiency by analyzing revenue, productivity, and cost metrics. Evaluate labor and capital productivity, cost efficiency, and output analysis.')
+@section('meta_keywords', 'Employee Productivity Analyzer, workforce efficiency, productivity, cost metrics, labor productivity, capital productivity, cost efficiency, output analysis')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Employee Productivity Analyzer</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -164,86 +174,130 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About Employee Productivity Analyzer</h3>
-            </div>
-            <div class="card-body">
-                <p class="text-gray-600">
-                    The Employee Productivity Analyzer helps you measure and optimize your workforce efficiency by analyzing:
-                </p>
-                <ul class="text-gray-600">
-                    <li>Revenue per employee</li>
-                    <li>Cost per unit output</li>
-                    <li>Labor productivity metrics</li>
-                    <li>Capital productivity</li>
-                    <li>Overall productivity score</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
                 <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Revenue per Employee:</span>
-                        <span class="fw-bold" id="revenuePerEmployee">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Cost per Unit:</span>
-                        <span class="fw-bold" id="costPerUnit">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Profit per Employee:</span>
-                        <span class="fw-bold" id="profitPerEmployee">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Labor Productivity:</span>
-                        <span class="fw-bold" id="laborProductivity">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Capital Productivity:</span>
-                        <span class="fw-bold" id="capitalProductivity">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Total Factor Productivity:</span>
-                        <span class="fw-bold" id="totalFactorProductivity">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Overall Productivity Score:</span>
-                        <span class="fw-bold" id="productivityScore">0</span>
-                    </div>
-                    <div class="mt-4">
-                        <h4 class="fs-5 fw-bold mb-3">Productivity Trends</h4>
-                        <div class="d-flex flex-column">
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="text-gray-600">Labor Trend:</span>
-                                <span class="fw-bold" id="laborTrend">-</span>
-                            </div>
-                            <div class="d-flex justify-content-between mb-2">
-                                <span class="text-gray-600">Capital Trend:</span>
-                                <span class="fw-bold" id="capitalTrend">-</span>
-                            </div>
-                            <div class="d-flex justify-content-between">
-                                <span class="text-gray-600">Total Trend:</span>
-                                <span class="fw-bold" id="totalTrend">-</span>
-                            </div>
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsSection" class="d-none">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Revenue per Employee:</span>
+                            <span class="fw-bold" id="revenuePerEmployee">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Cost per Unit:</span>
+                            <span class="fw-bold" id="costPerUnit">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Profit per Employee:</span>
+                            <span class="fw-bold" id="profitPerEmployee">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Labor Productivity:</span>
+                            <span class="fw-bold" id="laborProductivity">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Capital Productivity:</span>
+                            <span class="fw-bold" id="capitalProductivity">0</span>
                         </div>
                     </div>
-                    <div class="mt-4">
-                        <h4 class="fs-5 fw-bold mb-3">Recommendations</h4>
+
+                    <!-- Productivity Metrics -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Productivity Metrics</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Factor Productivity:</span>
+                            <span class="fw-bold" id="totalFactorProductivity">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Overall Productivity Score:</span>
+                            <span class="fw-bold" id="productivityScore">0</span>
+                        </div>
+                    </div>
+
+                    <!-- Trends Analysis -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Trends Analysis</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Labor Trend:</span>
+                            <span class="fw-bold" id="laborTrend">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Capital Trend:</span>
+                            <span class="fw-bold" id="capitalTrend">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Total Trend:</span>
+                            <span class="fw-bold" id="totalTrend">-</span>
+                        </div>
+                    </div>
+
+                    <!-- Recommendations -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Recommendations</h4>
                         <ul id="recommendations" class="text-gray-600">
                         </ul>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About Employee Productivity Analyzer</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-600">
+                    The Employee Productivity Analyzer helps organizations measure and optimize workforce efficiency by analyzing:
+                </p>
+                <ul class="text-gray-600">
+                    <li>Revenue and profit per employee</li>
+                    <li>Labor and capital productivity metrics</li>
+                    <li>Cost efficiency and output analysis</li>
+                    <li>Productivity trends and patterns</li>
+                    <li>Performance improvement opportunities</li>
+                </ul>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Components</h4>
+                <ul class="text-gray-600">
+                    <li>Revenue Metrics: Total revenue and employee count</li>
+                    <li>Employee Metrics: Productive hours and working days</li>
+                    <li>Output Metrics: Units produced and costs</li>
+                    <li>Department Analysis: Performance by department</li>
+                    <li>Trend Analysis: Historical and projected performance</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Regular productivity analysis helps identify areas for improvement and optimize resource allocation. Focus on both individual and team performance metrics for a comprehensive view.
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -314,16 +368,21 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                // Update results
-                $('#revenuePerEmployee').text(`$${data.revenue_per_employee}`);
-                $('#costPerUnit').text(`$${data.cost_per_unit}`);
-                $('#profitPerEmployee').text(`$${data.profit_per_employee}`);
-                $('#laborProductivity').text(data.labor_productivity);
-                $('#capitalProductivity').text(data.capital_productivity);
-                $('#totalFactorProductivity').text(data.total_factor_productivity);
-                $('#productivityScore').text(data.productivity_score);
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
+                
+                // Basic Metrics
+                $('#revenuePerEmployee').text(`${symbol}${data.revenue_per_employee.toLocaleString()}`);
+                $('#costPerUnit').text(`${symbol}${data.cost_per_unit.toLocaleString()}`);
+                $('#profitPerEmployee').text(`${symbol}${data.profit_per_employee.toLocaleString()}`);
+                $('#laborProductivity').text(data.labor_productivity.toFixed(2));
+                $('#capitalProductivity').text(data.capital_productivity.toFixed(2));
 
-                // Update trends
+                // Productivity Metrics
+                $('#totalFactorProductivity').text(data.total_factor_productivity.toFixed(2));
+                $('#productivityScore').text(data.productivity_score.toFixed(2));
+
+                // Trends Analysis
                 $('#laborTrend').text(data.productivity_trends.labor_trend);
                 $('#capitalTrend').text(data.productivity_trends.capital_trend);
                 $('#totalTrend').text(data.productivity_trends.total_trend);
@@ -335,10 +394,13 @@ $(document).ready(function() {
                     recommendationsList.append(`<li>${recommendation}</li>`);
                 });
 
-                // Show results section
-                $('#resultsSection').show();
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsSection').removeClass('d-none');
             },
             error: function(xhr, status, error) {
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
                 console.error('Error:', error);
                 alert('An error occurred while calculating productivity metrics. Please try again.');
             },

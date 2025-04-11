@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'NPV/IRR Calculator - Evaluate investment opportunities by calculating the Net Present Value (NPV) and Internal Rate of Return (IRR). Analyze cash flows, discount rates, and investment decisions.')
+@section('meta_keywords', 'NPV/IRR Calculator, NPV, IRR, investment opportunities, cash flows, discount rates, investment decisions')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">NPV/IRR Calculator</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -131,15 +141,113 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
+
+        <!-- Results Card -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About NPV/IRR Calculator</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsContent" class="d-none">
+                    <div class="d-flex flex-column">
+                        <!-- Primary Metrics -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Net Present Value (NPV):</span>
+                            <span class="fw-bold" id="npvResult">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Internal Rate of Return (IRR):</span>
+                            <span class="fw-bold" id="irrResult">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Payback Period:</span>
+                            <span class="fw-bold" id="paybackPeriod">0 years</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Profitability Index:</span>
+                            <span class="fw-bold" id="profitabilityIndex">0</span>
+                        </div>
+                        <div class="separator my-5"></div>
+
+                        <!-- Rate Analysis -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Adjusted Discount Rate:</span>
+                            <span class="fw-bold" id="adjustedDiscountRate">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Tax Impact:</span>
+                            <span class="fw-bold" id="effectiveTaxRate">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Inflation Impact:</span>
+                            <span class="fw-bold" id="inflationImpact">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Risk Adjustment:</span>
+                            <span class="fw-bold" id="riskAdjustment">0%</span>
+                        </div>
+                        <div class="separator my-5"></div>
+
+                        <!-- Value Analysis -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Terminal Value:</span>
+                            <span class="fw-bold" id="terminalValue">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Investment:</span>
+                            <span class="fw-bold" id="totalInvestmentResult">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Cash Flows:</span>
+                            <span class="fw-bold" id="totalCashFlowsResult">$0</span>
+                        </div>
+                        <div class="separator my-5"></div>
+
+                        <!-- Investment Decision -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Investment Decision:</span>
+                            <span class="fw-bold" id="investmentDecision">-</span>
+                        </div>
+                        
+                        <!-- Decision Reasoning -->
+                        <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-3">
+                            <span class="text-gray-700 fw-bold mb-2">Decision Reasoning:</span>
+                            <div id="decisionReasoning" class="text-gray-700 mt-2">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About NPV/IRR Calculator</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <p class="text-gray-600">
                     The NPV/IRR Calculator helps you evaluate investment opportunities by calculating the Net Present Value (NPV) and Internal Rate of Return (IRR). It provides a comprehensive analysis by considering:
                 </p>
@@ -152,76 +260,23 @@
                     <li>Tax implications through tax rate adjustment</li>
                     <li>Risk assessment via risk premium</li>
                     <li>Inflation rate considerations</li>
-                    <li>Payback period analysis</li>
-                    <li>Investment decision recommendations</li>
                 </ul>
-                <p class="text-gray-600">
-                    This calculator provides a thorough financial analysis by incorporating both basic NPV metrics and advanced factors like risk, inflation, and tax considerations to help make informed investment decisions.
-                </p>
-            </div>
-        </div>
-
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
-                <h3 class="card-title">Calculation Results</h3>
-            </div>
-            <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Net Present Value (NPV):</span>
-                        <span class="fw-bold" id="npvResult">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Internal Rate of Return (IRR):</span>
-                        <span class="fw-bold" id="irrResult">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Payback Period:</span>
-                        <span class="fw-bold" id="paybackPeriod">0 years</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Profitability Index:</span>
-                        <span class="fw-bold" id="profitabilityIndex">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Adjusted Discount Rate:</span>
-                        <span class="fw-bold" id="adjustedDiscountRate">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Tax Impact:</span>
-                        <span class="fw-bold" id="effectiveTaxRate">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Inflation Impact:</span>
-                        <span class="fw-bold" id="inflationImpact">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Risk Adjustment:</span>
-                        <span class="fw-bold" id="riskAdjustment">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Terminal Value:</span>
-                        <span class="fw-bold" id="terminalValue">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Total Investment:</span>
-                        <span class="fw-bold" id="totalInvestmentResult">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Total Cash Flows:</span>
-                        <span class="fw-bold" id="totalCashFlowsResult">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Investment Decision:</span>
-                        <span class="fw-bold" id="investmentDecision">-</span>
-                    </div>
-                    <div class="mt-3">
-                        <span class="text-gray-600">Decision Reasoning:</span>
-                        <ul id="decisionReasoning" class="mt-2">
-                        </ul>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Metrics Explained</h4>
+                <ul class="text-gray-600">
+                    <li>NPV: Measures the profitability of an investment in today's dollars</li>
+                    <li>IRR: The rate at which NPV equals zero</li>
+                    <li>Payback Period: Time needed to recover the initial investment</li>
+                    <li>Profitability Index: Ratio of present value to initial investment</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: A positive NPV indicates a profitable investment, while IRR should exceed your required rate of return. Consider both metrics alongside risk factors for comprehensive decision-making.
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -297,57 +352,59 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                // Update results
-                $('#npvResult').text(`$${data.npv}`);
-                $('#irrResult').text(`${data.irr}%`);
-                $('#paybackPeriod').text(`${data.paybackPeriod} years`);
-                $('#profitabilityIndex').text(data.profitabilityIndex);
-                $('#adjustedDiscountRate').text(`${data.adjustedDiscountRate}%`);
-                $('#effectiveTaxRate').text(`${data.effectiveTaxRate}%`);
-                $('#inflationImpact').text(`${data.inflationImpact}%`);
-                $('#riskAdjustment').text(`${data.riskAdjustment}%`);
-                $('#terminalValue').text(`$${data.terminalValue}`);
-                $('#totalInvestmentResult').text(`$${data.totalInvestment}`);
-                $('#totalCashFlowsResult').text(`$${data.totalCashFlows}`);
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsContent').removeClass('d-none');
+
+                // Format currency based on user's preference
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
+
+                // Update Primary Metrics
+                $('#npvResult').text(`${symbol}${data.npv.toLocaleString()}`);
+                $('#irrResult').text(`${data.irr.toLocaleString()}%`);
+                $('#paybackPeriod').text(`${data.paybackPeriod.toLocaleString()} years`);
+                $('#profitabilityIndex').text(data.profitabilityIndex.toLocaleString());
+
+                // Update Rate Analysis
+                $('#adjustedDiscountRate').text(`${data.adjustedDiscountRate.toLocaleString()}%`);
+                $('#effectiveTaxRate').text(`${data.effectiveTaxRate.toLocaleString()}%`);
+                $('#inflationImpact').text(`${data.inflationImpact.toLocaleString()}%`);
+                $('#riskAdjustment').text(`${data.riskAdjustment.toLocaleString()}%`);
+
+                // Update Value Analysis
+                $('#terminalValue').text(`${symbol}${data.terminalValue.toLocaleString()}`);
+                $('#totalInvestmentResult').text(`${symbol}${data.totalInvestment.toLocaleString()}`);
+                $('#totalCashFlowsResult').text(`${symbol}${data.totalCashFlows.toLocaleString()}`);
+
+                // Update Investment Decision
                 $('#investmentDecision').text(data.investmentDecision);
-                // Update decision reasoning
-                const reasoningList = $('#decisionReasoning');
-                reasoningList.empty();
-                data.decisionReasoning.forEach(reason => {
-                    reasoningList.append(`<li>${reason}</li>`);
-                });
 
+                // Update decision reasoning with bullet points
+                const reasoningHtml = data.decisionReasoning.map(reason => 
+                    `<div class="d-flex align-items-center mb-2">
+                        <span class="bullet bullet-dot bg-primary me-2"></span>
+                        <span>${reason}</span>
+                    </div>`
+                ).join('');
+                $('#decisionReasoning').html(reasoningHtml);
 
-                // Show results section
-                $('#resultsSection').show();
+                // Add fade-in animation
+                $('#resultsContent').fadeIn();
             },
             error: function(xhr, status, error) {
-                console.error('Error Details:', {
-                    status: xhr.status,
-                    statusText: xhr.statusText,
-                    responseText: xhr.responseText
-                });
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
+                console.error('Error:', error);
                 
-                let errorMessage = 'An error occurred while calculating NPV.';
-                
-                // Try to parse the error response
-                try {
-                    const response = JSON.parse(xhr.responseText);
-                    if (response.message) {
-                        errorMessage = response.message;
-                    } else if (response.errors) {
-                        errorMessage = Object.values(response.errors).flat().join('\n');
-                    }
-                } catch (e) {
-                    console.error('Error parsing response:', e);
-                }
-                
-                // Show error in a more user-friendly way
                 Swal.fire({
-                    title: 'Calculation Error',
-                    text: errorMessage,
+                    text: 'An error occurred while calculating NPV. Please try again.',
                     icon: 'error',
-                    confirmButtonText: 'OK'
+                    buttonsStyling: false,
+                    confirmButtonText: 'Ok, got it!',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    }
                 });
             },
             complete: function() {

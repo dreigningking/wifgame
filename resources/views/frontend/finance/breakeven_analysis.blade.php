@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Breakeven Analysis Calculator - Calculate your breakeven point and profitability metrics. Analyze your business operations and make informed decisions.')
+@section('meta_keywords', 'Breakeven Analysis, breakeven point, profitability metrics, business operations, financial analysis')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Breakeven Analysis</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -119,15 +129,105 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About Breakeven Analysis</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsContent" class="d-none">
+                    <div class="d-flex flex-column">
+                        <!-- Basic Breakeven Metrics -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Breakeven Point (Units):</span>
+                            <span class="fw-bold" id="breakevenUnits">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Breakeven Point (Revenue):</span>
+                            <span class="fw-bold" id="breakevenRevenue">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Contribution Margin per Unit:</span>
+                            <span class="fw-bold" id="contributionMargin">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Contribution Margin Ratio:</span>
+                            <span class="fw-bold" id="contributionMarginRatio">0%</span>
+                        </div>
+                        <div class="separator my-5"></div>
+                        
+                        <!-- Target Profit Analysis -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Target Profit Units:</span>
+                            <span class="fw-bold" id="targetProfitUnits">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Target Profit Revenue:</span>
+                            <span class="fw-bold" id="targetProfitRevenue">-</span>
+                        </div>
+                        <div class="separator my-5"></div>
+
+                        <!-- Safety and Operating Metrics -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Margin of Safety (Units):</span>
+                            <span class="fw-bold" id="marginOfSafety">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Margin of Safety (Revenue):</span>
+                            <span class="fw-bold" id="marginOfSafetyRevenue">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Operating Leverage:</span>
+                            <span class="fw-bold" id="operatingLeverage">-</span>
+                        </div>
+                        <div class="separator my-5"></div>
+
+                        <!-- Capacity Analysis -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Capacity Utilization:</span>
+                            <span class="fw-bold" id="capacityUtilization">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Capacity Status:</span>
+                            <span class="fw-bold" id="capacityConstraint">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
+
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>About Breakeven Analysis</h2>
+                <div class="btn btn-icon btn-sm btn-active-light-primary ms-2" data-bs-dismiss="modal" aria-label="Close">
+                    <i class="ki-duotone ki-cross fs-1">
+                        <span class="path1"></span>
+                        <span class="path2"></span>
+                    </i>
+                </div>
+            </div>
+            <div class="modal-body">
                 <p class="text-gray-600">
                     The Enhanced Breakeven Analysis Calculator helps you determine the point at which your business will start making a profit while considering various operational factors. This comprehensive analysis includes:
                 </p>
@@ -179,92 +279,8 @@
                     </ul>
                 </div>
             </div>
-        </div>
-
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
-                <h3 class="card-title">Calculation Results</h3>
-            </div>
-            <div class="card-body">
-                <div class="d-flex flex-column">
-                    <!-- Basic Breakeven Metrics -->
-                    <div class="mb-5">
-                        <h4 class="text-gray-800 mb-3">Basic Breakeven Analysis</h4>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-gray-600">Breakeven Point (Units):</span>
-                            <span class="fw-bold" id="breakevenUnits">0</span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-gray-600">Breakeven Point (Revenue):</span>
-                            <span class="fw-bold" id="breakevenRevenue">$0</span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-gray-600">Contribution Margin per Unit:</span>
-                            <span class="fw-bold" id="contributionMargin">$0</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span class="text-gray-600">Contribution Margin Ratio:</span>
-                            <span class="fw-bold" id="contributionMarginRatio">0%</span>
-                        </div>
-                    </div>
-
-                    <!-- Target Profit Analysis -->
-                    <div class="mb-5">
-                        <h4 class="text-gray-800 mb-3">Target Profit Analysis</h4>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-gray-600">Target Profit Units:</span>
-                            <span class="fw-bold" id="targetProfitUnits">-</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span class="text-gray-600">Target Profit Revenue:</span>
-                            <span class="fw-bold" id="targetProfitRevenue">-</span>
-                        </div>
-                    </div>
-
-                    <!-- Safety and Operating Metrics -->
-                    <div class="mb-5">
-                        <h4 class="text-gray-800 mb-3">Safety and Operating Metrics</h4>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-gray-600">Margin of Safety (Units):</span>
-                            <span class="fw-bold" id="marginOfSafety">-</span>
-                        </div>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-gray-600">Margin of Safety (Revenue):</span>
-                            <span class="fw-bold" id="marginOfSafetyRevenue">-</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span class="text-gray-600">Operating Leverage:</span>
-                            <span class="fw-bold" id="operatingLeverage">-</span>
-                        </div>
-                    </div>
-
-                    <!-- Capacity Analysis -->
-                    <div class="mb-5">
-                        <h4 class="text-gray-800 mb-3">Capacity Analysis</h4>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-gray-600">Capacity Utilization at Breakeven:</span>
-                            <span class="fw-bold" id="capacityUtilization">-</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span class="text-gray-600">Capacity Status:</span>
-                            <span class="fw-bold" id="capacityConstraint">-</span>
-                        </div>
-                    </div>
-
-                    <!-- Cost Structure -->
-                    <div class="mb-5">
-                        <h4 class="text-gray-800 mb-3">Cost Structure</h4>
-                        <div class="d-flex justify-content-between mb-3">
-                            <span class="text-gray-600">Period Adjusted Fixed Costs:</span>
-                            <span class="fw-bold" id="periodAdjustedFixedCosts">-</span>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <span class="text-gray-600">Step Cost Impact (Additional Units):</span>
-                            <span class="fw-bold" id="stepCostImpact">-</span>
-                        </div>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -297,35 +313,50 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
-                // Basic Breakeven Metrics
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsContent').removeClass('d-none');
+
+                // Format currency based on user's preference
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
+
+                // Update Basic Breakeven Metrics
                 $('#breakevenUnits').text(data.breakevenUnits.toLocaleString());
-                $('#breakevenRevenue').text(`$${data.breakevenRevenue.toLocaleString()}`);
-                $('#contributionMargin').text(`$${data.contributionMargin.toLocaleString()}`);
+                $('#breakevenRevenue').text(`${symbol}${data.breakevenRevenue.toLocaleString()}`);
+                $('#contributionMargin').text(`${symbol}${data.contributionMargin.toLocaleString()}`);
                 $('#contributionMarginRatio').text(`${data.contributionMarginRatio.toLocaleString()}%`);
 
-                // Target Profit Analysis
+                // Update Target Profit Analysis
                 $('#targetProfitUnits').text(data.targetProfitUnits ? data.targetProfitUnits.toLocaleString() : '-');
-                $('#targetProfitRevenue').text(data.targetProfitRevenue ? `$${data.targetProfitRevenue.toLocaleString()}` : '-');
+                $('#targetProfitRevenue').text(data.targetProfitRevenue ? `${symbol}${data.targetProfitRevenue.toLocaleString()}` : '-');
 
-                // Safety and Operating Metrics
+                // Update Safety and Operating Metrics
                 $('#marginOfSafety').text(data.marginOfSafety ? `${data.marginOfSafety.toLocaleString()} units` : '-');
-                $('#marginOfSafetyRevenue').text(data.marginOfSafetyRevenue ? `$${data.marginOfSafetyRevenue.toLocaleString()}` : '-');
+                $('#marginOfSafetyRevenue').text(data.marginOfSafetyRevenue ? `${symbol}${data.marginOfSafetyRevenue.toLocaleString()}` : '-');
                 $('#operatingLeverage').text(data.operatingLeverage ? data.operatingLeverage.toLocaleString() : '-');
 
-                // Capacity Analysis
+                // Update Capacity Analysis
                 $('#capacityUtilization').text(data.capacityUtilization ? `${data.capacityUtilization.toLocaleString()}%` : '-');
                 $('#capacityConstraint').text(data.capacityConstraint || '-');
 
-                // Cost Structure
-                $('#periodAdjustedFixedCosts').text(data.periodAdjustedFixedCosts ? `$${data.periodAdjustedFixedCosts.toLocaleString()}` : '-');
-                $('#stepCostImpact').text(data.stepCostImpact ? data.stepCostImpact.toLocaleString() : '-');
-
-                // Show results section
-                $('#resultsSection').show();
+                // Add fade-in animation
+                $('#resultsContent').fadeIn();
             },
             error: function(xhr, status, error) {
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
                 console.error('Error:', error);
-                alert('An error occurred while calculating breakeven point. Please try again.');
+                
+                Swal.fire({
+                    text: 'An error occurred while calculating the breakeven point. Please try again.',
+                    icon: 'error',
+                    buttonsStyling: false,
+                    confirmButtonText: 'Ok, got it!',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    }
+                });
             },
             complete: function() {
                 // Reset button state

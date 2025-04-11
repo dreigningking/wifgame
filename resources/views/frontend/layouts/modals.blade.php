@@ -3396,7 +3396,7 @@
                         </button>
 
                         <button type="button" class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary p-7 d-flex align-items-center mb-5">
-                            <img src="{{ asset('media/svg/payment-methods/card.svg') }}" class="w-40px me-4" alt=""/>
+                            <img src="{{ asset('media/svg/payment-methods/mastercard.svg') }}" class="w-40px me-4" alt=""/>
                             <span class="d-block fw-semibold text-start">
                                 <span class="text-dark fw-bold d-block fs-3">Credit Card</span>
                                 <span class="text-muted fw-semibold fs-6">Visa, MasterCard, American Express</span>

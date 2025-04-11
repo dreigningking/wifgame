@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'ROI Calculator - Calculate your return on investment with ease. Evaluate project returns against industry benchmarks and risk factors.')
+@section('meta_keywords', 'ROI Calculator, return on investment, industry benchmarks, risk factors, investment analysis')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">ROI Calculator</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-3" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -128,15 +138,72 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About ROI Calculator</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsSection" class="d-none">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Investment:</span>
+                            <span class="fw-bold" id="totalInvestment">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Returns:</span>
+                            <span class="fw-bold" id="totalReturns">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Net Profit:</span>
+                            <span class="fw-bold" id="netProfit">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">ROI:</span>
+                            <span class="fw-bold" id="roi">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Industry Benchmark:</span>
+                            <span class="fw-bold" id="industryBenchmarkResult">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Risk-Adjusted ROI:</span>
+                            <span class="fw-bold" id="riskAdjustedROI">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Payback Period:</span>
+                            <span class="fw-bold" id="paybackPeriod">-</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div>   
+    </div>
+</div>
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About ROI Calculator</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
                 <p class="text-gray-600">
                     The ROI Calculator helps you compare project returns against industry benchmarks. It provides a comprehensive analysis of your investment's performance by considering:
                 </p>
@@ -147,45 +214,26 @@
                     <li>Risk-adjusted returns</li>
                     <li>Payback period analysis</li>
                 </ul>
-            </div>
-        </div>
-
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
-                <h3 class="card-title">Calculation Results</h3>
-            </div>
-            <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Total Investment:</span>
-                        <span class="fw-bold" id="totalInvestment">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Total Returns:</span>
-                        <span class="fw-bold" id="totalReturns">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Net Profit:</span>
-                        <span class="fw-bold" id="netProfit">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">ROI:</span>
-                        <span class="fw-bold" id="roi">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Industry Benchmark:</span>
-                        <span class="fw-bold" id="industryBenchmarkResult">-</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Risk-Adjusted ROI:</span>
-                        <span class="fw-bold" id="riskAdjustedROI">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Payback Period:</span>
-                        <span class="fw-bold" id="paybackPeriod">-</span>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Industry Benchmarks</h4>
+                <p class="text-gray-600">
+                    Industry benchmarks provide a reference point for evaluating your ROI:
+                </p>
+                <ul class="text-gray-600">
+                    <li>Technology: 20-30% average ROI</li>
+                    <li>Healthcare: 15-20% average ROI</li>
+                    <li>Manufacturing: 10-15% average ROI</li>
+                    <li>Retail: 8-12% average ROI</li>
+                    <li>Finance: 15-25% average ROI</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Consider both the industry benchmark and risk factors when evaluating your investment's performance. A higher ROI might come with increased risk exposure.
                     </div>
                 </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -291,8 +339,9 @@ $(document).ready(function() {
                 $('#riskAdjustedROI').text(`${data.riskAdjustedROI}%`);
                 $('#paybackPeriod').text(`${data.paybackPeriod} years`);
 
-                // Show results section
-                $('#resultsSection').show();
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsSection').removeClass('d-none');
             },
             error: function(xhr, status, error) {
                 console.error('Error Response:', xhr.responseJSON);

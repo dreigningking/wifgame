@@ -1,8 +1,8 @@
-<div class="toolbar py-3 py-lg-6" id="kt_toolbar">
+<div class="toolbar" id="kt_toolbar">
     <!--begin::Container-->
     <div id="kt_toolbar_container" class="container-xxl d-flex flex-stack flex-wrap gap-2">
         <!--begin::Page title-->
-        <div class="page-title d-flex flex-column align-items-start me-3 py-2 py-lg-0 gap-2">
+        <div class="page-title d-flex flex-column align-items-start me-3 py-3 py-lg-6 gap-2">
             <!--begin::Title-->
             <h1 class="d-flex text-gray-900 fw-bold m-0 fs-3">Dashboard
                 <!--begin::Separator-->
@@ -15,32 +15,12 @@
             <!--end::Title-->
         </div>
         <!--end::Page title-->
+        <div id="horizonal_ad" class="d-flex align-items-center">
+            @include('frontend.layouts.ads.toolbar_ads')
+        </div>
         <!--begin::Actions-->
-        <div class="d-flex align-items-center">
-            <!--begin::Button-->
-            <a href="#" class="btn btn-icon btn-color-primary bg-body w-35px h-35px w-lg-40px h-lg-40px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_upgrade_plan">
-                <i class="ki-duotone ki-file-added fs-2 fs-md-1">
-                    <span class="path1"></span>
-                    <span class="path2"></span>
-                </i>
-            </a>
-            <!--end::Button-->
-            <!--begin::Button-->
-            <a href="#" class="btn btn-icon btn-color-success bg-body w-35px h-35px w-lg-40px h-lg-40px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_create_campaign">
-                <i class="ki-duotone ki-add-files fs-2 fs-md-1">
-                    <span class="path1"></span>
-                    <span class="path2"></span>
-                    <span class="path3"></span>
-                </i>
-            </a>
-            <!--end::Button-->
-            <!--begin::Button-->
-            <a href="#" class="btn btn-icon btn-color-warning bg-body w-35px h-35px w-lg-40px h-lg-40px me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_create_app">
-                <i class="ki-duotone ki-document fs-2 fs-md-1">
-                    <span class="path1"></span>
-                    <span class="path2"></span>
-                </i>
-            </a>
+        <div class="d-flex align-items-center py-3 py-lg-6">
+            
             <!--end::Button-->
             <!--begin::Donate Button-->
             <a href="#" class="btn btn-light-success btn-flex h-35px h-lg-40px px-5 me-3" data-bs-toggle="modal" data-bs-target="#kt_modal_donate">

@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Market Share Calculator - Analyze your company\'s market share and competitive position. Evaluate market growth, competitive analysis, and marketing efficiency.')
+@section('meta_keywords', 'Market Share Calculator, market share, competitive analysis, marketing efficiency, market growth')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Market Share Calculator</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -180,159 +190,150 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About Market Share Calculator</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
-                <p class="text-gray-600 mb-4">
-                    The Market Share Calculator is a comprehensive tool that analyzes your company's market position, competitive landscape, and growth potential. It provides detailed insights across multiple dimensions:
-                </p>
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
 
-                <!-- Market Position Analysis -->
-                <h4 class="text-gray-800 mb-2">Market Position Analysis</h4>
-                <ul class="text-gray-600 mb-4">
-                    <li>Revenue and unit-based market share calculations</li>
-                    <li>Relative market share compared to market leader</li>
-                    <li>Competitive position assessment</li>
-                    <li>Market segment-specific analysis (premium, midrange, budget)</li>
-                </ul>
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsContent" class="d-none">
+                    <div class="d-flex flex-column">
+                        <!-- Market Position -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Revenue Market Share:</span>
+                            <span class="fw-bold" id="revenueMarketShare">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Unit Market Share:</span>
+                            <span class="fw-bold" id="unitMarketShare">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Relative Market Share:</span>
+                            <span class="fw-bold" id="relativeMarketShare">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Competitive Position:</span>
+                            <span class="fw-bold" id="competitivePosition">-</span>
+                        </div>
+                        <div class="separator my-5"></div>
 
-                <!-- Competitive Landscape -->
-                <h4 class="text-gray-800 mb-2">Competitive Landscape</h4>
-                <ul class="text-gray-600 mb-4">
-                    <li>Industry concentration analysis using HHI</li>
-                    <li>Average competitor share comparison</li>
-                    <li>Market structure evaluation</li>
-                    <li>Geographic market penetration insights</li>
-                </ul>
+                        <!-- Competitive Analysis -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Average Competitor Share:</span>
+                            <span class="fw-bold" id="avgCompetitorShare">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Market Concentration:</span>
+                            <span class="fw-bold" id="marketConcentration">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Number of Competitors:</span>
+                            <span class="fw-bold" id="competitorCount">0</span>
+                        </div>
+                        <div class="separator my-5"></div>
 
-                <!-- Growth and Performance -->
-                <h4 class="text-gray-800 mb-2">Growth and Performance</h4>
-                <ul class="text-gray-600 mb-4">
-                    <li>Market growth impact assessment</li>
-                    <li>Share growth rate projections</li>
-                    <li>Market penetration analysis</li>
-                    <li>Future market share forecasting</li>
-                </ul>
+                        <!-- Growth Analysis -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Market Growth Impact:</span>
+                            <span class="fw-bold" id="marketGrowthImpact">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Projected Market Share:</span>
+                            <span class="fw-bold" id="projectedMarketShare">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Share Growth Rate:</span>
+                            <span class="fw-bold" id="shareGrowthRate">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Market Penetration:</span>
+                            <span class="fw-bold" id="marketPenetration">0%</span>
+                        </div>
+                        <div class="separator my-5"></div>
 
-                <!-- Marketing Efficiency -->
-                <h4 class="text-gray-800 mb-2">Marketing Efficiency</h4>
-                <ul class="text-gray-600 mb-4">
-                    <li>Customer Acquisition Cost (CAC) analysis</li>
-                    <li>Customer Lifetime Value (CLV) calculations</li>
-                    <li>Marketing ROI measurement</li>
-                    <li>Customer retention metrics</li>
-                </ul>
+                        <!-- Marketing Efficiency -->
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Marketing ROI:</span>
+                            <span class="fw-bold" id="marketingROI">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Customer Acquisition Cost:</span>
+                            <span class="fw-bold" id="cac">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Customer Lifetime Value:</span>
+                            <span class="fw-bold" id="clv">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">CLV/CAC Ratio:</span>
+                            <span class="fw-bold" id="clvCacRatio">0</span>
+                        </div>
+                        <div class="separator my-5"></div>
 
-                <!-- Strategic Insights -->
-                <h4 class="text-gray-800 mb-2">Strategic Insights</h4>
-                <ul class="text-gray-600">
-                    <li>Position-based strategic recommendations</li>
-                    <li>Growth opportunity identification</li>
-                    <li>Risk assessment and mitigation suggestions</li>
-                    <li>Segment-specific action plans</li>
-                    <li>Market expansion recommendations</li>
-                </ul>
+                        <!-- Strategic Recommendations -->
+                        <div class="notice bg-light-primary rounded border-primary border border-dashed p-4">
+                            <div class="text-gray-700" id="recommendations">
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
 
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
-                <h3 class="card-title">Market Share Analysis</h3>
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About Market Share Calculator</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="card-body">
-                <!-- Market Position -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Market Position</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Revenue Market Share:</span>
-                        <span class="fw-bold" id="revenueMarketShare">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Unit Market Share:</span>
-                        <span class="fw-bold" id="unitMarketShare">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Relative Market Share:</span>
-                        <span class="fw-bold" id="relativeMarketShare">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Competitive Position:</span>
-                        <span class="fw-bold" id="competitivePosition">-</span>
-                    </div>
-                </div>
-
-                <!-- Competitive Analysis -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Competitive Landscape</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Average Competitor Share:</span>
-                        <span class="fw-bold" id="avgCompetitorShare">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Market Concentration:</span>
-                        <span class="fw-bold" id="marketConcentration">-</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Number of Competitors:</span>
-                        <span class="fw-bold" id="competitorCount">0</span>
+            <div class="modal-body">
+                <p class="text-gray-600">
+                    The Market Share Calculator helps you analyze your company's position in the market and competitive landscape. It provides comprehensive insights through:
+                </p>
+                <ul class="text-gray-600">
+                    <li>Revenue and unit-based market share analysis</li>
+                    <li>Competitive position assessment</li>
+                    <li>Market segmentation analysis</li>
+                    <li>Growth potential evaluation</li>
+                    <li>Marketing efficiency metrics</li>
+                </ul>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Metrics Explained</h4>
+                <ul class="text-gray-600">
+                    <li>Revenue Market Share: Share based on revenue</li>
+                    <li>Unit Market Share: Share based on units sold</li>
+                    <li>Market Concentration: Industry competition level</li>
+                    <li>Growth Metrics: Future market position projection</li>
+                    <li>Marketing Efficiency: ROI on marketing spend</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Consider both revenue and unit market share for a complete picture. A higher revenue share compared to unit share indicates premium positioning.
                     </div>
                 </div>
-
-                <!-- Growth Analysis -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Growth Analysis</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Market Growth Impact:</span>
-                        <span class="fw-bold" id="marketGrowthImpact">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Projected Market Share:</span>
-                        <span class="fw-bold" id="projectedMarketShare">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Share Growth Rate:</span>
-                        <span class="fw-bold" id="shareGrowthRate">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Market Penetration:</span>
-                        <span class="fw-bold" id="marketPenetration">0%</span>
-                    </div>
-                </div>
-
-                <!-- Marketing Efficiency -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Marketing Efficiency</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Marketing ROI:</span>
-                        <span class="fw-bold" id="marketingROI">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Customer Acquisition Cost:</span>
-                        <span class="fw-bold" id="cac">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Customer Lifetime Value:</span>
-                        <span class="fw-bold" id="clv">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">CLV/CAC Ratio:</span>
-                        <span class="fw-bold" id="clvCacRatio">0</span>
-                    </div>
-                </div>
-
-                <!-- Strategic Recommendations -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Strategic Recommendations</h4>
-                    <ul class="text-gray-600" id="recommendations">
-                    </ul>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
@@ -344,7 +345,7 @@
     $(document).ready(function() {
         $('#calculateMarketShare').on('click', function(e) {
             e.preventDefault();
-
+            
             // Show loading state
             const calculateBtn = $(this);
             const originalBtnText = calculateBtn.html();
@@ -365,45 +366,68 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
                 success: function(data) {
+                    // Hide initial message and show results
+                    $('#initialMessage').addClass('d-none');
+                    $('#resultsContent').removeClass('d-none');
+
+                    // Format currency based on user's preference
+                    const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                    const symbol = currencySymbols[currentCurrency] || '$';
+
                     // Market Position
-                    $('#revenueMarketShare').text(`${data.marketPosition.revenueMarketShare}%`);
-                    $('#unitMarketShare').text(`${data.marketPosition.unitMarketShare}%`);
+                    $('#revenueMarketShare').text(`${data.marketPosition.revenueMarketShare.toLocaleString()}%`);
+                    $('#unitMarketShare').text(`${data.marketPosition.unitMarketShare.toLocaleString()}%`);
                     $('#relativeMarketShare').text(data.marketPosition.relativeMarketShare ?
-                        `${data.marketPosition.relativeMarketShare}%` : 'N/A');
+                        `${data.marketPosition.relativeMarketShare.toLocaleString()}%` : 'N/A');
                     $('#competitivePosition').text(data.marketPosition.competitivePosition);
 
                     // Competitive Analysis
-                    $('#avgCompetitorShare').text(`${data.competitiveAnalysis.avgCompetitorShare}%`);
+                    $('#avgCompetitorShare').text(`${data.competitiveAnalysis.avgCompetitorShare.toLocaleString()}%`);
                     $('#marketConcentration').text(data.competitiveAnalysis.marketConcentration);
-                    $('#competitorCount').text(data.competitiveAnalysis.competitorCount);
+                    $('#competitorCount').text(data.competitiveAnalysis.competitorCount.toLocaleString());
 
                     // Growth Metrics
-                    $('#marketGrowthImpact').text(`$${data.growthMetrics.marketGrowthImpact.toLocaleString()}`);
-                    $('#projectedMarketShare').text(`${data.growthMetrics.projectedMarketShare}%`);
-                    $('#shareGrowthRate').text(`${data.growthMetrics.shareGrowthRate}%`);
-                    $('#marketPenetration').text(`${data.growthMetrics.marketPenetration}%`);
+                    $('#marketGrowthImpact').text(`${symbol}${data.growthMetrics.marketGrowthImpact.toLocaleString()}`);
+                    $('#projectedMarketShare').text(`${data.growthMetrics.projectedMarketShare.toLocaleString()}%`);
+                    $('#shareGrowthRate').text(`${data.growthMetrics.shareGrowthRate.toLocaleString()}%`);
+                    $('#marketPenetration').text(`${data.growthMetrics.marketPenetration.toLocaleString()}%`);
 
                     // Marketing Efficiency
-                    $('#marketingROI').text(`${data.marketingEfficiency.marketingROI}%`);
+                    $('#marketingROI').text(`${data.marketingEfficiency.marketingROI.toLocaleString()}%`);
                     $('#cac').text(data.marketingEfficiency.customerAcquisitionCost ?
-                        `$${data.marketingEfficiency.customerAcquisitionCost.toLocaleString()}` : 'N/A');
+                        `${symbol}${data.marketingEfficiency.customerAcquisitionCost.toLocaleString()}` : 'N/A');
                     $('#clv').text(data.marketingEfficiency.customerLifetimeValue ?
-                        `$${data.marketingEfficiency.customerLifetimeValue.toLocaleString()}` : 'N/A');
-                    $('#clvCacRatio').text(data.marketingEfficiency.clvCacRatio || 'N/A');
+                        `${symbol}${data.marketingEfficiency.customerLifetimeValue.toLocaleString()}` : 'N/A');
+                    $('#clvCacRatio').text(data.marketingEfficiency.clvCacRatio?.toLocaleString() || 'N/A');
 
                     // Recommendations
                     const recommendationsList = $('#recommendations');
                     recommendationsList.empty();
-                    data.recommendations.forEach(recommendation => {
-                        recommendationsList.append(`<li>${recommendation}</li>`);
-                    });
+                    const recommendationsHtml = data.recommendations.map(recommendation => 
+                        `<div class="d-flex align-items-center mb-2">
+                            <span class="bullet bullet-dot bg-primary me-2"></span>
+                            <span class="text-gray-700">${recommendation}</span>
+                        </div>`
+                    ).join('');
+                    recommendationsList.html(recommendationsHtml);
 
-                    // Show results section
-                    $('#resultsSection').show();
+                    // Add fade-in animation
+                    $('#resultsContent').fadeIn();
                 },
                 error: function(xhr, status, error) {
+                    console.error('Error Response:', xhr.responseJSON);
+                    console.error('Status:', status);
                     console.error('Error:', error);
-                    alert('An error occurred while calculating market share. Please try again.');
+                    
+                    Swal.fire({
+                        text: 'An error occurred while calculating market share. Please try again.',
+                        icon: 'error',
+                        buttonsStyling: false,
+                        confirmButtonText: 'Ok, got it!',
+                        customClass: {
+                            confirmButton: 'btn btn-primary'
+                        }
+                    });
                 },
                 complete: function() {
                     // Reset button state

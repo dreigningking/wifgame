@@ -1,18 +1,23 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\AdController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\AdministrativeController;
 use App\Http\Controllers\Admin\UserManagementController;
-
+use App\Http\Controllers\Admin\ProfessionalController;
 Route::group(['as' => 'admin.','prefix'=> 'admin','middleware'=> ['auth','role:superadmin']],function () {
     Route::get('dashboard', [AdministrativeController::class,'dashboard'])->name('dashboard');
     Route::get('settings', [AdministrativeController::class,'settings'])->name('settings');
     Route::post('settings/store', [AdministrativeController::class,'settings_store'])->name('settings.store');
     Route::get('plans', 'BusinessManagementController@plan_list')->name('plans');
-    Route::get('coupons','BusinessManagementController@coupon_list')->name('coupons');
-    Route::get('coupon/create','BusinessManagementController@coupon_create')->name('coupon.create');
-    Route::post('coupon/save','BusinessManagementController@coupon_save')->name('coupon.save');
+    Route::resource('ads', AdController::class);
+    Route::prefix('professionals')->name('professionals.')->middleware(['auth', 'admin'])->group(function () {
+        Route::get('/', [ProfessionalController::class, 'index'])->name('index');
+        Route::get('{professional}', [ProfessionalController::class, 'show'])->name('show');
+        Route::post('{professional}/update-status', [ProfessionalController::class, 'updateStatus'])->name('update-status');
+        Route::delete('{professional}', [ProfessionalController::class, 'destroy'])->name('destroy');
+    });
     
     Route::group(['prefix'=> 'categories','as'=> 'categories.'],function(){
         Route::get('/',[CategoryController::class,'index'])->name('list');

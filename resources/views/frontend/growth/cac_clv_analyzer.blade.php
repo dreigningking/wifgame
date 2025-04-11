@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'CAC/CLV Analyzer - Evaluate customer acquisition costs and lifetime value. Analyze marketing spend, customer retention, and profitability metrics.')
+@section('meta_keywords', 'CAC/CLV Analyzer, customer acquisition costs, lifetime value, marketing spend, customer retention, profitability metrics')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">CAC/CLV Analyzer</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -210,218 +220,157 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">About CAC/CLV Analyzer</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
-                <p class="text-gray-600 mb-4">
-                    The enhanced Customer Acquisition Cost (CAC) and Customer Lifetime Value (CLV) Analyzer is a comprehensive tool that helps businesses optimize their customer acquisition strategies and maximize customer value. This advanced calculator provides detailed insights across multiple dimensions:
-                </p>
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
 
-                <!-- Acquisition Cost Analysis -->
-                <h4 class="text-gray-800 mb-2">Acquisition Cost Analysis</h4>
-                <ul class="text-gray-600 mb-4">
-                    <li>Detailed breakdown of marketing, sales, advertising, and technology costs</li>
-                    <li>Per-customer acquisition cost calculation</li>
-                    <li>Cost efficiency metrics and benchmarking</li>
-                    <li>Payback period analysis</li>
-                </ul>
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsSection" class="d-none">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Customer Acquisition Cost (CAC):</span>
+                            <span class="fw-bold" id="cacResult">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Customer Lifetime Value (CLV):</span>
+                            <span class="fw-bold" id="clvResult">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">CAC/CLV Ratio:</span>
+                            <span class="fw-bold" id="cacClvRatio">0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Average Revenue per Customer:</span>
+                            <span class="fw-bold" id="avgRevenuePerCustomer">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Customer Profitability:</span>
+                            <span class="fw-bold" id="customerProfitability">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Payback Period:</span>
+                            <span class="fw-bold" id="paybackPeriod">0 months</span>
+                        </div>
+                    </div>
 
-                <!-- Revenue and Profitability -->
-                <h4 class="text-gray-800 mb-2">Revenue and Profitability</h4>
-                <ul class="text-gray-600 mb-4">
-                    <li>Segmented revenue analysis (recurring vs. one-time)</li>
-                    <li>Gross margin impact assessment</li>
-                    <li>Customer profitability tracking</li>
-                    <li>Average revenue per customer metrics</li>
-                </ul>
+                    <!-- Acquisition Details -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Acquisition Details</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Marketing Costs:</span>
+                            <span class="fw-bold" id="marketingCostsResult">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Sales Costs:</span>
+                            <span class="fw-bold" id="salesCostsResult">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Ad Costs:</span>
+                            <span class="fw-bold" id="adCostsResult">$0</span>
+                        </div>
+                    </div>
 
-                <!-- Customer Behavior Insights -->
-                <h4 class="text-gray-800 mb-2">Customer Behavior Insights</h4>
-                <ul class="text-gray-600 mb-4">
-                    <li>Purchase frequency and timing analysis</li>
-                    <li>Customer retention rate impact</li>
-                    <li>Customer lifespan projections</li>
-                    <li>B2B vs B2C customer segmentation</li>
-                </ul>
+                    <!-- Customer Health -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Customer Health</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Purchase Frequency:</span>
+                            <span class="fw-bold" id="purchaseFrequencyResult">0 per year</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Customer Health Score:</span>
+                            <span class="fw-bold" id="customerHealthResult">-</span>
+                        </div>
+                    </div>
 
-                <!-- Risk and Market Analysis -->
-                <h4 class="text-gray-800 mb-2">Risk and Market Analysis</h4>
-                <ul class="text-gray-600 mb-4">
-                    <li>Market competition impact assessment</li>
-                    <li>Industry risk factor analysis</li>
-                    <li>Risk-adjusted value calculations</li>
-                    <li>Market segment-specific insights</li>
-                </ul>
-
-                <!-- Customer Health Monitoring -->
-                <h4 class="text-gray-800 mb-2">Customer Health Monitoring</h4>
-                <ul class="text-gray-600">
-                    <li>Comprehensive customer health scoring</li>
-                    <li>Early warning indicators for customer churn</li>
-                    <li>Customer tier performance analysis</li>
-                    <li>Support cost impact assessment</li>
-                </ul>
-
-                <div class="alert alert-info mt-4">
-                    <div class="d-flex align-items-center">
-                        <i class="ki-duotone ki-information-5 fs-2 me-4">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                            <span class="path3"></span>
-                        </i>
-                        <div class="d-flex flex-column">
-                            <h4 class="mb-1 text-dark">Pro Tip</h4>
-                            <span>For the most accurate results, regularly update your customer data and market conditions. Consider seasonal variations and industry-specific factors when interpreting the results.</span>
+                    <!-- Risk Analysis -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Risk Analysis</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Competition Impact:</span>
+                            <span class="fw-bold" id="competitionImpactResult">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Industry Risk Impact:</span>
+                            <span class="fw-bold" id="industryRiskImpactResult">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Risk-Adjusted Value:</span>
+                            <span class="fw-bold" id="adjustedValueResult">$0</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
 
-        <!-- Results Card -->
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <div class="card-header">
-                <h3 class="card-title">Calculation Results</h3>
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About CAC/CLV Analyzer</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="card-body">
-                <div class="d-flex flex-column">
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Customer Acquisition Cost (CAC):</span>
-                        <span class="fw-bold" id="cacResult">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Customer Lifetime Value (CLV):</span>
-                        <span class="fw-bold" id="clvResult">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">CAC/CLV Ratio:</span>
-                        <span class="fw-bold" id="cacClvRatio">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Average Revenue per Customer:</span>
-                        <span class="fw-bold" id="avgRevenuePerCustomer">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Customer Profitability:</span>
-                        <span class="fw-bold" id="customerProfitability">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Payback Period:</span>
-                        <span class="fw-bold" id="paybackPeriod">0 months</span>
+            <div class="modal-body">
+                <p class="text-gray-600">
+                    The CAC/CLV Analyzer is a comprehensive tool for evaluating customer acquisition costs and lifetime value. It helps businesses optimize their marketing spend and customer retention strategies by analyzing:
+                </p>
+                <ul class="text-gray-600">
+                    <li>Customer acquisition costs across different channels</li>
+                    <li>Customer lifetime value and profitability</li>
+                    <li>Acquisition cost breakdown and efficiency</li>
+                    <li>Customer health and retention metrics</li>
+                    <li>Risk-adjusted value calculations</li>
+                </ul>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Components</h4>
+                <ul class="text-gray-600">
+                    <li>Marketing and Sales Costs: Track all customer acquisition expenses</li>
+                    <li>Customer Value: Calculate lifetime value and profitability</li>
+                    <li>Health Metrics: Monitor customer engagement and retention</li>
+                    <li>Risk Factors: Consider market competition and industry risks</li>
+                    <li>Efficiency Ratios: Evaluate acquisition cost effectiveness</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Aim for a CAC/CLV ratio of 1:3 or better. This indicates that you're spending appropriately on acquisition while maintaining healthy customer lifetime value.
                     </div>
                 </div>
-
-                <!-- Add to Results Card -->
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Acquisition Details</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Marketing Costs:</span>
-                        <span class="fw-bold" id="marketingCostsResult">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Sales Costs:</span>
-                        <span class="fw-bold" id="salesCostsResult">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Ad Costs:</span>
-                        <span class="fw-bold" id="adCostsResult">$0</span>
-                    </div>
-                </div>
-
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Customer Health</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Purchase Frequency:</span>
-                        <span class="fw-bold" id="purchaseFrequencyResult">0 per year</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Customer Health Score:</span>
-                        <span class="fw-bold" id="customerHealthResult">-</span>
-                    </div>
-                </div>
-
-                <div class="mb-5">
-                    <h4 class="text-gray-800 mb-3">Risk Analysis</h4>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Competition Impact:</span>
-                        <span class="fw-bold" id="competitionImpactResult">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between mb-3">
-                        <span class="text-gray-600">Industry Risk Impact:</span>
-                        <span class="fw-bold" id="industryRiskImpactResult">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Risk-Adjusted Value:</span>
-                        <span class="fw-bold" id="adjustedValueResult">$0</span>
-                    </div>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
 
 @push('scripts')
 <script>
 $(document).ready(function() {
-    // Format currency function
-    const formatCurrency = (value) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 2
-        }).format(value);
-    };
-
-    // Format percentage function
-    const formatPercentage = (value) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'percent',
-            minimumFractionDigits: 1,
-            maximumFractionDigits: 1
-        }).format(value / 100);
-    };
-
-    // Form validation function
-    const validateForm = () => {
-        const requiredFields = $('input[required], select[required]');
-        let isValid = true;
-        let firstInvalidField = null;
-
-        requiredFields.each(function() {
-            if (!$(this).val()) {
-                isValid = false;
-                $(this).addClass('is-invalid');
-                if (!firstInvalidField) firstInvalidField = $(this);
-            } else {
-                $(this).removeClass('is-invalid');
-            }
-        });
-
-        if (!isValid && firstInvalidField) {
-            firstInvalidField.focus();
-            Swal.fire({
-                title: 'Validation Error',
-                text: 'Please fill in all required fields',
-                icon: 'error',
-                confirmButtonText: 'OK'
-            });
-        }
-
-        return isValid;
-    };
-
     $('#calculateCACCLV').on('click', function(e) {
         e.preventDefault();
         
-        if (!validateForm()) return;
-
         // Show loading state
         const calculateBtn = $(this);
         const originalBtnText = calculateBtn.html();
@@ -442,61 +391,40 @@ $(document).ready(function() {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
             success: function(data) {
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
+                
                 // Basic Metrics
-                $('#cacResult').text(formatCurrency(data.cac));
-                $('#clvResult').text(formatCurrency(data.clv));
+                $('#cacResult').text(`${symbol}${data.cac.toLocaleString()}`);
+                $('#clvResult').text(`${symbol}${data.clv.toLocaleString()}`);
                 $('#cacClvRatio').text(data.cacClvRatio.toFixed(2));
-                $('#avgRevenuePerCustomer').text(formatCurrency(data.avgRevenuePerCustomer));
-                $('#customerProfitability').text(formatCurrency(data.customerProfitability));
+                $('#avgRevenuePerCustomer').text(`${symbol}${data.avgRevenuePerCustomer.toLocaleString()}`);
+                $('#customerProfitability').text(`${symbol}${data.customerProfitability.toLocaleString()}`);
                 $('#paybackPeriod').text(`${data.paybackPeriod.toFixed(1)} months`);
 
                 // Acquisition Details
-                $('#marketingCostsResult').text(formatCurrency(data.acquisitionDetails.marketingCosts));
-                $('#salesCostsResult').text(formatCurrency(data.acquisitionDetails.salesCosts));
-                $('#adCostsResult').text(formatCurrency(data.acquisitionDetails.adCosts));
-                $('#techCostsResult').text(formatCurrency(data.acquisitionDetails.techCosts));
+                $('#marketingCostsResult').text(`${symbol}${data.acquisitionDetails.marketingCosts.toLocaleString()}`);
+                $('#salesCostsResult').text(`${symbol}${data.acquisitionDetails.salesCosts.toLocaleString()}`);
+                $('#adCostsResult').text(`${symbol}${data.acquisitionDetails.adCosts.toLocaleString()}`);
 
                 // Customer Metrics
                 $('#purchaseFrequencyResult').text(`${data.customerMetrics.purchaseFrequency.toFixed(1)} per year`);
                 $('#customerHealthResult').text(data.customerMetrics.customerHealth);
-                $('#grossMarginResult').text(formatPercentage(data.customerMetrics.grossMargin));
-                $('#timeToPurchaseResult').text(`${data.customerMetrics.timeToPurchase} days`);
 
                 // Risk Analysis
-                $('#competitionImpactResult').text(formatPercentage(data.riskMetrics.competitionImpact));
-                $('#industryRiskImpactResult').text(formatPercentage(data.riskMetrics.industryRiskImpact));
-                $('#adjustedValueResult').text(formatCurrency(data.riskMetrics.adjustedValue));
+                $('#competitionImpactResult').text(`${data.riskMetrics.competitionImpact.toFixed(1)}%`);
+                $('#industryRiskImpactResult').text(`${data.riskMetrics.industryRiskImpact.toFixed(1)}%`);
+                $('#adjustedValueResult').text(`${symbol}${data.riskMetrics.adjustedValue.toLocaleString()}`);
 
-                // Show results section with animation
-                $('#resultsSection').fadeIn(400);
-
-                // Highlight important metrics based on thresholds
-                if (data.cacClvRatio > 3) {
-                    $('#cacClvRatio').addClass('text-danger');
-                } else if (data.cacClvRatio < 1) {
-                    $('#cacClvRatio').addClass('text-success');
-                }
-
-                if (data.customerMetrics.customerHealth === 'Excellent') {
-                    $('#customerHealthResult').addClass('text-success');
-                } else if (data.customerMetrics.customerHealth === 'Poor') {
-                    $('#customerHealthResult').addClass('text-danger');
-                }
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsSection').removeClass('d-none');
             },
             error: function(xhr, status, error) {
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
                 console.error('Error:', error);
-                
-                let errorMessage = 'An error occurred while calculating CAC/CLV.';
-                if (xhr.responseJSON && xhr.responseJSON.message) {
-                    errorMessage = xhr.responseJSON.message;
-                }
-
-                Swal.fire({
-                    title: 'Calculation Error',
-                    text: errorMessage,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
+                alert('An error occurred while calculating CAC/CLV. Please try again.');
             },
             complete: function() {
                 // Reset button state
@@ -504,28 +432,6 @@ $(document).ready(function() {
                 calculateBtn.html(originalBtnText);
             }
         });
-    });
-
-    // Reset form handler
-    $('#resetForm').on('click', function() {
-        $('#cacClvCalculatorForm')[0].reset();
-        $('#resultsSection').hide();
-        $('.is-invalid').removeClass('is-invalid');
-        $('.text-danger, .text-success').removeClass('text-danger text-success');
-    });
-
-    // Input validation handlers
-    $('input[type="number"]').on('input', function() {
-        const min = $(this).attr('min');
-        const max = $(this).attr('max');
-        let value = parseFloat($(this).val());
-
-        if (min && value < parseFloat(min)) {
-            $(this).val(min);
-        }
-        if (max && value > parseFloat(max)) {
-            $(this).val(max);
-        }
     });
 });
 </script>

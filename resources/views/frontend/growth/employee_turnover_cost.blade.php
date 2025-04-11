@@ -1,5 +1,8 @@
 @extends('frontend.layouts.app')
 
+@section('meta_description', 'Employee Turnover Cost Calculator - Estimate the costs associated with employee turnover. Analyze recruitment, training, and productivity losses.')
+@section('meta_keywords', 'Employee Turnover Cost Calculator, turnover costs, recruitment costs, training costs, productivity losses')
+
 @section('content')
 <div class="row">
     <!-- Calculator Section -->
@@ -8,6 +11,13 @@
             <div class="card-header">
                 <h3 class="card-title">Employee Turnover Cost Calculator</h3>
                 <div class="card-toolbar">
+                    <button type="button" class="btn btn-sm btn-light-info me-2" data-bs-toggle="modal" data-bs-target="#helpModal">
+                        <i class="ki-duotone ki-information-5 fs-2">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                        Help
+                    </button>
                     <button type="button" class="btn btn-sm btn-light-primary" id="saveCalculation">
                         <i class="ki-duotone ki-save fs-2">
                             <span class="path1"></span>
@@ -302,319 +312,211 @@
                 </form>
             </div>
         </div>
+        @include('frontend.layouts.professionals')
     </div>
 
     <!-- Results Section -->
     <div class="col-md-5">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Analysis Results</h3>
+                <h3 class="card-title">Calculation Results</h3>
             </div>
             <div class="card-body">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">About Employee Turnover Cost Calculator</h3>
+                <!-- Initial State -->
+                <div id="initialMessage" class="text-center">
+                    <p class="text-gray-600 fs-6">Results will be displayed here after calculation</p>
+                </div>
+
+                <!-- Results Content (Initially Hidden) -->
+                <div id="resultsSection" class="d-none">
+                    <div class="d-flex flex-column">
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Total Turnover Cost:</span>
+                            <span class="fw-bold" id="totalTurnoverCost">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Cost per Employee:</span>
+                            <span class="fw-bold" id="costPerEmployee">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Annual Turnover Rate:</span>
+                            <span class="fw-bold" id="annualTurnoverRate">0%</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Recovery Period:</span>
+                            <span class="fw-bold" id="recoveryPeriod">0 months</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">ROI of Retention:</span>
+                            <span class="fw-bold" id="retentionROI">0%</span>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <p class="text-gray-600 mb-4">
-                            The Enhanced Employee Turnover Cost Calculator is a comprehensive tool designed to accurately assess the full financial impact of employee turnover. This advanced calculator considers multiple dimensions of cost and impact:
-                        </p>
 
-                        <!-- Position Impact -->
-                        <h4 class="text-gray-800 mb-2">Position Analysis</h4>
-                        <ul class="text-gray-600 mb-4">
-                            <li>Multi-level position assessment (Entry to Executive)</li>
-                            <li>Department-specific impact evaluation</li>
-                            <li>Position criticality scoring</li>
-                            <li>Specialized skill requirement analysis</li>
-                        </ul>
+                    <!-- Cost Breakdown -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Cost Breakdown</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Recruitment Costs:</span>
+                            <span class="fw-bold" id="recruitmentCosts">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Training Costs:</span>
+                            <span class="fw-bold" id="trainingCosts">$0</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Productivity Loss:</span>
+                            <span class="fw-bold" id="productivityLoss">$0</span>
+                        </div>
+                    </div>
 
-                        <!-- Recruitment Costs -->
-                        <h4 class="text-gray-800 mb-2">Recruitment Investment</h4>
-                        <ul class="text-gray-600 mb-4">
-                            <li>Comprehensive recruitment cost tracking</li>
-                            <li>Agency and posting fees assessment</li>
-                            <li>Relocation and signing bonus considerations</li>
-                            <li>Assessment and background check costs</li>
-                        </ul>
+                    <!-- Impact Analysis -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Impact Analysis</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Team Morale Impact:</span>
+                            <span class="fw-bold" id="moraleImpact">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Knowledge Loss:</span>
+                            <span class="fw-bold" id="knowledgeLoss">-</span>
+                        </div>
+                    </div>
 
-                        <!-- Training & Development -->
-                        <h4 class="text-gray-800 mb-2">Training & Development Impact</h4>
-                        <ul class="text-gray-600 mb-4">
-                            <li>Technical and soft skills training costs</li>
-                            <li>Certification and compliance training expenses</li>
-                            <li>Productivity ramp-up period analysis</li>
-                            <li>Mentorship program cost assessment</li>
-                        </ul>
-
-                        <!-- Productivity Analysis -->
-                        <h4 class="text-gray-800 mb-2">Productivity Metrics</h4>
-                        <ul class="text-gray-600 mb-4">
-                            <li>Team productivity impact assessment</li>
-                            <li>Client relationship impact evaluation</li>
-                            <li>Project delay cost calculations</li>
-                            <li>Overtime cost considerations</li>
-                        </ul>
-
-                        <!-- Knowledge Management -->
-                        <h4 class="text-gray-800 mb-2">Knowledge & IP Considerations</h4>
-                        <ul class="text-gray-600 mb-4">
-                            <li>Intellectual property impact assessment</li>
-                            <li>Knowledge transfer cost evaluation</li>
-                            <li>Documentation time investment</li>
-                            <li>Process expertise gap analysis</li>
-                        </ul>
-
-                        <!-- Risk Assessment -->
-                        <h4 class="text-gray-800 mb-2">Risk Analysis</h4>
-                        <ul class="text-gray-600">
-                            <li>Market condition impact evaluation</li>
-                            <li>Seasonal timing considerations</li>
-                            <li>Succession readiness assessment</li>
-                            <li>Business continuity risk analysis</li>
-                        </ul>
-
-                        <div class="alert alert-info mt-4">
-                            <div class="d-flex align-items-center">
-                                <i class="ki-duotone ki-information-5 fs-2 me-4">
-                                    <span class="path1"></span>
-                                    <span class="path2"></span>
-                                    <span class="path3"></span>
-                                </i>
-                                <div class="d-flex flex-column">
-                                    <h4 class="mb-1 text-dark">Strategic Insights</h4>
-                                    <span>This calculator provides not just cost calculations but strategic insights through:
-                                        <ul class="mt-2 mb-0">
-                                            <li>ROI analysis for position investment</li>
-                                            <li>Recovery period projections</li>
-                                            <li>Risk-adjusted cost assessments</li>
-                                            <li>Actionable recommendations based on results</li>
-                                        </ul>
-                                    </span>
-                                </div>
-                            </div>
+                    <!-- Risk Assessment -->
+                    <div class="mb-5">
+                        <h4 class="text-gray-800 mb-3">Risk Assessment</h4>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Critical Role Impact:</span>
+                            <span class="fw-bold" id="criticalRoleImpact">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between mb-3">
+                            <span class="text-gray-600">Succession Risk:</span>
+                            <span class="fw-bold" id="successionRisk">-</span>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <span class="text-gray-600">Risk Level:</span>
+                            <span class="fw-bold" id="riskLevel">-</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="card mt-5" id="resultsSection" style="display: none;">
-            <!-- Cost Breakdown Chart -->
-            <div class="mb-5">
-                <canvas id="costBreakdownChart" height="200"></canvas>
-            </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.ads.right_side_ads')
+        </div>
+        <div class="card mt-4">
+            @include('frontend.layouts.related_blog')
+        </div> 
+    </div>
+</div>
 
-            <!-- Detailed Metrics -->
-            <div class="card-body mb-5">
-                <h4 class="fw-bold mb-3">Cost Breakdown</h4>
-                <div class="d-flex flex-column gap-3">
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Recruitment Costs:</span>
-                        <span class="fw-bold" id="recruitmentCosts">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Training Costs:</span>
-                        <span class="fw-bold" id="trainingCosts">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Productivity Costs:</span>
-                        <span class="fw-bold" id="productivityCosts">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Knowledge & IP Costs:</span>
-                        <span class="fw-bold" id="knowledgeCosts">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Administrative Costs:</span>
-                        <span class="fw-bold" id="adminCosts">$0</span>
+<!-- Help Modal -->
+<div class="modal fade" id="helpModal" tabindex="-1" aria-labelledby="helpModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="helpModalLabel">About Employee Turnover Cost Calculator</h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-gray-600">
+                    The Employee Turnover Cost Calculator helps organizations understand the full financial impact of employee turnover. It provides comprehensive analysis of:
+                </p>
+                <ul class="text-gray-600">
+                    <li>Direct costs of recruitment and training</li>
+                    <li>Productivity loss during transition</li>
+                    <li>Impact on team morale and performance</li>
+                    <li>Knowledge and expertise loss</li>
+                    <li>Succession planning implications</li>
+                </ul>
+                <div class="separator my-5"></div>
+                <h4 class="fs-6 fw-bold mb-3">Key Components</h4>
+                <ul class="text-gray-600">
+                    <li>Recruitment Expenses: Advertising, interviewing, and hiring costs</li>
+                    <li>Training Investment: Onboarding and skill development costs</li>
+                    <li>Productivity Metrics: Ramp-up time and lost productivity</li>
+                    <li>Team Impact: Morale and performance effects</li>
+                    <li>Risk Factors: Critical role and succession considerations</li>
+                </ul>
+                <div class="notice bg-light-primary rounded border-primary border border-dashed p-4 mt-4">
+                    <div class="text-gray-700">
+                        Pro Tip: Focus on preventive measures and retention strategies. The cost of keeping a good employee is often significantly lower than the cost of replacing them.
                     </div>
                 </div>
             </div>
-
-            <!-- Impact Analysis -->
-            <div class="card-body mb-5">
-                <h4 class="fw-bold mb-3">Impact Analysis</h4>
-                <div class="d-flex flex-column gap-3">
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Team Impact Cost:</span>
-                        <span class="fw-bold" id="teamImpactCost">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Position Impact Factor:</span>
-                        <span class="fw-bold" id="positionImpactFactor">0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Risk Adjustment:</span>
-                        <span class="fw-bold" id="riskAdjustment">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Key Metrics -->
-            <div class="card-body mb-5">
-                <h4 class="fw-bold mb-3">Key Metrics</h4>
-                <div class="d-flex flex-column gap-3">
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Base Cost:</span>
-                        <span class="fw-bold" id="baseCost">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Adjusted Cost:</span>
-                        <span class="fw-bold" id="adjustedCost">$0</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Turnover ROI:</span>
-                        <span class="fw-bold" id="turnoverROI">0%</span>
-                    </div>
-                    <div class="d-flex justify-content-between">
-                        <span class="text-gray-600">Months to Recover:</span>
-                        <span class="fw-bold" id="monthsToRecover">0</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Recommendations -->
-            <div class="card-body mb-5">
-                <h4 class="fw-bold mb-3">Recommendations</h4>
-                <div id="recommendationsList" class="d-flex flex-column gap-2">
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
 
 @push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
 $(document).ready(function() {
-    let costBreakdownChart = null;
-
-    const formatCurrency = (value) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD',
-            minimumFractionDigits: 2
-        }).format(value);
-    };
-
-    const createCostBreakdownChart = (data) => {
-        const ctx = document.getElementById('costBreakdownChart').getContext('2d');
-        
-        if (costBreakdownChart) {
-            costBreakdownChart.destroy();
-        }
-
-        costBreakdownChart = new Chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Recruitment', 'Training', 'Productivity', 'Knowledge & IP', 'Administrative'],
-                datasets: [{
-                    data: [
-                        data.costBreakdown.recruitmentCosts,
-                        data.costBreakdown.trainingCosts,
-                        data.costBreakdown.productivityCosts,
-                        data.costBreakdown.knowledgeCosts,
-                        data.costBreakdown.adminCosts
-                    ],
-                    backgroundColor: [
-                        '#009EF7',
-                        '#50CD89',
-                        '#F1416C',
-                        '#7239EA',
-                        '#FFC700'
-                    ]
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: {
-                        position: 'bottom'
-                    }
-                }
-            }
-        });
-    };
-
-    const updateResults = (data) => {
-        // Update cost breakdown
-        $('#recruitmentCosts').text(formatCurrency(data.costBreakdown.recruitmentCosts));
-        $('#trainingCosts').text(formatCurrency(data.costBreakdown.trainingCosts));
-        $('#productivityCosts').text(formatCurrency(data.costBreakdown.productivityCosts));
-        $('#knowledgeCosts').text(formatCurrency(data.costBreakdown.knowledgeCosts));
-        $('#adminCosts').text(formatCurrency(data.costBreakdown.adminCosts));
-
-        // Update impact analysis
-        $('#teamImpactCost').text(formatCurrency(data.impactAnalysis.teamProductivityImpact));
-        $('#positionImpactFactor').text(data.impactAnalysis.positionImpactFactor.toFixed(2));
-        $('#riskAdjustment').text(data.impactAnalysis.riskAdjustment.toFixed(2));
-
-        // Update key metrics
-        $('#baseCost').text(formatCurrency(data.metrics.baseCost));
-        $('#adjustedCost').text(formatCurrency(data.metrics.adjustedCost));
-        $('#turnoverROI').text(data.metrics.turnoverROI.toFixed(1) + '%');
-        $('#monthsToRecover').text(data.metrics.monthsToRecover.toFixed(1));
-
-        // Update recommendations
-        const recommendationsList = $('#recommendationsList');
-        recommendationsList.empty();
-        data.recommendations.forEach(recommendation => {
-            recommendationsList.append(`
-                <div class="d-flex align-items-center gap-2">
-                    <i class="ki-duotone ki-arrow-right fs-3 text-primary">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                    </i>
-                    <span>${recommendation}</span>
-                </div>
-            `);
-        });
-
-        // Create/update chart
-        createCostBreakdownChart(data);
-
-        // Show results section
-        $('#resultsSection').fadeIn();
-    };
-
     $('#calculateTurnoverCost').on('click', function(e) {
         e.preventDefault();
         
-        const form = $('#turnoverCostCalculatorForm')[0];
-        if (!form.checkValidity()) {
-            form.reportValidity();
-            return;
-        }
+        // Show loading state
+        const calculateBtn = $(this);
+        const originalBtnText = calculateBtn.html();
+        calculateBtn.prop('disabled', true);
+        calculateBtn.html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Calculating...');
 
-        const btn = $(this);
-        const originalText = btn.html();
-        btn.prop('disabled', true).html('<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Calculating...');
+        // Get form data
+        const formData = new FormData($('#turnoverCostCalculatorForm')[0]);
 
+        // Make AJAX request
         $.ajax({
-            url: form.action,
+            url: $('#turnoverCostCalculatorForm').attr('action'),
             type: 'POST',
-            data: new FormData(form),
+            data: formData,
             processData: false,
             contentType: false,
-            success: function(response) {
-                updateResults(response);
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             },
-            error: function(xhr) {
-                let errorMessage = 'An error occurred while calculating turnover costs.';
-                if (xhr.responseJSON && xhr.responseJSON.message) {
-                    errorMessage = xhr.responseJSON.message;
-                }
+            success: function(data) {
+                const currentCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+                const symbol = currencySymbols[currentCurrency] || '$';
                 
-                Swal.fire({
-                    title: 'Error',
-                    text: errorMessage,
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
+                // Basic Metrics
+                $('#totalTurnoverCost').text(`${symbol}${data.totalTurnoverCost.toLocaleString()}`);
+                $('#costPerEmployee').text(`${symbol}${data.costPerEmployee.toLocaleString()}`);
+                $('#annualTurnoverRate').text(`${data.annualTurnoverRate.toFixed(1)}%`);
+                $('#recoveryPeriod').text(`${data.recoveryPeriod.toFixed(1)} months`);
+                $('#retentionROI').text(`${data.retentionROI.toFixed(1)}%`);
+
+                // Cost Breakdown
+                $('#recruitmentCosts').text(`${symbol}${data.costBreakdown.recruitmentCosts.toLocaleString()}`);
+                $('#trainingCosts').text(`${symbol}${data.costBreakdown.trainingCosts.toLocaleString()}`);
+                $('#productivityLoss').text(`${symbol}${data.costBreakdown.productivityLoss.toLocaleString()}`);
+
+                // Impact Analysis
+                $('#moraleImpact').text(data.impactAnalysis.moraleImpact);
+                $('#knowledgeLoss').text(data.impactAnalysis.knowledgeLoss);
+
+                // Risk Assessment
+                $('#criticalRoleImpact').text(data.riskAssessment.criticalRoleImpact);
+                $('#successionRisk').text(data.riskAssessment.successionRisk);
+                $('#riskLevel').text(data.riskAssessment.riskLevel);
+
+                // Hide initial message and show results
+                $('#initialMessage').addClass('d-none');
+                $('#resultsSection').removeClass('d-none');
+            },
+            error: function(xhr, status, error) {
+                console.error('Error Response:', xhr.responseJSON);
+                console.error('Status:', status);
+                console.error('Error:', error);
+                alert('An error occurred while calculating turnover costs. Please try again.');
             },
             complete: function() {
-                btn.prop('disabled', false).html(originalText);
+                // Reset button state
+                calculateBtn.prop('disabled', false);
+                calculateBtn.html(originalBtnText);
             }
         });
     });
