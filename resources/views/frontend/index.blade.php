@@ -200,7 +200,7 @@
                     </div>
                 </div>
                 <div class="text-center">
-                    <a href="#" class="btn btn-primary fw-bold me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_calculator_request">
+                    <a href="#" class="btn btn-primary fw-bold me-2" data-bs-toggle="modal" data-bs-target="#calculatorRequestModal">
                         Request Calculator
                     </a>
                     <a href="#" class="btn btn-light-primary fw-bold">Contact Support</a>
@@ -209,12 +209,76 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="calculatorRequestModal" tabindex="-1" aria-labelledby="calculatorRequestModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="calculatorRequestModalLabel">Request a Custom Calculator</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="calculatorRequestForm">
+                    @if(!auth()->check())
+                    <div class="text-center text-danger">
+                        <p>You need to be logged in to request a custom calculator. <a href="{{ route('login') }}">Login</a></p>
+                    </div>
+                    @endif
+                    @csrf
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Calculator Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="4" required></textarea>
+                        <div class="form-text">Please describe what you want the calculator to do and what inputs/outputs you need.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                @if(auth()->check())
+                <button type="button" class="btn btn-primary" id="submitRequest">Submit Request</button>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @push('scripts')
 <script>
-$(document).ready(function() {
-    // Add any necessary JavaScript functionality here
-});
+    $(document).ready(function() {
+        $('#submitRequest').click(function() {
+            const form = document.getElementById('calculatorRequestForm');
+            const formData = new FormData(form);
+            $.ajax({
+                url: '{{ route("dashboard.calculator-request") }}',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function(data) {
+                    if (data.success) {
+                        // Show success message
+                        alert(data.message);
+                        // Reset form and close modal
+                        form.reset();
+                        $('#calculatorRequestModal').modal('hide');
+                    } else {
+                        // Show error message
+                        alert('There was an error submitting your request. Please try again.');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('Error:', error);
+                    alert('There was an error submitting your request. Please try again.');
+                }
+            });
+        })
+    });
 </script>
-@endpush 
+@endpush

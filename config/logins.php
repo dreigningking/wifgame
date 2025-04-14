@@ -90,7 +90,8 @@ return [
         */
 
         'environments' => [
-            'production','local'
+            // 'production',
+            // 'local'
         ],
     ],
 
@@ -110,7 +111,8 @@ return [
     |
     */
 
-    'new_login_notification' => \ALajusticia\Logins\Notifications\NewLogin::class,
+    // 'new_login_notification' => \ALajusticia\Logins\Notifications\NewLogin::class,
+    'new_login_notification' => false,
 
     /*
     |--------------------------------------------------------------------------

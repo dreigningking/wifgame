@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use Log;
 use DateTime;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -21,7 +22,8 @@ class FinanceCalculatorController extends Controller
 
     public function roiCalculator()
     {
-        return view('frontend.finance.roi_calculator');
+        $posts = Post::where('tags','LIKE',"%roi%")->take(5)->get();
+        return view('frontend.finance.roi_calculator',compact('posts'));
     }
 
     /**

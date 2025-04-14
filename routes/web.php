@@ -2,10 +2,12 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\User\FinanceCalculatorController;
-use App\Http\Controllers\User\GrowthCalculatorController;
-use App\Http\Controllers\User\OperationsCalculatorController;
+use App\Http\Controllers\User\BlogController;
+use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\ProfessionalController;
+use App\Http\Controllers\User\GrowthCalculatorController;
+use App\Http\Controllers\User\FinanceCalculatorController;
+use App\Http\Controllers\User\OperationsCalculatorController;
 
 
 /*
@@ -20,7 +22,8 @@ use App\Http\Controllers\User\ProfessionalController;
 */
 Route::get('/', function () {return view('frontend.index'); })->name('index');
 Route::get('dashboard', function () {return view('frontend.dashboard.overview'); })->name('dashboard');
-
+Route::post('/dashboard/calculator-request', [DashboardController::class, 'storeCalculatorRequest'])
+        ->name('dashboard.calculator-request');
 // Finance Calculators
 Route::prefix('finance')->as('finance.')->group(function () {
     Route::get('/roi-calculator', [FinanceCalculatorController::class, 'roiCalculator'])->name('roi-calculator');
@@ -70,9 +73,13 @@ Route::prefix('professionals')->name('professionals.')->group(function () {
     Route::post('{professional}/consult', [ProfessionalController::class, 'storeConsultation'])->name('consult');
 });
 
+Route::group(['prefix'=> 'blog','as'=> 'blog.'],function(){
+    Route::get('{post}', [BlogController::class, 'show'])->name('show');
+});
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 include('admin.php');
+

@@ -34,7 +34,28 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
     'ip_api'=> env('IP_API_KEY'),
-    'ipdata'=> env('IP_DATA_KEY')
+    'ipdata'=> env('IP_DATA_KEY'),
 
+    'stripe' => [
+        'key' => env('STRIPE_KEY'),
+        'secret' => env('STRIPE_SECRET'),
+    ],
+    'paypal' => [
+        'client_id' => env('PAYPAL_CLIENT_ID'),
+        'secret' => env('PAYPAL_SECRET'),
+        'sandbox' => [
+            'client_id' => env('PAYPAL_SANDBOX_CLIENT_ID'),
+            'secret' => env('PAYPAL_SANDBOX_SECRET'),
+        ]
+    ],
+    'paystack' => [
+        'secret' => env('PAYSTACK_SECRET_KEY'),
+        'public' => env('PAYSTACK_PUBLIC_KEY'),
+    ],
+    'binance' => [
+        'key' => env('BINANCE_API_KEY'),
+        'secret' => env('BINANCE_API_SECRET'),
+        'merchant_id' => env('BINANCE_MERCHANT_ID'),
+    ],
 
 ];

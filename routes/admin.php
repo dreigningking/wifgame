@@ -2,17 +2,27 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdController;
+use App\Http\Controllers\Admin\BlogController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\CalculatorController;
+use App\Http\Controllers\Admin\ProfessionalController;
 use App\Http\Controllers\Admin\AdministrativeController;
 use App\Http\Controllers\Admin\UserManagementController;
-use App\Http\Controllers\Admin\ProfessionalController;
+use App\Http\Controllers\Admin\CalculatorRequestController;
 Route::group(['as' => 'admin.','prefix'=> 'admin','middleware'=> ['auth','role:superadmin']],function () {
     Route::get('dashboard', [AdministrativeController::class,'dashboard'])->name('dashboard');
+   
+    Route::get('/calculator-requests', [CalculatorRequestController::class, 'index'])->name('calculator-requests.index');
+    Route::post('/calculator-requests/update-status', [CalculatorRequestController::class, 'updateStatus'])->name('calculator-requests.update-status');
+    Route::post('/calculator-requests/add-notes', [CalculatorRequestController::class, 'addNotes'])->name('calculator-requests.add-notes');
+   
     Route::get('settings', [AdministrativeController::class,'settings'])->name('settings');
     Route::post('settings/store', [AdministrativeController::class,'settings_store'])->name('settings.store');
     Route::get('plans', 'BusinessManagementController@plan_list')->name('plans');
+    
     Route::resource('ads', AdController::class);
-    Route::prefix('professionals')->name('professionals.')->middleware(['auth', 'admin'])->group(function () {
+    
+    Route::prefix('professionals')->name('professionals.')->group(function () {
         Route::get('/', [ProfessionalController::class, 'index'])->name('index');
         Route::get('{professional}', [ProfessionalController::class, 'show'])->name('show');
         Route::post('{professional}/update-status', [ProfessionalController::class, 'updateStatus'])->name('update-status');
@@ -25,20 +35,21 @@ Route::group(['as' => 'admin.','prefix'=> 'admin','middleware'=> ['auth','role:s
         Route::post('update',[CategoryController::class,'update'])->name('update');
         Route::post('delete',[CategoryController::class,'destroy'])->name('delete');
     });
+    
     Route::group(['prefix'=> 'posts','as'=> 'posts.'],function(){
-        Route::get('/','BlogManagementController@post_list')->name('list');
-        Route::get('create','BlogManagementController@post_create')->name('create');
-        Route::post('store','BlogManagementController@post_save')->name('store');
-        Route::get('edit/{post}','BlogManagementController@post_edit')->name('edit');
-        Route::post('update','BlogManagementController@post_udpate')->name('update');
-        Route::post('delete','BlogManagementController@post_delete')->name('delete');
+        Route::get('/',[BlogController::class,'index'])->name('list');
+        Route::get('create',[BlogController::class,'create'])->name('create');
+        Route::post('store',[BlogController::class,'store'])->name('store');
+        Route::get('edit/{post}',[BlogController::class,'edit'])->name('edit');
+        Route::post('update',[BlogController::class,'update'])->name('update');
+        Route::post('delete',[BlogController::class,'destroy'])->name('delete');
     
     });
     
     Route::group(['prefix'=> 'comments','as'=> 'comments.'],function(){
-        Route::get('/','BlogManagementController@comment_list')->name('list');
-        Route::post('approve','BlogManagementController@comment_delete')->name('approve');
-        Route::post('delete','BlogManagementController@comment_delete')->name('delete');    
+        Route::get('/','BlogController@comment_list')->name('list');
+        Route::post('approve','BlogController@comment_delete')->name('approve');
+        Route::post('delete','BlogController@comment_delete')->name('delete');    
     });
     
     Route::group(['prefix'=> 'users','as'=> 'users.'],function(){

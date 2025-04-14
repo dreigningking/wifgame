@@ -139,6 +139,105 @@
 			});
 		});
 		</script>
+		<script>
+		// Add this to your existing script in modals.blade.php
+		document.addEventListener('DOMContentLoaded', function() {
+			// Currency conversion rates and minimum amounts
+			const currencyConfig = {
+				'USD': { symbol: '$', multiplier: 1, minimum: 5 },
+				'EUR': { symbol: '€', multiplier: 1, minimum: 5 },
+				'GBP': { symbol: '£', multiplier: 1, minimum: 5 },
+				'JPY': { symbol: '¥', multiplier: 100, minimum: 500 },
+				'AUD': { symbol: 'A$', multiplier: 1, minimum: 5 },
+				'CAD': { symbol: 'C$', multiplier: 1, minimum: 5 },
+				'CHF': { symbol: 'Fr', multiplier: 1, minimum: 5 },
+				'CNY': { symbol: '¥', multiplier: 100, minimum: 500 },
+				'INR': { symbol: '₹', multiplier: 100, minimum: 500 },
+				'RUB': { symbol: '₽', multiplier: 100, minimum: 500 },
+				'NGN': { symbol: '₦', multiplier: 100, minimum: 500 }
+			};
+
+			// Function to update donation amounts
+			function updateDonationAmounts(currency) {
+				const config = currencyConfig[currency];
+				if (!config) return;
+
+				// Update currency symbols
+				document.querySelectorAll('.currency').forEach(element => {
+					element.textContent = config.symbol;
+				});
+
+				// Update amount labels
+				const amounts = [5, 10, 25].map(amount => amount * config.multiplier);
+				
+				document.getElementById('amount_5').value = amounts[0];
+				document.getElementById('amount_10').value = amounts[1];
+				document.getElementById('amount_25').value = amounts[2];
+				
+				document.querySelector(`label[for="amount_5"]`).innerHTML = 
+					`<span class="currency">${config.symbol}</span>${amounts[0]}`;
+				document.querySelector(`label[for="amount_10"]`).innerHTML = 
+					`<span class="currency">${config.symbol}</span>${amounts[1]}`;
+				document.querySelector(`label[for="amount_25"]`).innerHTML = 
+					`<span class="currency">${config.symbol}</span>${amounts[2]}`;
+
+				// Update custom amount placeholder
+				const customAmountInput = document.querySelector('#custom_amount_container input');
+				customAmountInput.placeholder = `Enter amount (min. ${config.symbol}${config.minimum})`;
+				customAmountInput.setAttribute('min', config.minimum);
+			}
+
+			// Listen for currency changes
+			document.addEventListener('currencyChanged', function(e) {
+				updateDonationAmounts(e.detail.currency);
+			});
+
+			// Initial setup with default currency
+			const initialCurrency = localStorage.getItem('selectedCurrency') || 'USD';
+			updateDonationAmounts(initialCurrency);
+
+			// Update custom amount validation
+			const customAmountInput = document.querySelector('#custom_amount_container input');
+			customAmountInput.addEventListener('input', function() {
+				const currency = localStorage.getItem('selectedCurrency') || 'USD';
+				const config = currencyConfig[currency];
+				const value = parseFloat(this.value);
+				
+				if (value < config.minimum) {
+					this.setCustomValidity(`Minimum amount is ${config.symbol}${config.minimum}`);
+				} else {
+					this.setCustomValidity('');
+				}
+			});
+
+			// Modify the submit handler to include validation
+			const submitButton = document.getElementById('kt_modal_donate_submit');
+			submitButton.addEventListener('click', function(e) {
+				e.preventDefault();
+				
+				const currency = localStorage.getItem('selectedCurrency') || 'USD';
+				const config = currencyConfig[currency];
+				const customAmountInput = document.querySelector('#custom_amount_container input');
+				const customAmount = parseFloat(customAmountInput.value);
+				
+				if (document.querySelector('#amount_custom').checked && 
+					(!customAmount || customAmount < config.minimum)) {
+					Swal.fire({
+						text: `Please enter a valid amount (minimum ${config.symbol}${config.minimum})`,
+						icon: "error",
+						buttonsStyling: false,
+						confirmButtonText: "OK",
+						customClass: {
+							confirmButton: "btn btn-primary"
+						}
+					});
+					return;
+				}
+
+				// ... rest of your existing submit handler code ...
+			});
+		});
+		</script>
 		@stack('scripts')
 		<!--end::Custom Javascript-->
 		<!--end::Javascript-->

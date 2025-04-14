@@ -19,6 +19,7 @@
         "maatwebsite/excel": "*",
         "stevebauman/location": "*",
         "stichoza/google-translate-php": "^4.0",
+        "stripe/stripe-php": "*",
         "tzsk/otp": "^8.0",
         "whichbrowser/parser": "^2.1"
     },

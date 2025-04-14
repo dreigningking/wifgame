@@ -2,83 +2,72 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Storage;
+
 
 class BlogController extends Controller
 {
-    public function createPost(){
-        return view('admin.editor.blog.create');
+
+    public function index(){
+        $posts = Post::orderBy('created_at','DESC')->get();
+        return view('backend.blog.list',compact('posts'));
     }
-    public function savePost(Request $request){
-        // dd($request->all());
+
+    public function create(){
+        return view('backend.blog.create');
+    }
+    public function store(Request $request){
         $post = new Post;
         $post->title = $request->title;
-        $post->tags = $request->tags;
-        $post->status = $request->status;
-        $post->body = $request->body;
-        $post->excerpts = $request->excerpts;
-        if($request->hasFile('cover')){
-            $cover = $request->file('cover')->getClientOriginalName();
-            $request->file('cover')->storeAs('public/blog',$cover);
-            $post->image = $cover;
+        $post->user_id = auth()->id();
+        $post->summary = $request->summary;
+        if($request->hasFile('photo')){
+            $photo = time().'.' . $request->file('photo')->getClientOriginalExtension();
+            $request->file('photo')->storeAs('public/blog',$photo);
+            $post->photo = 'blog/'.$photo;
         }
-        $post->user_id = Auth::id();
+        $post->body = $request->body;
+        $post->tags = $request->tags && is_array($request->tags) && count($request->tags) ? implode(',',$request->tags) : null;
+        $post->meta_description = $request->meta_description;
+        $post->main_keyphrase = $request->main_keyphrase;
+        $post->related_keyphrases = $request->related_keyphrases;
+        $post->status = $request->status;
         $post->save();
-        return redirect()->back()->with(['flash_type' => 'success','flash_title' => 'Success','flash_msg'=>'Post Created']); //with success;
+        return redirect()->route('admin.posts.list')->with(['flash_type' => 'success','flash_title' => 'Success','flash_msg'=>'Post Created']); //with success;
     }
-    public function postimage(Request $request){
-        request()->validate([
-            'file' => 'required',
-        ]);
-        $imageName = time().'.' . $request->file('file')->getClientOriginalExtension(); //get media name
-        $type = $request->file('file')->getClientMimeType(); //get the media type
-        $media = Media::create(['name' => $imageName,'format' => 'image','description'=> 'post content image']); //create media to database
-        $request->file('file')->storeAs('public/blog',$imageName);//save the file to public folder
-        return asset('storage/blog/'.$imageName);
+    
+    public function edit(Post $post){
+        $tags = $post->tags ? explode(',',$post->tags) : [];
+        return view('backend.blog.edit',compact('post','tags'));
     }
-    public function listPosts(){
-        $posts = Post::orderBy('created_at','DESC')->get();
-        return view('admin.editor.blog.list',compact('posts'));
-    }
-    public function editPost(Post $post){
-        return view('admin.editor.blog.edit',compact('post'));
-    }
-    public function updatePost(Request $request){
+
+    public function update(Request $request){
         $post = Post::find($request->post_id);
         if($request->filled('title')) $post->title = $request->title;
-        if($request->filled('tags')) $post->tags = $request->tags;
-        if($request->filled('status')) $post->status = $request->status;
-        if($request->filled('body')) $post->body = $request->body;
-        if($request->filled('excerpts')) $post->excerpts = $request->excerpts;
-        if($request->hasFile('cover')){
-            if($post->image) Storage::delete('public/blog/'.$post->image);
-            $cover = $request->file('cover')->getClientOriginalName();
-            $request->file('cover')->storeAs('public/blog',$cover);
-            $post->image = $cover;
+        if($request->filled('summary')) $post->summary = $request->summary;
+        if($request->hasFile('photo')){
+            if($post->photo) Storage::delete('public/blog/'.$post->photo);
+            $photo = time().'.' . $request->file('photo')->getClientOriginalExtension();
+            $request->file('photo')->storeAs('public/blog',$photo);
+            $post->photo = 'blog/'.$photo;
         }
-        $post->user_id = Auth::id();
+        if($request->filled('body')) $post->body = $request->body;
+        $post->tags = $request->tags && is_array($request->tags) && count($request->tags) ? implode(',',$request->tags) : null;
+        $post->meta_description = $request->meta_description;
+        $post->main_keyphrase = $request->main_keyphrase;
+        $post->related_keyphrases = $request->related_keyphrases;
+        $post->status = $request->status;
         $post->save();
         return redirect()->back()->with(['flash_type' => 'success','flash_title' => 'Success','flash_msg'=>'Post Updated']); //with success;
     }
 
-    public function deletePost(Request $request){
+    public function destroy(Request $request){
         $post = Post::find($request->post_id);
-        PostComment::where('post_id',$post->id)->delete();
         $post->delete();
         return redirect()->back()->with(['flash_type' => 'success','flash_title' => 'Success','flash_msg'=>'Post Deleted']); //with success;
-    }
-    public function listComments(){
-        $comments = PostComment::all();
-        return view('admin.editor.blog.comments',compact('comments'));
-    }
-    // public function approveComments(){
-
-    // }
-    public function discardComments(Request $request){
-        $comment = PostComment::find($request->comment_id);
-        $comment->delete();
-        return redirect()->back()->with(['flash_type' => 'success','flash_title' => 'Success','flash_msg'=>'Comments Deleted']); //with success;
     }
 
 }

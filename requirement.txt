@@ -74,33 +74,27 @@ encouraging repeat visits through actionable insights and real-time data integra
 Laravel’s scalability will support adding niche tools as your user base grows.
 
 =============================================
-in ROI, add country
-
-
-FRONTEND
-1. change currency of the website- DONE
-2. ask deepseek for the inputs and outputs of each of the calculators - DONE
-3. e.g roi - industry benchmark % should be added for each industry - DONE
-6. every page has proper header & meta tags for seo 
+-figure out what will be in the advanced functionalities for each calculator.
 
 
 
 BACKEND
 every page should have adverts - DONE
-    - 
-hire services of professionals that are specialized in this industry 
-    -
-ask people to suggest new calculators
-    -
-take online course in something relevant to that calculator
-    -
-blog 
-    -
+hire services of professionals that are specialized in this industry - done
+ask people to suggest new calculators- done
 
+
+in ROI, add country- by api
+blog - 
+donation - which payment gateway
+paypal |stripe | binance | paystack
 
 -enhance each calculator 
     - ask to send a detailed report of the calculation
     - involve pdf format, 
     - containing charts and tables
 
--figure out what will be in the advanced functionalities for each calculator.
+
+
+
+
