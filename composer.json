@@ -17,9 +17,10 @@
         "laravel/ui": "^4.0",
         "laravel/vonage-notification-channel": "^3.3",
         "maatwebsite/excel": "*",
+        "paypal/paypal-checkout-sdk": "^1.0",
         "stevebauman/location": "*",
         "stichoza/google-translate-php": "^4.0",
-        "stripe/stripe-php": "*",
+        "stripe/stripe-php": "^17.2",
         "tzsk/otp": "^8.0",
         "whichbrowser/parser": "^2.1"
     },

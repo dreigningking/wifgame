@@ -49,13 +49,16 @@ return [
         ]
     ],
     'paystack' => [
-        'secret' => env('PAYSTACK_SECRET_KEY'),
-        'public' => env('PAYSTACK_PUBLIC_KEY'),
-    ],
+    'secret' => env('PAYSTACK_SECRET_KEY'),
+    'public' => env('PAYSTACK_PUBLIC_KEY'),
+    'payment_url' => env('PAYSTACK_PAYMENT_URL', 'https://api.paystack.co'),
+     ],
+
     'binance' => [
-        'key' => env('BINANCE_API_KEY'),
-        'secret' => env('BINANCE_API_SECRET'),
-        'merchant_id' => env('BINANCE_MERCHANT_ID'),
+    'merchant_id' => env('BINANCE_MERCHANT_ID'),
+    'api_key' => env('BINANCE_API_KEY'),
+    'api_secret' => env('BINANCE_API_SECRET'),
     ],
+
 
 ];

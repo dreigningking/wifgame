@@ -1,3 +1,5 @@
+
+
 <!--begin::Modals-->
 <!--begin::Modal - Upgrade plan-->
 <div class="modal fade" id="kt_modal_upgrade_plan" tabindex="-1" aria-hidden="true">
@@ -1488,7 +1490,7 @@
 														</span>
 													</span>
 													<!--end:Icon-->
-													<!--begin:Info-->
+																									<!--begin:Info-->
 													<span class="d-flex flex-column">
 														<span class="fw-bold fs-6">Full Intro Training</span>
 														<span class="fs-7 text-muted">Creating a clear text structure copywriting</span>
@@ -1678,9 +1680,9 @@
 										<!--end::Label-->
 										<!--begin:Option-->
 										<label class="d-flex flex-stack cursor-pointer mb-5">
-											<!--begin::Label-->
+											<!--begin:Label-->
 											<span class="d-flex align-items-center me-2">
-												<!--begin::Icon-->
+												<!--begin:Icon-->
 												<span class="symbol symbol-50px me-6">
 													<span class="symbol-label bg-light-success">
 														<i class="ki-duotone ki-note text-success fs-2x">
@@ -1689,27 +1691,27 @@
 														</i>
 													</span>
 												</span>
-												<!--end::Icon-->
-												<!--begin::Info-->
+												<!--end:Icon-->
+												<!--begin:Info-->
 												<span class="d-flex flex-column">
 													<span class="fw-bold fs-6">MySQL</span>
 													<span class="fs-7 text-muted">Basic MySQL database</span>
 												</span>
-												<!--end::Info-->
+												<!--end:Info-->
 											</span>
-											<!--end::Label-->
-											<!--begin::Input-->
+											<!--end:Label-->
+											<!--begin:Input-->
 											<span class="form-check form-check-custom form-check-solid">
 												<input class="form-check-input" type="radio" name="dbengine" checked="checked" value="1" />
 											</span>
-											<!--end::Input-->
+											<!--end:Input-->
 										</label>
 										<!--end::Option-->
 										<!--begin:Option-->
 										<label class="d-flex flex-stack cursor-pointer mb-5">
-											<!--begin::Label-->
+											<!--begin:Label-->
 											<span class="d-flex align-items-center me-2">
-												<!--begin::Icon-->
+												<!--begin:Icon-->
 												<span class="symbol symbol-50px me-6">
 													<span class="symbol-label bg-light-danger">
 														<i class="ki-duotone ki-google text-danger fs-2x">
@@ -1718,27 +1720,27 @@
 														</i>
 													</span>
 												</span>
-												<!--end::Icon-->
-												<!--begin::Info-->
+												<!--end:Icon-->
+												<!--begin:Info-->
 												<span class="d-flex flex-column">
 													<span class="fw-bold fs-6">Firebase</span>
 													<span class="fs-7 text-muted">Google based app data management</span>
 												</span>
-												<!--end::Info-->
+												<!--end:Info-->
 											</span>
-											<!--end::Label-->
-											<!--begin::Input-->
+											<!--end:Label-->
+											<!--begin:Input-->
 											<span class="form-check form-check-custom form-check-solid">
 												<input class="form-check-input" type="radio" name="dbengine" value="2" />
 											</span>
-											<!--end::Input-->
+											<!--end:Input-->
 										</label>
 										<!--end::Option-->
 										<!--begin:Option-->
 										<label class="d-flex flex-stack cursor-pointer">
-											<!--begin::Label-->
+											<!--begin:Label-->
 											<span class="d-flex align-items-center me-2">
-												<!--begin::Icon-->
+												<!--begin:Icon-->
 												<span class="symbol symbol-50px me-6">
 													<span class="symbol-label bg-light-warning">
 														<i class="ki-duotone ki-microsoft text-warning fs-2x">
@@ -1749,20 +1751,20 @@
 														</i>
 													</span>
 												</span>
-												<!--end::Icon-->
-												<!--begin::Info-->
+												<!--end:Icon-->
+												<!--begin:Info-->
 												<span class="d-flex flex-column">
 													<span class="fw-bold fs-6">DynamoDB</span>
 													<span class="fs-7 text-muted">Microsoft Fast NoSQL Database</span>
 												</span>
-												<!--end::Info-->
+												<!--end:Info-->
 											</span>
-											<!--end::Label-->
-											<!--begin::Input-->
+											<!--end:Label-->
+											<!--begin:Input-->
 											<span class="form-check form-check-custom form-check-solid">
 												<input class="form-check-input" type="radio" name="dbengine" value="3" />
 											</span>
-											<!--end::Input-->
+											<!--end:Input-->
 										</label>
 										<!--end::Option-->
 									</div>
@@ -3203,7 +3205,7 @@
 							<!--end::Details-->
 							<!--begin::Access menu-->
 							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
+								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
 									<option value="1">Guest</option>
 									<option value="2">Owner</option>
 									<option value="3" selected="selected">Can Edit</option>
@@ -3231,7 +3233,7 @@
 							<!--end::Details-->
 							<!--begin::Access menu-->
 							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
+								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
 									<option value="1">Guest</option>
 									<option value="2" selected="selected">Owner</option>
 									<option value="3">Can Edit</option>
@@ -3259,7 +3261,7 @@
 							<!--end::Details-->
 							<!--begin::Access menu-->
 							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
+								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
 									<option value="1" selected="selected">Guest</option>
 									<option value="2">Owner</option>
 									<option value="3">Can Edit</option>
@@ -3287,7 +3289,7 @@
 							<!--end::Details-->
 							<!--begin::Access menu-->
 							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
+								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
 									<option value="1">Guest</option>
 									<option value="2">Owner</option>
 									<option value="3" selected="selected">Can Edit</option>
@@ -3325,6 +3327,7 @@
 </div>
 <!--end::Modal - Invite Friend-->
 <!--begin::Donate Modal-->
+<!-- Donate Modal -->
 <div class="modal fade" id="kt_modal_donate" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered mw-650px">
         <div class="modal-content">
@@ -3337,143 +3340,179 @@
                 </div>
             </div>
 
-            <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
-                <div class="text-center mb-13">
-                    <h1 class="mb-3">Support Our Project</h1>
-                    <div class="text-muted fw-semibold fs-5">
-                        Help us keep these calculators free and accessible to everyone
-                    </div>
-                </div>
-
-                <div class="mb-10">
-                    <div class="fw-bold fs-3 mb-5 text-center">Choose Amount</div>
-                    <div class="d-flex flex-wrap justify-content-center gap-5 mb-10">
-                        <div class="form-check form-check-custom form-check-solid">
-                            <input class="form-check-input" type="radio" name="donation_amount" value="5" id="amount_5"/>
-                            <label class="form-check-label px-5 py-3" for="amount_5">
-								<span class="currency">$</span>
-                                5
-                            </label>
-                        </div>
-                        <div class="form-check form-check-custom form-check-solid">
-                            <input class="form-check-input" type="radio" name="donation_amount" value="10" id="amount_10"/>
-                            <label class="form-check-label px-5 py-3" for="amount_10">
-								<span class="currency">$</span>
-                                10
-                            </label>
-                        </div>
-                        <div class="form-check form-check-custom form-check-solid">
-                            <input class="form-check-input" type="radio" name="donation_amount" value="25" id="amount_25"/>
-                            <label class="form-check-label px-5 py-3" for="amount_25">
-								<span class="currency">$</span>
-                                25
-                            </label>
-                        </div>
-                        <div class="form-check form-check-custom form-check-solid">
-                            <input class="form-check-input" type="radio" name="donation_amount" value="custom" id="amount_custom"/>
-                            	<label class="form-check-label px-5 py-3" for="amount_custom">
-								<span class="currency">$</span>
-                                Custom
-                            </label>
+            <form id="#4donation_form" method="POST" action="{{ route('donate.process') }}">
+                @csrf
+                <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+                    <div class="text-center mb-13">
+                        <h1 class="mb-3">Support Our Project</h1>
+                        <div class="text-muted fw-semibold fs-5">
+                            Help us keep these calculators free and accessible to everyone
                         </div>
                     </div>
 
-                    <div id="custom_amount_container" class="d-none mb-10">
-                        <input type="number" class="form-control form-control-solid" placeholder="Enter custom amount"/>
-                    </div>
+                    <div class="mb-10">
+                        <div class="fw-bold fs-3 mb-5 text-center">Choose Amount</div>
+                        <div class="d-flex flex-wrap justify-content-center gap-5 mb-10">
+                            @foreach([5, 10, 25] as $amount)
+                                <div class="form-check form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="radio" name="donation_amount" value="{{ $amount }}" id="amount_{{ $amount }}"/>
+                                    <label class="form-check-label px-5 py-3" for="amount_{{ $amount }}">
+                                        <span class="currency">$</span>{{ $amount }}
+                                    </label>
+                                </div>
+                            @endforeach
 
-                    <div class="separator separator-content my-10">
-                        <span class="fw-semibold text-muted">Payment Methods</span>
-                    </div>
+                            <div class="form-check form-check-custom form-check-solid">
+                                <input class="form-check-input" type="radio" name="donation_amount" value="custom" id="amount_custom"/>
+                                <label class="form-check-label px-5 py-3" for="amount_custom">
+                                    <span class="currency">$</span>Custom
+                                </label>
+                            </div>
+                        </div>
 
-                    <div class="d-flex flex-stack flex-wrap gap-5 mb-10">
-                        <button type="button" class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary p-7 d-flex align-items-center mb-5 active">
-                            <img src="{{ asset('media/svg/payment-methods/paypal.svg') }}" class="w-40px me-4" alt=""/>
-                            <span class="d-block fw-semibold text-start">
-                                <span class="text-dark fw-bold d-block fs-3">PayPal</span>
-                                <span class="text-muted fw-semibold fs-6">Pay with PayPal account</span>
-                            </span>
-                        </button>
+                        <div id="custom_amount_container" class="d-none mb-10">
+                            <input type="number" name="custom_amount" class="form-control form-control-solid" placeholder="Enter custom amount"/>
+                        </div>
 
-                        <button type="button" class="btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary p-7 d-flex align-items-center mb-5">
-                            <img src="{{ asset('media/svg/payment-methods/mastercard.svg') }}" class="w-40px me-4" alt=""/>
-                            <span class="d-block fw-semibold text-start">
-                                <span class="text-dark fw-bold d-block fs-3">Credit Card</span>
-                                <span class="text-muted fw-semibold fs-6">Visa, MasterCard, American Express</span>
-                            </span>
-                        </button>
+                        <div class="separator separator-content my-10">
+                            <span class="fw-semibold text-muted">Payment Methods</span>
+                        </div>
+
+                        <div class="d-flex flex-stack flex-wrap gap-5 mb-10">
+                            @foreach([
+                                'paypal' => 'paypal.svg',
+                                'stripe' => 'mastercard.svg',
+								'paystack' => 'paystack.svg',
+								'binance' => 'binance.svg',
+								'credit-card' => 'mastercard.svg',
+                            ] as $method => $icon)
+							@php
+                            $isDisabled = $method === 'credit-card';
+                            @endphp
+                                <button type="button" class="btn-payment-method btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary p-7 d-flex align-items-center mb-5"
+                                    data-method="{{ $method }}"
+									{{ $isDisabled ? 'disabled' : '' }}>
+                                    <img src="{{ asset('media/svg/payment-methods/' . $icon) }}" class="w-40px me-4" alt=""/>
+                                    <span class="d-block fw-semibold text-start">
+                                        <span class="text-dark fw-bold d-block fs-3 text-capitalize">{{ $method }}</span>
+                                        <span class="text-muted fw-semibold fs-6">Pay with {{ $method }}</span>
+                                    </span>
+                                </button>
+                            @endforeach
+                        </div>
+
+                        <input type="hidden" name="payment_method" id="payment_method">
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" id="#kt_modal_donate_submit">
+                                <span class="indicator-label">Donate Now</span>
+                                <span class="indicator-progress">Please wait...
+                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                </span>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="text-center">
-                        <button type="button" class="btn btn-primary" id="kt_modal_donate_submit">
-                            <span class="indicator-label">Donate Now</span>
-                            <span class="indicator-progress">Please wait... 
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                            </span>
-                        </button>
+                        <div class="fw-semibold fs-6 text-muted">Your donation helps us maintain and improve our calculators.</div>
+                        <div class="d-flex justify-content-center align-items-center mt-5">
+                            <i class="ki-duotone ki-shield-tick fs-1 text-success me-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>
+                            <span class="fs-7 text-muted">Secure Payment</span>
+                        </div>
                     </div>
                 </div>
-
-                <div class="text-center">
-                    <div class="fw-semibold fs-6 text-muted">Your donation helps us maintain and improve our calculators.</div>
-                    <div class="d-flex justify-content-center align-items-center mt-5">
-                        <i class="ki-duotone ki-shield-tick fs-1 text-success me-2">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                        <span class="fs-7 text-muted">Secure Payment</span>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </div>
 </div>
-<!--end::Donate Modal-->
 
-@push('scripts')
+
+<!-- JS to handle custom input and method selection -->
 <script>
-    // Handle custom amount toggle
-    document.addEventListener('DOMContentLoaded', function() {
-        const customAmountRadio = document.getElementById('amount_custom');
-        const customAmountContainer = document.getElementById('custom_amount_container');
 
+
+	    document.addEventListener('DOMContentLoaded', function () {
+			@if(session('success') || session('error'))
+        <div id="flash-message" class="flash-message {{ session('success') ? 'success' : 'error' }}">
+        <div class="d-flex justify-content-between align-items-center">
+            <span>{{ session('success') ?? session('error') }}</span>
+            <button type="button" onclick="document.getElementById('flash-message').remove()" class="btn-close ms-3"></button>
+        </div>
+        </div>
+        @endif
+		
+
+         });
+	
+    document.addEventListener('DOMContentLoaded', function () {
+        // Show custom amount input
         document.querySelectorAll('input[name="donation_amount"]').forEach(radio => {
-            radio.addEventListener('change', function() {
-                customAmountContainer.classList.toggle('d-none', this.value !== 'custom');
+            radio.addEventListener('change', function () {
+                document.getElementById('custom_amount_container').classList.toggle('d-none', this.value !== 'custom');
             });
         });
 
-        // Handle donation submit
-        const submitButton = document.getElementById('kt_modal_donate_submit');
-        submitButton.addEventListener('click', function(e) {
-            e.preventDefault();
+        // Set selected payment method
+        document.querySelectorAll('.btn-payment-method').forEach(button => {
+            button.addEventListener('click', function () {
+                document.getElementById('payment_method').value = this.dataset.method;
 
-            // Show loading state
-            submitButton.setAttribute('data-kt-indicator', 'on');
-            submitButton.disabled = true;
-
-            // Simulate payment process
-            setTimeout(function() {
-                submitButton.removeAttribute('data-kt-indicator');
-                submitButton.disabled = false;
-
-                // Show success message
-                Swal.fire({
-                    text: "Thank you for your generous donation!",
-                    icon: "success",
-                    buttonsStyling: false,
-                    confirmButtonText: "Close",
-                    customClass: {
-                        confirmButton: "btn btn-primary"
-                    }
-                }).then(function() {
-                    // Hide modal
-                    const modal = bootstrap.Modal.getInstance(document.getElementById('kt_modal_donate'));
-                    modal.hide();
-                });
-            }, 2000);
+                document.querySelectorAll('.btn-payment-method').forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
         });
     });
 </script>
-@endpush
-<!--end::Modals-->
+
+<style>
+.flash-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    padding: 15px 20px;
+    border-radius: 8px;
+    min-width: 300px;
+    font-size: 14px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    animation: slideFadeIn 0.3s ease-in-out;
+}
+
+.flash-message.success {
+    background-color: #d1e7dd;
+    color: #0f5132;
+    border: 1px solid #badbcc;
+}
+
+.flash-message.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+}
+
+@keyframes slideFadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.btn-close {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    line-height: 1;
+    color: inherit;
+    cursor: pointer;
+}
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(() => {
+            const alert = document.getElementById('flash-message');
+            if (alert) alert.remove();
+        }, 5000);
+    });
+</script>

@@ -1,6 +1,14 @@
 @extends('frontend.layouts.app')
 
 @section('content')
+
+<!--
+@if (session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+@endif  -->
+
 <div id="kt_content_container" class="d-flex flex-column-fluid align-items-start container-xxl">
     <div class="content flex-row-fluid" id="kt_content">
         <!-- Hero Section -->
@@ -247,6 +255,7 @@
 @endsection
 
 @push('scripts')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script>
     $(document).ready(function() {
         $('#submitRequest').click(function() {
@@ -264,21 +273,32 @@
                 success: function(data) {
                     if (data.success) {
                         // Show success message
-                        alert(data.message);
+                        toastr.success(data.message);
                         // Reset form and close modal
                         form.reset();
                         $('#calculatorRequestModal').modal('hide');
                     } else {
                         // Show error message
-                        alert('There was an error submitting your request. Please try again.');
+                        toastr.error('There was an error submitting your request. Please try again.');
                     }
                 },
                 error: function(xhr, status, error) {
                     console.error('Error:', error);
-                    alert('There was an error submitting your request. Please try again.');
+                    toastr.error('There was an error submitting your request. Please try again.');
                 }
             });
         })
     });
 </script>
+@if (session('error'))
+    <script>
+        toastr.error("{{ session('error') }}", "Error", {
+            closeButton: true,
+            progressBar: true,
+            positionClass: "toast-top-right",
+            timeOut: 5000
+        });
+    </script>
+@endif
+
 @endpush
