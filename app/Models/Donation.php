@@ -15,5 +15,7 @@ class Donation extends Model
         'amount',
         'payment_method',
         'status',
+        'payment_gateway_id',
+
     ];
 }

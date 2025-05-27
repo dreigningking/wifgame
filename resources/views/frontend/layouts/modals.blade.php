@@ -3374,6 +3374,13 @@
                             <input type="number" name="custom_amount" class="form-control form-control-solid" placeholder="Enter custom amount"/>
                         </div>
 
+						<div class="mb-10">
+						<div class="form-group">
+							<label class="form-label required">Email Address</label>
+							<input type="email" class="form-control form-control-solid" name="email" required placeholder="Enter your email" />
+						</div>
+					</div>
+
                         <div class="separator separator-content my-10">
                             <span class="fw-semibold text-muted">Payment Methods</span>
                         </div>

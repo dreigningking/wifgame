@@ -41,7 +41,7 @@ class DonationController extends Controller
             'custom_amount' => 'nullable|numeric|min:1|max:10000',
             'payment_method' => ['required', Rule::in(['paypal', 'stripe', 'paystack', 'binance'])],
             'donor_name' => 'nullable|string|max:255',
-            'donor_email' => 'nullable|email|max:255',
+            'email' => 'nullable|email|max:255',
         ]);
 
         $amount = $validated['donation_amount'] === 'custom' 
@@ -52,7 +52,7 @@ class DonationController extends Controller
             // Save donation details
             $donation = Donation::create([
                 'donor_name' => $validated['donor_name'] ?? 'Anonymous',
-                'donor_email' => $validated['donor_email'] ?? null,
+                'donor_email' => $validated['email'] ?? null,
                 'amount' => $amount,
                 'payment_method' => $validated['payment_method'],
                 'status' => 'pending',
@@ -450,6 +450,10 @@ class DonationController extends Controller
 
             $response = $client->execute($request);
 
+            Log::info('PayPal capture response', [
+                'response' => $response
+            ]);
+
             if ($response->statusCode === 201) {
                 $captureData = $response->result;
                 
@@ -466,18 +470,30 @@ class DonationController extends Controller
                     'amount' => $donation->amount
                 ]);
 
-                return redirect()->route('donation.success')->with('success', 'Thank you for your donation!');
+                return redirect()->back()->with('success', 'Payment Successsfull');
             } else {
                 throw new \Exception('PayPal capture failed with status: ' . $response->statusCode);
             }
 
         } catch (\Exception $ex) {
+     
             Log::error('PayPal success callback error', [
                 'donation_id' => $donationId ?? 'unknown',
-                'error' => $ex->getMessage()
+                'error' => $ex->getMessage(),
+                'file' => $ex->getFile(),
+                'line' => $ex->getLine(),
+                'trace' => $ex->getTraceAsString(),
             ]);
 
-            return redirect()->route('donation.form')->with('error', 'Payment verification failed. Please contact support.');
+            \Log::error('PayPal capture failed', [
+                'statusCode' => $ex->statusCode,
+                'message' => $ex->getMessage(),
+                'headers' => $ex->headers,
+                'body' => $ex->getMessage() ?? (string) $ex->getBody()
+            ]);
+            return redirect()->back()->with('error', 'Payment Verification failed. Please contact support');
+
+            //return redirect()->route('donation.form')->with('error', 'Payment verification failed. Please contact support.');
         }
     }
 
@@ -500,7 +516,7 @@ class DonationController extends Controller
                 }
             }
 
-            return redirect()->route('donation.form')->with('info', 'Payment was cancelled. You can try again.');
+            return redirect()->back()->with('error', 'Payment Verification failed. Please contact support');
 
         } catch (\Exception $ex) {
             Log::error('PayPal cancel callback error', [
@@ -508,7 +524,7 @@ class DonationController extends Controller
                 'error' => $ex->getMessage()
             ]);
 
-            return redirect()->route('donation.form')->with('error', 'An error occurred. Please try again.');
+            return redirect()->back()->with('error', 'Payment Verification failed. Please contact support');
         }
     }
 
