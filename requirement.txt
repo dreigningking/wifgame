@@ -86,8 +86,7 @@ ask people to suggest new calculators- done
 
 in ROI, add country- by api
 blog - 
-donation - which payment gateway
-paypal |stripe | binance | paystack
+donation - which payment gateway paypal |stripe | binance | paystack
 
 -enhance each calculator 
     - ask to send a detailed report of the calculation

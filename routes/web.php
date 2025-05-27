@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\User\BlogController;
+use App\Http\Controllers\User\DonationController;
 use App\Http\Controllers\User\DashboardController;
 use App\Http\Controllers\User\ProfessionalController;
 use App\Http\Controllers\User\GrowthCalculatorController;
 use App\Http\Controllers\User\FinanceCalculatorController;
 use App\Http\Controllers\User\OperationsCalculatorController;
-use App\Http\Controllers\User\DonationController;
+
 
 
 
@@ -79,25 +80,7 @@ Route::prefix('professionals')->name('professionals.')->group(function () {
 Route::group(['prefix'=> 'blog','as'=> 'blog.'],function(){
     Route::get('{post}', [BlogController::class, 'show'])->name('show');
 });
-
-Route::post('/donate/process', [DonationController::class, 'process'])->name('donate.process');
-
-Route::get('/paypal/success/{donation_id}', [DonationController::class, 'paypalSuccess'])->name('paypal.success');
-Route::get('/paypal/cancel/{donation_id}', [DonationController::class, 'paypalCancel'])->name('paypal.cancel');
-
-Route::get('/stripe/success/{donation_id}', [DonationController::class, 'stripeSuccess'])->name('stripe.success');
-Route::get('/stripe/cancel/{donation_id}', [DonationController::class, 'stripeCancel'])->name('stripe.cancel');
-
-Route::get('/donation/paystack/callback/{donation_id}', [DonationController::class, 'paystackCallback'])->name('paystack.callback');
-
-Route::get('/donation/success', fn() => view('donation.success'))->name('donation.success');
-Route::get('/donation/failed', fn() => view('donation.failed'))->name('donation.failed');
-
-Route::get('/donation/binance/success/{donation_id}', [DonationController::class, 'binanceSuccess'])->name('binance.success');
-Route::get('/donation/binance/cancel/{donation_id}', [DonationController::class, 'binanceCancel'])->name('binance.cancel');
-
-
-
+Route::post('/donations/process', [DonationController::class, 'process'])->name('donations.process');
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

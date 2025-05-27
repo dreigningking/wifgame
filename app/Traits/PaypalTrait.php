@@ -2,58 +2,71 @@
 namespace App\Traits;
 
 use App\Models\Payment;
-use PayPalCheckoutSdk\Core\PayPalHttpClient;
-use PayPalCheckoutSdk\Core\SandboxEnvironment;
-use PayPalCheckoutSdk\Core\ProductionEnvironment;
-use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
-use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
-use PayPalCheckoutSdk\Payments\CapturesRefundRequest;
+use Illuminate\Support\Facades\Http;
 
 trait PaypalTrait
 {
-    protected function getPayPalClient()
+    protected function getPayPalAccessToken()
     {
-        $environment = config('app.env') === 'production'
-            ? new ProductionEnvironment(config('services.paypal.client_id'), config('services.paypal.secret'))
-            : new SandboxEnvironment(config('services.paypal.sandbox.client_id'), config('services.paypal.sandbox.secret'));
+        try {
+            $credentials = base64_encode(config('services.paypal.client_id') . ':' . config('services.paypal.secret'));
+            
+            $response = Http::withHeaders([
+                'Authorization' => 'Basic ' . $credentials
+            ])->post('https://api-m.sandbox.paypal.com/v1/oauth2/token', [
+                'grant_type' => 'client_credentials'
+            ]);
 
-        return new PayPalHttpClient($environment);
+            if ($response->successful()) {
+                return $response['access_token'];
+            }
+            
+            return null;
+        } catch (\Exception $e) {
+            \Log::error('PayPal Token Error: ' . $e->getMessage());
+            return null;
+        }
     }
 
     protected function initiatePaypal(Payment $payment)
     {
         try {
-            $request = new OrdersCreateRequest();
-            $request->prefer('return=representation');
-            $request->body = [
-                'intent' => 'CAPTURE',
-                'purchase_units' => [[
-                    'reference_id' => $payment->reference,
-                    'amount' => [
-                        'currency_code' => $payment->currency,
-                        'value' => number_format($payment->amount, 2, '.', '')
+            $token = $this->getPayPalAccessToken();
+            if (!$token) return false;
+
+            $response = Http::withToken($token)
+                ->post('https://api-m.sandbox.paypal.com/v2/checkout/orders', [
+                    'intent' => 'CAPTURE',
+                    'purchase_units' => [[
+                        'reference_id' => $payment->reference,
+                        'amount' => [
+                            'currency_code' => $payment->currency,
+                            'value' => number_format($payment->amount, 2, '.', '')
+                        ]
+                    ]],
+                    'application_context' => [
+                        'return_url' => route('payment.paypal.success'),
+                        'cancel_url' => route('payment.paypal.cancel')
                     ]
-                ]],
-                'application_context' => [
-                    'return_url' => route('payment.paypal.success'),
-                    'cancel_url' => route('payment.paypal.cancel')
-                ]
-            ];
+                ]);
 
-            $response = $this->getPayPalClient()->execute($request);
-            
-            $payment->update([
-                'provider_reference' => $response->result->id,
-                'status' => 'pending'
-            ]);
+            if ($response->successful()) {
+                $payment->update([
+                    'provider_reference' => $response['id'],
+                    'status' => 'pending'
+                ]);
 
-            return [
-                'status' => true,
-                'approval_url' => collect($response->result->links)
-                    ->firstWhere('rel', 'approve')->href
-            ];
+                return [
+                    'status' => true,
+                    'approval_url' => collect($response['links'])
+                        ->firstWhere('rel', 'approve')['href']
+                ];
+            }
+
+            \Log::error('PayPal Error: ', $response->json());
+            return false;
         } catch (\Exception $e) {
-            \Log::error('PayPal Payment Error: ' . $e->getMessage());
+            \Log::error('PayPal Exception: ' . $e->getMessage());
             return false;
         }
     }
@@ -61,10 +74,13 @@ trait PaypalTrait
     protected function verifyPaypalPayment(Payment $payment)
     {
         try {
-            $request = new OrdersCaptureRequest($payment->provider_reference);
-            $response = $this->getPayPalClient()->execute($request);
+            $token = $this->getPayPalAccessToken();
+            if (!$token) return false;
 
-            if ($response->result->status === 'COMPLETED') {
+            $response = Http::withToken($token)
+                ->get("https://api-m.sandbox.paypal.com/v2/checkout/orders/{$payment->provider_reference}");
+
+            if ($response->successful() && $response['status'] === 'COMPLETED') {
                 $payment->update(['status' => 'success']);
                 return true;
             }
@@ -80,16 +96,13 @@ trait PaypalTrait
     protected function refundPaypal(Payment $payment)
     {
         try {
-            $request = new CapturesRefundRequest($payment->provider_reference);
-            $request->body = [
-                'amount' => [
-                    'currency_code' => $payment->currency,
-                    'value' => number_format($payment->amount, 2, '.', '')
-                ]
-            ];
+            $token = $this->getPayPalAccessToken();
+            if (!$token) return false;
 
-            $response = $this->getPayPalClient()->execute($request);
-            return $response->result->status === 'COMPLETED';
+            $response = Http::withToken($token)
+                ->post("https://api-m.sandbox.paypal.com/v2/payments/captures/{$payment->provider_reference}/refund");
+
+            return $response->successful();
         } catch (\Exception $e) {
             \Log::error('PayPal Refund Error: ' . $e->getMessage());
             return false;

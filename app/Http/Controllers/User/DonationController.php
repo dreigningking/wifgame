@@ -1,8 +1,10 @@
 <?php
+
 namespace App\Http\Controllers\User;
 
 use App\Models\Donation;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
@@ -18,9 +20,10 @@ use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 
-
+ 
 class DonationController extends Controller
 {
+    use PaymentTrait;
     public function process(Request $request)
     {
         // Comprehensive validation
