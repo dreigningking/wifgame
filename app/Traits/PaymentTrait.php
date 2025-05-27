@@ -12,7 +12,7 @@ trait PaymentTrait
     use StripeTrait, PaystackTrait, PaypalTrait, BinanceTrait;
 
     protected function initializePayment(Payment $payment){
-        switch($payment->beneficiary->country->payment_gateway){
+        switch($payment->payment_gateway){
             case 'paystack': 
                 return $this->initiatePaystack($payment);
             case 'paypal': 

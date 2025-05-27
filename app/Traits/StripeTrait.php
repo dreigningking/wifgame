@@ -2,42 +2,42 @@
 namespace App\Traits;
 
 use App\Models\Payment;
-use App\Models\Profile;
-use App\Models\Settlement;
 use Ixudra\Curl\Facades\Curl;
-use Stripe\Stripe;
-use Stripe\PaymentIntent;
-use Stripe\Refund;
+use Illuminate\Support\Facades\Http;
 
 trait StripeTrait
 {
     protected function initiateStripe(Payment $payment)
     {
         try {
-            Stripe::setApiKey(config('services.stripe.secret'));
+            $response = Http::withToken(config('services.stripe.secret'))
+                ->post('https://api.stripe.com/v1/payment_intents', [
+                    'amount' => $payment->amount * 100, // Convert to cents
+                    'currency' => strtolower($payment->currency),
+                    'payment_method_types' => ['card'],
+                    'metadata' => [
+                        'payment_id' => $payment->id,
+                        'reference' => $payment->reference
+                    ]
+                ]);
 
-            $paymentIntent = PaymentIntent::create([
-                'amount' => $payment->amount * 100, // Amount in cents
-                'currency' => strtolower($payment->currency),
-                'payment_method_types' => ['card'],
-                'metadata' => [
-                    'payment_id' => $payment->id,
-                    'reference' => $payment->reference
-                ]
-            ]);
+            if ($response->successful()) {
+                $payment->update([
+                    'provider_reference' => $response['id'],
+                    'status' => 'pending'
+                ]);
 
-            $payment->update([
-                'provider_reference' => $paymentIntent->id,
-                'status' => 'pending'
-            ]);
+                return [
+                    'status' => true,
+                    'client_secret' => $response['client_secret'],
+                    'publishable_key' => config('services.stripe.key')
+                ];
+            }
 
-            return [
-                'status' => true,
-                'client_secret' => $paymentIntent->client_secret,
-                'publishable_key' => config('services.stripe.key')
-            ];
+            \Log::error('Stripe Error: ', $response->json());
+            return false;
         } catch (\Exception $e) {
-            \Log::error('Stripe Payment Error: ' . $e->getMessage());
+            \Log::error('Stripe Exception: ' . $e->getMessage());
             return false;
         }
     }
@@ -45,10 +45,10 @@ trait StripeTrait
     protected function verifyStripePayment(Payment $payment)
     {
         try {
-            Stripe::setApiKey(config('services.stripe.secret'));
-            $paymentIntent = PaymentIntent::retrieve($payment->provider_reference);
+            $response = Http::withToken(config('services.stripe.secret'))
+                ->get("https://api.stripe.com/v1/payment_intents/{$payment->provider_reference}");
 
-            if ($paymentIntent->status === 'succeeded') {
+            if ($response->successful() && $response['status'] === 'succeeded') {
                 $payment->update(['status' => 'success']);
                 return true;
             }
@@ -64,19 +64,15 @@ trait StripeTrait
     protected function refundStripe(Payment $payment)
     {
         try {
-            Stripe::setApiKey(config('services.stripe.secret'));
-            
-            $refund = Refund::create([
-                'payment_intent' => $payment->provider_reference,
-                'amount' => $payment->amount * 100
-            ]);
+            $response = Http::withToken(config('services.stripe.secret'))
+                ->post('https://api.stripe.com/v1/refunds', [
+                    'payment_intent' => $payment->provider_reference
+                ]);
 
-            return $refund->status === 'succeeded';
+            return $response->successful();
         } catch (\Exception $e) {
             \Log::error('Stripe Refund Error: ' . $e->getMessage());
             return false;
         }
     }
-
-
 }

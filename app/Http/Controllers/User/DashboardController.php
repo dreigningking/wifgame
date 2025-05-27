@@ -46,4 +46,6 @@ class DashboardController extends Controller
             'message' => 'Your calculator request has been submitted successfully. We will review it and get back to you soon.'
         ]);
     }
+
+    
 }

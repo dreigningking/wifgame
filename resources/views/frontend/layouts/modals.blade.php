@@ -24,8 +24,9 @@
 				<!--begin::Heading-->
 				<div class="mb-13 text-center">
 					<h1 class="mb-3">Upgrade a Plan</h1>
-					<div class="text-muted fw-semibold fs-5">If you need more info, please check 
-					<a href="#" class="link-primary fw-bold">Pricing Guidelines</a>.</div>
+					<div class="text-muted fw-semibold fs-5">If you need more info, please check
+						<a href="#" class="link-primary fw-bold">Pricing Guidelines</a>.
+					</div>
 				</div>
 				<!--end::Heading-->
 				<!--begin::Plans-->
@@ -63,8 +64,8 @@
 									<div class="ms-5">
 										<span class="mb-2 currency">$</span>
 										<span class="fs-3x fw-bold" data-kt-plan-price-month="39" data-kt-plan-price-annual="399">39</span>
-										<span class="fs-7 opacity-50">/ 
-										<span data-kt-element="period">Mon</span></span>
+										<span class="fs-7 opacity-50">/
+											<span data-kt-element="period">Mon</span></span>
 									</div>
 									<!--end::Price-->
 								</label>
@@ -90,8 +91,8 @@
 									<div class="ms-5">
 										<span class="mb-2 currency">$</span>
 										<span class="fs-3x fw-bold" data-kt-plan-price-month="339" data-kt-plan-price-annual="3399">339</span>
-										<span class="fs-7 opacity-50">/ 
-										<span data-kt-element="period">Mon</span></span>
+										<span class="fs-7 opacity-50">/
+											<span data-kt-element="period">Mon</span></span>
 									</div>
 									<!--end::Price-->
 								</label>
@@ -107,8 +108,9 @@
 										<!--end::Radio-->
 										<!--begin::Info-->
 										<div class="flex-grow-1">
-											<div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Enterprise 
-											<span class="badge badge-light-success ms-2 py-2 px-3 fs-7">Popular</span></div>
+											<div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Enterprise
+												<span class="badge badge-light-success ms-2 py-2 px-3 fs-7">Popular</span>
+											</div>
 											<div class="fw-semibold opacity-75">Best value for 1000+ team</div>
 										</div>
 										<!--end::Info-->
@@ -118,8 +120,8 @@
 									<div class="ms-5">
 										<span class="mb-2 currency">$</span>
 										<span class="fs-3x fw-bold" data-kt-plan-price-month="999" data-kt-plan-price-annual="9999">999</span>
-										<span class="fs-7 opacity-50">/ 
-										<span data-kt-element="period">Mon</span></span>
+										<span class="fs-7 opacity-50">/
+											<span data-kt-element="period">Mon</span></span>
 									</div>
 									<!--end::Price-->
 								</label>
@@ -480,8 +482,8 @@
 						<span class="indicator-label">Upgrade Plan</span>
 						<!--end::Indicator label-->
 						<!--begin::Indicator progress-->
-						<span class="indicator-progress">Please wait... 
-						<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+						<span class="indicator-progress">Please wait...
+							<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 						<!--end::Indicator progress-->
 					</button>
 				</div>
@@ -557,18 +559,20 @@
 								<!--begin::Heading-->
 								<div class="pb-10 pb-lg-15">
 									<!--begin::Title-->
-									<h2 class="fw-bold d-flex align-items-center text-gray-900">Setup Campaign Details 
-									<span class="ms-1" data-bs-toggle="tooltip" title="Campaign name will be used as reference within your campaign reports">
-										<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-										</i>
-									</span></h2>
+									<h2 class="fw-bold d-flex align-items-center text-gray-900">Setup Campaign Details
+										<span class="ms-1" data-bs-toggle="tooltip" title="Campaign name will be used as reference within your campaign reports">
+											<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+										</span>
+									</h2>
 									<!--end::Title-->
 									<!--begin::Notice-->
-									<div class="text-muted fw-semibold fs-6">If you need more info, please check out 
-									<a href="#" class="link-primary fw-bold">Help Page</a>.</div>
+									<div class="text-muted fw-semibold fs-6">If you need more info, please check out
+										<a href="#" class="link-primary fw-bold">Help Page</a>.
+									</div>
 									<!--end::Notice-->
 								</div>
 								<!--end::Heading-->
@@ -597,7 +601,15 @@
 									</label>
 									<!--end::Label-->
 									<!--begin::Image input placeholder-->
-									<style>.image-input-placeholder { background-image: url('media/svg/files/blank-image.svg'); } [data-bs-theme="dark"] .image-input-placeholder { background-image: url('media/svg/files/blank-image-dark.svg'); }</style>
+									<style>
+										.image-input-placeholder {
+											background-image: url('media/svg/files/blank-image.svg');
+										}
+
+										[data-bs-theme="dark"] .image-input-placeholder {
+											background-image: url('media/svg/files/blank-image-dark.svg');
+										}
+									</style>
 									<!--end::Image input placeholder-->
 									<!--begin::Image input-->
 									<div class="image-input image-input-empty image-input-outline image-input-placeholder" data-kt-image-input="true">
@@ -751,8 +763,9 @@
 									<h1 class="fw-bold text-gray-900">Upload Files</h1>
 									<!--end::Title-->
 									<!--begin::Description-->
-									<div class="text-muted fw-semibold fs-4">If you need more info, please check 
-									<a href="#" class="link-primary">Campaign Guidelines</a></div>
+									<div class="text-muted fw-semibold fs-4">If you need more info, please check
+										<a href="#" class="link-primary">Campaign Guidelines</a>
+									</div>
 									<!--end::Description-->
 								</div>
 								<!--end::Heading-->
@@ -966,22 +979,23 @@
 									<h1 class="fw-bold text-gray-900">Configure Audiences</h1>
 									<!--end::Title-->
 									<!--begin::Description-->
-									<div class="text-muted fw-semibold fs-4">If you need more info, please check 
-									<a href="#" class="link-primary">Campaign Guidelines</a></div>
+									<div class="text-muted fw-semibold fs-4">If you need more info, please check
+										<a href="#" class="link-primary">Campaign Guidelines</a>
+									</div>
 									<!--end::Description-->
 								</div>
 								<!--end::Heading-->
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">
 									<!--begin::Label-->
-									<label class="fs-6 fw-semibold mb-2">Gender 
-									<span class="ms-1" data-bs-toggle="tooltip" title="Show your ads to either men or women, or select 'All' for both">
-										<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-										</i>
-									</span></label>
+									<label class="fs-6 fw-semibold mb-2">Gender
+										<span class="ms-1" data-bs-toggle="tooltip" title="Show your ads to either men or women, or select 'All' for both">
+											<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+										</span></label>
 									<!--End::Label-->
 									<!--begin::Row-->
 									<div class="row g-9" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
@@ -1046,14 +1060,14 @@
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">
 									<!--begin::Label-->
-									<label class="fs-6 fw-semibold mb-2">Age 
-									<span class="ms-1" data-bs-toggle="tooltip" title="Select the minimum and maximum age of the people who will find your ad relevant.">
-										<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-										</i>
-									</span></label>
+									<label class="fs-6 fw-semibold mb-2">Age
+										<span class="ms-1" data-bs-toggle="tooltip" title="Select the minimum and maximum age of the people who will find your ad relevant.">
+											<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+										</span></label>
 									<!--End::Label-->
 									<!--begin::Slider-->
 									<div class="d-flex flex-stack">
@@ -1067,14 +1081,14 @@
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">
 									<!--begin::Label-->
-									<label class="fs-6 fw-semibold mb-2">Location 
-									<span class="ms-1" data-bs-toggle="tooltip" title="Enter one or more location points for more specific targeting.">
-										<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-										</i>
-									</span></label>
+									<label class="fs-6 fw-semibold mb-2">Location
+										<span class="ms-1" data-bs-toggle="tooltip" title="Enter one or more location points for more specific targeting.">
+											<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+										</span></label>
 									<!--End::Label-->
 									<!--begin::Tagify-->
 									<input class="form-control d-flex align-items-center" value="" id="kt_modal_create_campaign_location" data-kt-flags-path="assets/media/flags/" />
@@ -1095,34 +1109,35 @@
 									<h1 class="fw-bold text-gray-900">Budget Estimates</h1>
 									<!--end::Title-->
 									<!--begin::Description-->
-									<div class="text-muted fw-semibold fs-4">If you need more info, please check 
-									<a href="#" class="link-primary">Campaign Guidelines</a></div>
+									<div class="text-muted fw-semibold fs-4">If you need more info, please check
+										<a href="#" class="link-primary">Campaign Guidelines</a>
+									</div>
 									<!--end::Description-->
 								</div>
 								<!--end::Heading-->
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">
 									<!--begin::Label-->
-									<label class="fs-6 fw-semibold mb-2">Campaign Duration 
-									<span class="ms-1" data-bs-toggle="tooltip" title="Choose how long you want your ad to run for">
-										<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-										</i>
-									</span></label>
+									<label class="fs-6 fw-semibold mb-2">Campaign Duration
+										<span class="ms-1" data-bs-toggle="tooltip" title="Choose how long you want your ad to run for">
+											<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+										</span></label>
 									<!--end::Label-->
 									<!--begin::Duration option-->
 									<div class="d-flex gap-9 mb-7">
 										<!--begin::Button-->
 										<button type="button" class="btn btn-outline btn-outline-dashed btn-active-light-primary active" id="kt_modal_create_campaign_duration_all">Continuous duration
-										<br />
-										<span class="fs-7">Your ad will run continuously for a daily budget.</span></button>
+											<br />
+											<span class="fs-7">Your ad will run continuously for a daily budget.</span></button>
 										<!--end::Button-->
 										<!--begin::Button-->
 										<button type="button" class="btn btn-outline btn-outline-dashed btn-active-light-primary btn-outline-default" id="kt_modal_create_campaign_duration_fixed">Fixed duration
-										<br />
-										<span class="fs-7">Your ad will run on the specified dates only.</span></button>
+											<br />
+											<span class="fs-7">Your ad will run on the specified dates only.</span></button>
 										<!--end::Button-->
 									</div>
 									<!--end::Duration option-->
@@ -1134,14 +1149,14 @@
 								<!--begin::Input group-->
 								<div class="fv-row mb-10">
 									<!--begin::Label-->
-									<label class="fs-6 fw-semibold mb-2">Daily Budget 
-									<span class="ms-1" data-bs-toggle="tooltip" title="Choose the budget allocated for each day. Higher budget will generate better results">
-										<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-											<span class="path1"></span>
-											<span class="path2"></span>
-											<span class="path3"></span>
-										</i>
-									</span></label>
+									<label class="fs-6 fw-semibold mb-2">Daily Budget
+										<span class="ms-1" data-bs-toggle="tooltip" title="Choose the budget allocated for each day. Higher budget will generate better results">
+											<i class="ki-duotone ki-information-5 text-gray-500 fs-6">
+												<span class="path1"></span>
+												<span class="path2"></span>
+												<span class="path3"></span>
+											</i>
+										</span></label>
 									<!--end::Label-->
 									<!--begin::Slider-->
 									<div class="d-flex flex-column text-center">
@@ -1192,28 +1207,28 @@
 							<!--begin::Wrapper-->
 							<div class="me-2">
 								<button type="button" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous" data-kt-stepper-state="hide-on-last-step">
-								<i class="ki-duotone ki-arrow-left fs-3 me-1">
-									<span class="path1"></span>
-									<span class="path2"></span>
-								</i>Back</button>
+									<i class="ki-duotone ki-arrow-left fs-3 me-1">
+										<span class="path1"></span>
+										<span class="path2"></span>
+									</i>Back</button>
 							</div>
 							<!--end::Wrapper-->
 							<!--begin::Wrapper-->
 							<div>
 								<button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="submit">
-									<span class="indicator-label">Submit 
-									<i class="ki-duotone ki-arrow-right fs-3 ms-2 me-0">
+									<span class="indicator-label">Submit
+										<i class="ki-duotone ki-arrow-right fs-3 ms-2 me-0">
+											<span class="path1"></span>
+											<span class="path2"></span>
+										</i></span>
+									<span class="indicator-progress">Please wait...
+										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+								</button>
+								<button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continue
+									<i class="ki-duotone ki-arrow-right fs-3 ms-1 me-0">
 										<span class="path1"></span>
 										<span class="path2"></span>
-									</i></span>
-									<span class="indicator-progress">Please wait... 
-									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-								</button>
-								<button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continue 
-								<i class="ki-duotone ki-arrow-right fs-3 ms-1 me-0">
-									<span class="path1"></span>
-									<span class="path2"></span>
-								</i></button>
+									</i></button>
 							</div>
 							<!--end::Wrapper-->
 						</div>
@@ -1937,28 +1952,28 @@
 								<!--begin::Wrapper-->
 								<div class="me-2">
 									<button type="button" class="btn btn-lg btn-light-primary me-3" data-kt-stepper-action="previous">
-									<i class="ki-duotone ki-arrow-left fs-3 me-1">
-										<span class="path1"></span>
-										<span class="path2"></span>
-									</i>Back</button>
+										<i class="ki-duotone ki-arrow-left fs-3 me-1">
+											<span class="path1"></span>
+											<span class="path2"></span>
+										</i>Back</button>
 								</div>
 								<!--end::Wrapper-->
 								<!--begin::Wrapper-->
 								<div>
 									<button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="submit">
-										<span class="indicator-label">Submit 
-										<i class="ki-duotone ki-arrow-right fs-3 ms-2 me-0">
+										<span class="indicator-label">Submit
+											<i class="ki-duotone ki-arrow-right fs-3 ms-2 me-0">
+												<span class="path1"></span>
+												<span class="path2"></span>
+											</i></span>
+										<span class="indicator-progress">Please wait...
+											<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+									</button>
+									<button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continue
+										<i class="ki-duotone ki-arrow-right fs-3 ms-1 me-0">
 											<span class="path1"></span>
 											<span class="path2"></span>
-										</i></span>
-										<span class="indicator-progress">Please wait... 
-										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-									</button>
-									<button type="button" class="btn btn-lg btn-primary" data-kt-stepper-action="next">Continue 
-									<i class="ki-duotone ki-arrow-right fs-3 ms-1 me-0">
-										<span class="path1"></span>
-										<span class="path2"></span>
-									</i></button>
+										</i></button>
 								</div>
 								<!--end::Wrapper-->
 							</div>
@@ -1977,1542 +1992,224 @@
 	<!--end::Modal dialog-->
 </div>
 <!--end::Modal - Create App-->
-<!--begin::Modal - Users Search-->
-<div class="modal fade" id="kt_modal_users_search" tabindex="-1" aria-hidden="true">
-	<!--begin::Modal dialog-->
+
+<!--begin::Donate Modal-->
+<div class="modal fade" id="kt_modal_donate" tabindex="-1" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered mw-650px">
-		<!--begin::Modal content-->
 		<div class="modal-content">
-			<!--begin::Modal header-->
 			<div class="modal-header pb-0 border-0 justify-content-end">
-				<!--begin::Close-->
 				<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
 					<i class="ki-duotone ki-cross fs-1">
 						<span class="path1"></span>
 						<span class="path2"></span>
 					</i>
 				</div>
-				<!--end::Close-->
 			</div>
-			<!--begin::Modal header-->
-			<!--begin::Modal body-->
+
 			<div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
-				<!--begin::Content-->
 				<div class="text-center mb-13">
-					<h1 class="mb-3">Search Users</h1>
-					<div class="text-muted fw-semibold fs-5">Invite Collaborators To Your Project</div>
+					<h1 class="mb-3">Support Our Project</h1>
+					<div class="text-muted fw-semibold fs-5">
+						Help us keep these calculators free and accessible to everyone
+					</div>
 				</div>
-				<!--end::Content-->
-				<!--begin::Search-->
-				<div id="kt_modal_users_search_handler" data-kt-search-keypress="true" data-kt-search-min-length="2" data-kt-search-enter="enter" data-kt-search-layout="inline">
-					<!--begin::Form-->
-					<form data-kt-search-element="form" class="w-100 position-relative mb-5" autocomplete="off">
-						<!--begin::Hidden input(Added to disable form autocomplete)-->
-						<input type="hidden" />
-						<!--end::Hidden input-->
-						<!--begin::Icon-->
-						<i class="ki-duotone ki-magnifier fs-2 fs-lg-1 text-gray-500 position-absolute top-50 ms-5 translate-middle-y">
+				<form action="{{route('donations.process')}}" method="post" id="kt_donate_form" class="form">@csrf
+					<!-- Add Email Field -->
+					<div class="mb-10">
+						<div class="form-group">
+							<label class="form-label required">Email Address</label>
+							<input type="email" class="form-control form-control-solid" name="email" required placeholder="Enter your email" />
+						</div>
+					</div>
+
+					<div class="mb-10">
+						<div class="fw-bold fs-3 mb-5 text-center">Choose Amount</div>
+						<div class="d-flex flex-wrap justify-content-center gap-5 mb-10">
+							<div class="form-check form-check-custom form-check-solid">
+								<input class="form-check-input" type="radio" name="amount" value="5" id="amount_5" />
+								<label class="form-check-label px-5 py-3" for="amount_5">
+									<span class="currency">$</span>
+									5
+								</label>
+							</div>
+							<div class="form-check form-check-custom form-check-solid">
+								<input class="form-check-input" type="radio" name="amount" value="10" id="amount_10" />
+								<label class="form-check-label px-5 py-3" for="amount_10">
+									<span class="currency">$</span>
+									10
+								</label>
+							</div>
+							<div class="form-check form-check-custom form-check-solid">
+								<input class="form-check-input" type="radio" name="amount" value="25" id="amount_25" />
+								<label class="form-check-label px-5 py-3" for="amount_25">
+									<span class="currency">$</span>
+									25
+								</label>
+							</div>
+							<div class="form-check form-check-custom form-check-solid">
+								<input class="form-check-input" type="radio" name="amount" value="custom" id="amount_custom" />
+								<label class="form-check-label px-5 py-3" for="amount_custom">
+									<span class="currency">$</span>
+									Custom
+								</label>
+							</div>
+						</div>
+						<input type="hidden" name="currency" id="donation_currency" value="USD">
+						<div id="custom_amount_container" class="mb-10" style="display: none;">
+							<input type="number" name="custom_amount" class="form-control form-control-solid" placeholder="Enter custom amount" />
+						</div>
+
+						<div class="separator separator-content my-10">
+							<span class="fw-semibold text-muted">Payment Methods</span>
+						</div>
+
+						<div class="row g-5">
+							<!-- PayPal -->
+							<div class="col-md-6">
+								<div class="payment-option p-3 border rounded-3">
+									<div class="form-check form-check-custom form-check-solid">
+										<input class="form-check-input" type="radio" name="payment_method" value="paypal" id="payment_paypal" required />
+										<label class="form-check-label w-100" for="payment_paypal">
+											<div class="d-flex align-items-center">
+												<img src="{{ asset('media/svg/payment-methods/paypal.svg') }}" class="w-40px me-4" alt="PayPal" />
+												<div class="flex-grow-1">
+													<span class="text-dark fw-bold d-block fs-5">PayPal</span>
+													<span class="text-muted fw-semibold fs-7">Pay with PayPal account</span>
+												</div>
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<!-- Stripe -->
+							<div class="col-md-6">
+								<div class="payment-option p-3 border rounded-3">
+									<div class="form-check form-check-custom form-check-solid">
+										<input class="form-check-input" type="radio" name="payment_method" value="stripe" id="payment_stripe" required />
+										<label class="form-check-label w-100" for="payment_stripe">
+											<div class="d-flex align-items-center">
+												<img src="{{ asset('media/svg/payment-methods/stripe.svg') }}" class="w-40px me-4" alt="Stripe" />
+												<div class="flex-grow-1">
+													<span class="text-dark fw-bold d-block fs-5">Stripe</span>
+													<span class="text-muted fw-semibold fs-7">Credit/Debit Cards</span>
+												</div>
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<!-- Paystack -->
+							<div class="col-md-6">
+								<div class="payment-option p-3 border rounded-3">
+									<div class="form-check form-check-custom form-check-solid">
+										<input class="form-check-input" type="radio" name="payment_method" value="paystack" id="payment_paystack" required />
+										<label class="form-check-label w-100" for="payment_paystack">
+											<div class="d-flex align-items-center">
+												<img src="{{ asset('media/svg/payment-methods/paystack.svg') }}" class="w-40px me-4" alt="Paystack" />
+												<div class="flex-grow-1">
+													<span class="text-dark fw-bold d-block fs-5">Paystack</span>
+													<span class="text-muted fw-semibold fs-7">Pay with Cards, Bank, USSD</span>
+												</div>
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+
+							<!-- Binance -->
+							<div class="col-md-6">
+								<div class="payment-option p-3 border rounded-3">
+									<div class="form-check form-check-custom form-check-solid">
+										<input class="form-check-input" type="radio" name="payment_method" value="binance" id="payment_binance" required />
+										<label class="form-check-label w-100" for="payment_binance">
+											<div class="d-flex align-items-center">
+												<img src="{{ asset('media/svg/payment-methods/binance.svg') }}" class="w-40px me-4" alt="Binance" />
+												<div class="flex-grow-1">
+													<span class="text-dark fw-bold d-block fs-5">Binance Pay</span>
+													<span class="text-muted fw-semibold fs-7">Pay with Crypto</span>
+												</div>
+											</div>
+										</label>
+									</div>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+					<div class="text-center">
+						<button type="submit" class="btn btn-primary">
+							<span class="indicator-label">Donate Now</span>
+							<span class="indicator-progress">Please wait...
+								<span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+							</span>
+						</button>
+					</div>
+				</form>
+				<div class="text-center">
+					<div class="fw-semibold fs-6 text-muted">Your donation helps us maintain and improve our calculators.</div>
+					<div class="d-flex justify-content-center align-items-center mt-5">
+						<i class="ki-duotone ki-shield-tick fs-1 text-success me-2">
 							<span class="path1"></span>
 							<span class="path2"></span>
 						</i>
-						<!--end::Icon-->
-						<!--begin::Input-->
-						<input type="text" class="form-control form-control-lg form-control-solid px-15" name="search" value="" placeholder="Search by username, full name or email..." data-kt-search-element="input" />
-						<!--end::Input-->
-						<!--begin::Spinner-->
-						<span class="position-absolute top-50 end-0 translate-middle-y lh-0 d-none me-5" data-kt-search-element="spinner">
-							<span class="spinner-border h-15px w-15px align-middle text-muted"></span>
-						</span>
-						<!--end::Spinner-->
-						<!--begin::Reset-->
-						<span class="btn btn-flush btn-active-color-primary position-absolute top-50 end-0 translate-middle-y lh-0 me-5 d-none" data-kt-search-element="clear">
-							<i class="ki-duotone ki-cross fs-2 fs-lg-1 me-0">
-								<span class="path1"></span>
-								<span class="path2"></span>
-							</i>
-						</span>
-						<!--end::Reset-->
-					</form>
-					<!--end::Form-->
-					<!--begin::Wrapper-->
-					<div class="py-5">
-						<!--begin::Suggestions-->
-						<div data-kt-search-element="suggestions">
-							<!--begin::Heading-->
-							<h3 class="fw-semibold mb-5">Recently searched:</h3>
-							<!--end::Heading-->
-							<!--begin::Users-->
-							<div class="mh-375px scroll-y me-n7 pe-7">
-								<!--begin::User-->
-								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
-									<!--begin::Avatar-->
-									<div class="symbol symbol-35px symbol-circle me-5">
-										<img alt="Pic" src="{{asset('media/avatars/300-6.jpg')}}" />
-									</div>
-									<!--end::Avatar-->
-									<!--begin::Info-->
-									<div class="fw-semibold">
-										<span class="fs-6 text-gray-800 me-2">Emma Smith</span>
-										<span class="badge badge-light">Art Director</span>
-									</div>
-									<!--end::Info-->
-								</a>
-								<!--end::User-->
-								<!--begin::User-->
-								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
-									<!--begin::Avatar-->
-									<div class="symbol symbol-35px symbol-circle me-5">
-										<span class="symbol-label bg-light-danger text-danger fw-semibold">M</span>
-									</div>
-									<!--end::Avatar-->
-									<!--begin::Info-->
-									<div class="fw-semibold">
-										<span class="fs-6 text-gray-800 me-2">Melody Macy</span>
-										<span class="badge badge-light">Marketing Analytic</span>
-									</div>
-									<!--end::Info-->
-								</a>
-								<!--end::User-->
-								<!--begin::User-->
-								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
-									<!--begin::Avatar-->
-									<div class="symbol symbol-35px symbol-circle me-5">
-										<img alt="Pic" src="{{asset('media/avatars/300-1.jpg')}}" />
-									</div>
-									<!--end::Avatar-->
-									<!--begin::Info-->
-									<div class="fw-semibold">
-										<span class="fs-6 text-gray-800 me-2">Max Smith</span>
-										<span class="badge badge-light">Software Enginer</span>
-									</div>
-									<!--end::Info-->
-								</a>
-								<!--end::User-->
-								<!--begin::User-->
-								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
-									<!--begin::Avatar-->
-									<div class="symbol symbol-35px symbol-circle me-5">
-										<img alt="Pic" src="{{asset('media/avatars/300-5.jpg')}}" />
-									</div>
-									<!--end::Avatar-->
-									<!--begin::Info-->
-									<div class="fw-semibold">
-										<span class="fs-6 text-gray-800 me-2">Sean Bean</span>
-										<span class="badge badge-light">Web Developer</span>
-									</div>
-									<!--end::Info-->
-								</a>
-								<!--end::User-->
-								<!--begin::User-->
-								<a href="#" class="d-flex align-items-center p-3 rounded bg-state-light bg-state-opacity-50 mb-1">
-									<!--begin::Avatar-->
-									<div class="symbol symbol-35px symbol-circle me-5">
-										<img alt="Pic" src="{{asset('media/avatars/300-25.jpg')}}" />
-									</div>
-									<!--end::Avatar-->
-									<!--begin::Info-->
-									<div class="fw-semibold">
-										<span class="fs-6 text-gray-800 me-2">Brian Cox</span>
-										<span class="badge badge-light">UI/UX Designer</span>
-									</div>
-									<!--end::Info-->
-								</a>
-								<!--end::User-->
-							</div>
-							<!--end::Users-->
-						</div>
-						<!--end::Suggestions-->
-						<!--begin::Results(add d-none to below element to hide the users list by default)-->
-						<div data-kt-search-element="results" class="d-none">
-							<!--begin::Users-->
-							<div class="mh-375px scroll-y me-n7 pe-7">
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="0">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='0']" value="0" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-6.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Emma Smith</a>
-											<div class="fw-semibold text-muted">smith@kpmg.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2" selected="selected">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="1">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='1']" value="1" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<span class="symbol-label bg-light-danger text-danger fw-semibold">M</span>
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Melody Macy</a>
-											<div class="fw-semibold text-muted">melody@altbox.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1" selected="selected">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="2">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='2']" value="2" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-1.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Max Smith</a>
-											<div class="fw-semibold text-muted">max@kt.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3" selected="selected">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="3">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='3']" value="3" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-5.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Sean Bean</a>
-											<div class="fw-semibold text-muted">sean@dellito.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2" selected="selected">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="4">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='4']" value="4" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-25.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Brian Cox</a>
-											<div class="fw-semibold text-muted">brian@exchange.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3" selected="selected">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="5">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='5']" value="5" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<span class="symbol-label bg-light-warning text-warning fw-semibold">C</span>
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Mikaela Collins</a>
-											<div class="fw-semibold text-muted">mik@pex.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2" selected="selected">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="6">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='6']" value="6" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-9.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Francis Mitcham</a>
-											<div class="fw-semibold text-muted">f.mit@kpmg.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3" selected="selected">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="7">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='7']" value="7" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<span class="symbol-label bg-light-danger text-danger fw-semibold">O</span>
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Olivia Wild</a>
-											<div class="fw-semibold text-muted">olivia@corpmail.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2" selected="selected">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="8">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='8']" value="8" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<span class="symbol-label bg-light-primary text-primary fw-semibold">N</span>
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Neil Owen</a>
-											<div class="fw-semibold text-muted">owen.neil@gmail.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1" selected="selected">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="9">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='9']" value="9" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-23.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Dan Wilson</a>
-											<div class="fw-semibold text-muted">dam@consilting.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3" selected="selected">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="10">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='10']" value="10" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<span class="symbol-label bg-light-danger text-danger fw-semibold">E</span>
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Emma Bold</a>
-											<div class="fw-semibold text-muted">emma@intenso.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2" selected="selected">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="11">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='11']" value="11" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-12.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Ana Crown</a>
-											<div class="fw-semibold text-muted">ana.cf@limtel.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1" selected="selected">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="12">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='12']" value="12" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<span class="symbol-label bg-light-info text-info fw-semibold">A</span>
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Robert Doe</a>
-											<div class="fw-semibold text-muted">robert@benko.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3" selected="selected">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="13">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='13']" value="13" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-13.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">John Miller</a>
-											<div class="fw-semibold text-muted">miller@mapple.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3" selected="selected">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="14">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='14']" value="14" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<span class="symbol-label bg-light-success text-success fw-semibold">L</span>
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Lucy Kunic</a>
-											<div class="fw-semibold text-muted">lucy.m@fentech.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2" selected="selected">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="15">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='15']" value="15" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<img alt="Pic" src="{{asset('media/avatars/300-21.jpg')}}" />
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Ethan Wilder</a>
-											<div class="fw-semibold text-muted">ethan@loop.com.au</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1" selected="selected">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-								<!--begin::Separator-->
-								<div class="border-bottom border-gray-300 border-bottom-dashed"></div>
-								<!--end::Separator-->
-								<!--begin::User-->
-								<div class="rounded d-flex flex-stack bg-active-lighten p-4" data-user-id="16">
-									<!--begin::Details-->
-									<div class="d-flex align-items-center">
-										<!--begin::Checkbox-->
-										<label class="form-check form-check-custom form-check-solid me-5">
-											<input class="form-check-input" type="checkbox" name="users" data-kt-check="true" data-kt-check-target="[data-user-id='16']" value="16" />
-										</label>
-										<!--end::Checkbox-->
-										<!--begin::Avatar-->
-										<div class="symbol symbol-35px symbol-circle">
-											<span class="symbol-label bg-light-success text-success fw-semibold">L</span>
-										</div>
-										<!--end::Avatar-->
-										<!--begin::Details-->
-										<div class="ms-5">
-											<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Lucy Kunic</a>
-											<div class="fw-semibold text-muted">lucy.m@fentech.com</div>
-										</div>
-										<!--end::Details-->
-									</div>
-									<!--end::Details-->
-									<!--begin::Access menu-->
-									<div class="ms-2 w-100px">
-										<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-											<option value="1">Guest</option>
-											<option value="2">Owner</option>
-											<option value="3" selected="selected">Can Edit</option>
-										</select>
-									</div>
-									<!--end::Access menu-->
-								</div>
-								<!--end::User-->
-							</div>
-							<!--end::Users-->
-							<!--begin::Actions-->
-							<div class="d-flex flex-center mt-15">
-								<button type="reset" id="kt_modal_users_search_reset" data-bs-dismiss="modal" class="btn btn-active-light me-3">Cancel</button>
-								<button type="submit" id="kt_modal_users_search_submit" class="btn btn-primary">Add Selected Users</button>
-							</div>
-							<!--end::Actions-->
-						</div>
-						<!--end::Results-->
-						<!--begin::Empty-->
-						<div data-kt-search-element="empty" class="text-center d-none">
-							<!--begin::Message-->
-							<div class="fw-semibold py-10">
-								<div class="text-gray-600 fs-3 mb-2">No users found</div>
-								<div class="text-muted fs-6">Try to search by username, full name or email...</div>
-							</div>
-							<!--end::Message-->
-							<!--begin::Illustration-->
-							<div class="text-center px-5">
-								<img src="{{asset('media/illustrations/sketchy-1/1.png')}}" alt="" class="w-100 h-200px h-sm-325px" />
-							</div>
-							<!--end::Illustration-->
-						</div>
-						<!--end::Empty-->
+						<span class="fs-7 text-muted">Secure Payment</span>
 					</div>
-					<!--end::Wrapper-->
 				</div>
-				<!--end::Search-->
 			</div>
-			<!--end::Modal body-->
 		</div>
-		<!--end::Modal content-->
 	</div>
-	<!--end::Modal dialog-->
 </div>
-<!--end::Modal - Users Search-->
-<!--begin::Modal - Invite Friends-->
-<div class="modal fade" id="kt_modal_invite_friends" tabindex="-1" aria-hidden="true">
-	<!--begin::Modal dialog-->
-	<div class="modal-dialog mw-650px">
-		<!--begin::Modal content-->
-		<div class="modal-content">
-			<!--begin::Modal header-->
-			<div class="modal-header pb-0 border-0 justify-content-end">
-				<!--begin::Close-->
-				<div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-					<i class="ki-duotone ki-cross fs-1">
-						<span class="path1"></span>
-						<span class="path2"></span>
-					</i>
-				</div>
-				<!--end::Close-->
-			</div>
-			<!--begin::Modal header-->
-			<!--begin::Modal body-->
-			<div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
-				<!--begin::Heading-->
-				<div class="text-center mb-13">
-					<!--begin::Title-->
-					<h1 class="mb-3">Invite a Friend</h1>
-					<!--end::Title-->
-					<!--begin::Description-->
-					<div class="text-muted fw-semibold fs-5">If you need more info, please check out 
-					<a href="#" class="link-primary fw-bold">FAQ Page</a>.</div>
-					<!--end::Description-->
-				</div>
-				<!--end::Heading-->
-				<!--begin::Google Contacts Invite-->
-				<div class="btn btn-light-primary fw-bold w-100 mb-8">
-				<img alt="Logo" src="{{asset('media/svg/brand-logos/google-icon.svg')}}" class="h-20px me-3" />Invite Gmail Contacts</div>
-				<!--end::Google Contacts Invite-->
-				<!--begin::Separator-->
-				<div class="separator d-flex flex-center mb-8">
-					<span class="text-uppercase bg-body fs-7 fw-semibold text-muted px-3">or</span>
-				</div>
-				<!--end::Separator-->
-				<!--begin::Textarea-->
-				<textarea class="form-control form-control-solid mb-8" rows="3" placeholder="Type or paste emails here"></textarea>
-				<!--end::Textarea-->
-				<!--begin::Users-->
-				<div class="mb-10">
-					<!--begin::Heading-->
-					<div class="fs-6 fw-semibold mb-2">Your Invitations</div>
-					<!--end::Heading-->
-					<!--begin::List-->
-					<div class="mh-300px scroll-y me-n7 pe-7">
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-6.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Emma Smith</a>
-									<div class="fw-semibold text-muted">smith@kpmg.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2" selected="selected">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<span class="symbol-label bg-light-danger text-danger fw-semibold">M</span>
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Melody Macy</a>
-									<div class="fw-semibold text-muted">melody@altbox.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1" selected="selected">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-1.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Max Smith</a>
-									<div class="fw-semibold text-muted">max@kt.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3" selected="selected">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-5.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Sean Bean</a>
-									<div class="fw-semibold text-muted">sean@dellito.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2" selected="selected">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-25.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Brian Cox</a>
-									<div class="fw-semibold text-muted">brian@exchange.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3" selected="selected">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<span class="symbol-label bg-light-warning text-warning fw-semibold">C</span>
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Mikaela Collins</a>
-									<div class="fw-semibold text-muted">mik@pex.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2" selected="selected">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-9.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Francis Mitcham</a>
-									<div class="fw-semibold text-muted">f.mit@kpmg.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3" selected="selected">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<span class="symbol-label bg-light-danger text-danger fw-semibold">O</span>
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Olivia Wild</a>
-									<div class="fw-semibold text-muted">olivia@corpmail.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2" selected="selected">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<span class="symbol-label bg-light-primary text-primary fw-semibold">N</span>
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Neil Owen</a>
-									<div class="fw-semibold text-muted">owen.neil@gmail.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1" selected="selected">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-23.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Dan Wilson</a>
-									<div class="fw-semibold text-muted">dam@consilting.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3" selected="selected">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<span class="symbol-label bg-light-danger text-danger fw-semibold">E</span>
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Emma Bold</a>
-									<div class="fw-semibold text-muted">emma@intenso.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2" selected="selected">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-12.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Ana Crown</a>
-									<div class="fw-semibold text-muted">ana.cf@limtel.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1" selected="selected">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<span class="symbol-label bg-light-info text-info fw-semibold">A</span>
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Robert Doe</a>
-									<div class="fw-semibold text-muted">robert@benko.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-dropdown-parent="#kt_modal_invite_friends" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3" selected="selected">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-13.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">John Miller</a>
-									<div class="fw-semibold text-muted">miller@mapple.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3" selected="selected">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<span class="symbol-label bg-light-success text-success fw-semibold">L</span>
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Lucy Kunic</a>
-									<div class="fw-semibold text-muted">lucy.m@fentech.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2" selected="selected">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-21.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Ethan Wilder</a>
-									<div class="fw-semibold text-muted">ethan@loop.com.au</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-									<option value="1" selected="selected">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-						<!--begin::User-->
-						<div class="d-flex flex-stack py-4">
-							<!--begin::Details-->
-							<div class="d-flex align-items-center">
-								<!--begin::Avatar-->
-								<div class="symbol symbol-35px symbol-circle">
-									<img alt="Pic" src="{{asset('media/avatars/300-25.jpg')}}" />
-								</div>
-								<!--end::Avatar-->
-								<!--begin::Details-->
-								<div class="ms-5">
-									<a href="#" class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Brian Cox</a>
-									<div class="fw-semibold text-muted">brian@exchange.com</div>
-								</div>
-								<!--end::Details-->
-							</div>
-							<!--end::Details-->
-							<!--begin::Access menu-->
-							<div class="ms-2 w-100px">
-								<select class="form-select form-select-solid form-select-sm" data-control="select2" data-hide-search="true">
-									<option value="1">Guest</option>
-									<option value="2">Owner</option>
-									<option value="3" selected="selected">Can Edit</option>
-								</select>
-							</div>
-							<!--end::Access menu-->
-						</div>
-						<!--end::User-->
-					</div>
-					<!--end::List-->
-				</div>
-				<!--end::Users-->
-				<!--begin::Notice-->
-				<div class="d-flex flex-stack">
-					<!--begin::Label-->
-					<div class="me-5 fw-semibold">
-						<label class="fs-6">Adding Users by Team Members</label>
-						<div class="fs-7 text-muted">If you need more info, please check budget planning</div>
-					</div>
-					<!--end::Label-->
-					<!--begin::Switch-->
-					<label class="form-check form-switch form-check-custom form-check-solid">
-						<input class="form-check-input" type="checkbox" value="1" checked="checked" />
-						<span class="form-check-label fw-semibold text-muted">Allowed</span>
-					</label>
-					<!--end::Switch-->
-				</div>
-				<!--end::Notice-->
-			</div>
-			<!--end::Modal body-->
-		</div>
-		<!--end::Modal content-->
-	</div>
-	<!--end::Modal dialog-->
-</div>
-<!--end::Modal - Invite Friend-->
-<!--begin::Donate Modal-->
-<!-- Donate Modal -->
-<div class="modal fade" id="kt_modal_donate" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered mw-650px">
-        <div class="modal-content">
-            <div class="modal-header pb-0 border-0 justify-content-end">
-                <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                    <i class="ki-duotone ki-cross fs-1">
-                        <span class="path1"></span>
-                        <span class="path2"></span>
-                    </i>
-                </div>
-            </div>
-
-            <form id="#4donation_form" method="POST" action="{{ route('donate.process') }}">
-                @csrf
-                <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
-                    <div class="text-center mb-13">
-                        <h1 class="mb-3">Support Our Project</h1>
-                        <div class="text-muted fw-semibold fs-5">
-                            Help us keep these calculators free and accessible to everyone
-                        </div>
-                    </div>
-
-                    <div class="mb-10">
-                        <div class="fw-bold fs-3 mb-5 text-center">Choose Amount</div>
-                        <div class="d-flex flex-wrap justify-content-center gap-5 mb-10">
-                            @foreach([5, 10, 25] as $amount)
-                                <div class="form-check form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="radio" name="donation_amount" value="{{ $amount }}" id="amount_{{ $amount }}"/>
-                                    <label class="form-check-label px-5 py-3" for="amount_{{ $amount }}">
-                                        <span class="currency">$</span>{{ $amount }}
-                                    </label>
-                                </div>
-                            @endforeach
-
-                            <div class="form-check form-check-custom form-check-solid">
-                                <input class="form-check-input" type="radio" name="donation_amount" value="custom" id="amount_custom"/>
-                                <label class="form-check-label px-5 py-3" for="amount_custom">
-                                    <span class="currency">$</span>Custom
-                                </label>
-                            </div>
-                        </div>
-
-                        <div id="custom_amount_container" class="d-none mb-10">
-                            <input type="number" name="custom_amount" class="form-control form-control-solid" placeholder="Enter custom amount"/>
-                        </div>
-
-                        <div class="separator separator-content my-10">
-                            <span class="fw-semibold text-muted">Payment Methods</span>
-                        </div>
-
-                        <div class="d-flex flex-stack flex-wrap gap-5 mb-10">
-                            @foreach([
-                                'paypal' => 'paypal.svg',
-                                'stripe' => 'mastercard.svg',
-								'paystack' => 'paystack.svg',
-								'binance' => 'binance.svg',
-								'credit-card' => 'mastercard.svg',
-                            ] as $method => $icon)
-							@php
-                            $isDisabled = $method === 'credit-card';
-                            @endphp
-                                <button type="button" class="btn-payment-method btn btn-outline btn-outline-dashed btn-outline-primary btn-active-light-primary p-7 d-flex align-items-center mb-5"
-                                    data-method="{{ $method }}"
-									{{ $isDisabled ? 'disabled' : '' }}>
-                                    <img src="{{ asset('media/svg/payment-methods/' . $icon) }}" class="w-40px me-4" alt=""/>
-                                    <span class="d-block fw-semibold text-start">
-                                        <span class="text-dark fw-bold d-block fs-3 text-capitalize">{{ $method }}</span>
-                                        <span class="text-muted fw-semibold fs-6">Pay with {{ $method }}</span>
-                                    </span>
-                                </button>
-                            @endforeach
-                        </div>
-
-                        <input type="hidden" name="payment_method" id="payment_method">
-
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary" id="#kt_modal_donate_submit">
-                                <span class="indicator-label">Donate Now</span>
-                                <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <div class="text-center">
-                        <div class="fw-semibold fs-6 text-muted">Your donation helps us maintain and improve our calculators.</div>
-                        <div class="d-flex justify-content-center align-items-center mt-5">
-                            <i class="ki-duotone ki-shield-tick fs-1 text-success me-2">
-                                <span class="path1"></span>
-                                <span class="path2"></span>
-                            </i>
-                            <span class="fs-7 text-muted">Secure Payment</span>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-
-<!-- JS to handle custom input and method selection -->
-<script>
-
-
-	    document.addEventListener('DOMContentLoaded', function () {
-			@if(session('success') || session('error'))
-        <div id="flash-message" class="flash-message {{ session('success') ? 'success' : 'error' }}">
-        <div class="d-flex justify-content-between align-items-center">
-            <span>{{ session('success') ?? session('error') }}</span>
-            <button type="button" onclick="document.getElementById('flash-message').remove()" class="btn-close ms-3"></button>
-        </div>
-        </div>
-        @endif
-		
-
-         });
-	
-    document.addEventListener('DOMContentLoaded', function () {
-        // Show custom amount input
-        document.querySelectorAll('input[name="donation_amount"]').forEach(radio => {
-            radio.addEventListener('change', function () {
-                document.getElementById('custom_amount_container').classList.toggle('d-none', this.value !== 'custom');
-            });
-        });
-
-        // Set selected payment method
-        document.querySelectorAll('.btn-payment-method').forEach(button => {
-            button.addEventListener('click', function () {
-                document.getElementById('payment_method').value = this.dataset.method;
-
-                document.querySelectorAll('.btn-payment-method').forEach(btn => btn.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-    });
-</script>
-
+<!--end::Donate Modal-->
+@push('styles')
 <style>
-.flash-message {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1050;
-    padding: 15px 20px;
-    border-radius: 8px;
-    min-width: 300px;
-    font-size: 14px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    animation: slideFadeIn 0.3s ease-in-out;
-}
-
-.flash-message.success {
-    background-color: #d1e7dd;
-    color: #0f5132;
-    border: 1px solid #badbcc;
-}
-
-.flash-message.error {
-    background-color: #f8d7da;
-    color: #842029;
-    border: 1px solid #f5c2c7;
-}
-
-@keyframes slideFadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.btn-close {
-    background: none;
-    border: none;
-    font-size: 1.2rem;
-    line-height: 1;
-    color: inherit;
-    cursor: pointer;
-}
+    .payment-option {
+        transition: all 0.3s ease;
+        cursor: pointer;
+    }
+    
+    .payment-option:hover {
+        border-color: var(--kt-primary) !important;
+        background-color: var(--kt-gray-100);
+    }
+    
+    .form-check-input:checked ~ .form-check-label .payment-option {
+        border-color: var(--kt-primary) !important;
+        background-color: var(--kt-gray-100);
+    }
+    
+    .payment-option .form-check-label {
+        cursor: pointer;
+    }
 </style>
 
+@endpush
+@push('scripts')
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        setTimeout(() => {
-            const alert = document.getElementById('flash-message');
-            if (alert) alert.remove();
-        }, 5000);
-    });
+	document.addEventListener('DOMContentLoaded', function() {
+		const form = document.getElementById('donateForm');
+		const customAmountRadio = document.getElementById('amount_custom');
+		const customAmountContainer = document.getElementById('custom_amount_container');
+		const customAmountInput = document.querySelector('[name="custom_amount"]');
+		const submitButton = document.getElementById('kt_modal_donate_submit');
+
+		// Update currency when changed in toolbar
+		document.addEventListener('currencyChanged', function(e) {
+			document.getElementById('donation_currency').value = e.detail.currency;
+		});
+
+		// Handle custom amount toggle
+		document.querySelectorAll('input[name="amount"]').forEach(radio => {
+			radio.addEventListener('change', function() {
+				const isCustom = this.value === 'custom';
+				console.log(isCustom)
+				customAmountContainer.classList.toggle('d-none', !isCustom);
+				customAmountInput.required = isCustom;
+			});
+		});
+
+		
+	});
 </script>

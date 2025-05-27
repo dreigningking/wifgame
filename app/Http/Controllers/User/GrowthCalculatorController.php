@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -12,7 +13,8 @@ class GrowthCalculatorController extends Controller
      */
     public function cacClvAnalyzer()
     {
-        return view('frontend.growth.cac_clv_analyzer');
+        $posts = Post::where('tags','LIKE',"%roi%")->take(5)->get();
+        return view('frontend.growth.cac_clv_analyzer',compact('posts'));
     }
 
     /**
