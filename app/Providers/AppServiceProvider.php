@@ -34,19 +34,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Schema::defaultStringLength(191);
-        Relation::morphMap([
-            'roi' => RoiCalculation::class,
-            'npv' => NpvCalculation::class,
-            'breakeven' => BreakevenCalculation::class,
-            'working_capital' => WorkingCapitalCalculation::class,
-            'employee_turnover' => EmployeeTurnoverCalculation::class,
-            'cac_clv' => CacClvCalculation::class,
-            'cloud_migration' => CloudMigrationCalculation::class,
-            'carbon_footprint' => CarbonFootprintCalculation::class,
-            'churn_prediction' => ChurnPredictionCalculation::class,
-            'cross_border_tax' => CrossBorderTaxCalculation::class,
-            'value_at_risk' => ValueAtRiskCalculation::class,
-            'supply_chain_risk' => SupplyChainRiskCalculation::class,
-        ]);
+        
     }
 }

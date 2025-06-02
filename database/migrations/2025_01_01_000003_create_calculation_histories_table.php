@@ -8,15 +8,11 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('saved_calculations', function (Blueprint $table) {
+        Schema::create('calculation_histories', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->string('ip_address');
             $table->foreignId('calculator_id')->constrained()->cascadeOnDelete();
-            $table->morphs('calculation');
-            $table->string('name');
-            $table->text('description')->nullable();
-            $table->boolean('is_favorite')->default(false);
-            $table->json('input_data');
+            $table->json('input_data'); //{cashflow:123, discount_rate:5, time_period:10]
             $table->json('result_data');
             $table->timestamps();
         });
@@ -24,6 +20,6 @@ return new class extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('saved_calculations');
+        Schema::dropIfExists('calculation_histories');
     }
 }; 

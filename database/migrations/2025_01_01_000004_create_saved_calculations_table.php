@@ -8,19 +8,18 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('calculation_histories', function (Blueprint $table) {
+        Schema::create('saved_calculations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('calculator_id')->constrained()->cascadeOnDelete();
-            $table->morphs('calculation'); // Creates calculation_type and calculation_id
-            $table->json('input_data');
-            $table->json('result_data');
+            $table->foreignId('calculation_history_id')->constrained()->cascadeOnDelete();
+            $table->string('name');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
 
     public function down()
     {
-        Schema::dropIfExists('calculation_histories');
+        Schema::dropIfExists('saved_calculations');
     }
 }; 
