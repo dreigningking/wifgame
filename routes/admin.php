@@ -82,6 +82,14 @@ Route::group(['as' => 'admin.','prefix'=> 'admin','middleware'=> ['auth','role:s
 
     Route::get('subscriptions','BusinessManagementController@subscriptions')->name('merchant.subscriptions');
     
+    Route::prefix('calculators')->group(function () {
+        Route::get('/', [CalculatorController::class, 'index'])->name('admin.calculators.index');
+        Route::get('/{calculator}', [CalculatorController::class, 'show'])->name('admin.calculators.show');
+        Route::post('/{calculator}/toggle', [CalculatorController::class, 'toggleActive'])->name('admin.calculators.toggle');
+        Route::put('/{calculator}/code', [CalculatorController::class, 'updateCode'])->name('admin.calculators.update-code');
+        Route::get('/{calculator}/stats', [CalculatorController::class, 'getUsageStats'])->name('admin.calculators.stats');
+        Route::get('/{calculator}/requests', [CalculatorController::class, 'getRecentRequests'])->name('admin.calculators.requests');
+    });
 });
 
 
