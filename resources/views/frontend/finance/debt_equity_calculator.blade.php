@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="debtEquityCalculatorForm" class="form" method="POST" action="{{ route('finance.debt-equity-calculator.calculate') }}">
+                <form id="debtEquityCalculatorForm" class="form" method="POST" action="{{ route('debt-equity-calculator.calculate') }}">
                     @csrf
                     <!-- Debt Details -->
                     <div class="row mb-5">

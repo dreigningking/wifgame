@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="marketShareCalculatorForm" class="form" method="POST" action="{{ route('finance.market-share-calculator.calculate') }}">
+                <form id="marketShareCalculatorForm" class="form" method="POST" action="{{ route('market-share-calculator.calculate') }}">
                     @csrf
                     <!-- Company Data -->
                     <div class="row mb-5">

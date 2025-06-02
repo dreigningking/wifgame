@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="processAutomationROIForm" class="form" method="POST" action="{{ route('operations.process-automation-roi.calculate') }}">
+                <form id="processAutomationROIForm" class="form" method="POST" action="{{ route('process-automation-roi.calculate') }}">
                     @csrf
                     <!-- Current Process Costs -->
                     <div class="row mb-5">

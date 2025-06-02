@@ -12,9 +12,22 @@ use App\Http\Controllers\Admin\CalculatorRequestController;
 Route::group(['as' => 'admin.','prefix'=> 'admin','middleware'=> ['auth','role:superadmin']],function () {
     Route::get('dashboard', [AdministrativeController::class,'dashboard'])->name('dashboard');
    
-    Route::get('/calculator-requests', [CalculatorRequestController::class, 'index'])->name('calculator-requests.index');
-    Route::post('/calculator-requests/update-status', [CalculatorRequestController::class, 'updateStatus'])->name('calculator-requests.update-status');
-    Route::post('/calculator-requests/add-notes', [CalculatorRequestController::class, 'addNotes'])->name('calculator-requests.add-notes');
+    // Calculator Management Routes
+    Route::group(['prefix'=> 'calculators','as'=> 'calculators.'],function(){
+        Route::get('/', [CalculatorController::class, 'index'])->name('index');
+        Route::get('/create', [CalculatorController::class, 'create'])->name('create');
+        Route::post('store', [CalculatorController::class, 'store'])->name('store');
+        Route::get('/{calculator}', [CalculatorController::class, 'show'])->name('show');
+        Route::get('/{calculator}/edit', [CalculatorController::class, 'edit'])->name('edit');
+        Route::put('update', [CalculatorController::class, 'update'])->name('update');
+        Route::post('/{calculator}/toggle', [CalculatorController::class, 'toggleStatus'])->name('toggle');
+
+        Route::get('requests', [CalculatorRequestController::class, 'index'])->name('requests.index');
+        Route::post('requests/update-status', [CalculatorRequestController::class, 'updateStatus'])->name('requests.update-status');
+        Route::post('requests/add-notes', [CalculatorRequestController::class, 'addNotes'])->name('requests.add-notes');
+    });
+
+    
    
     Route::get('settings', [AdministrativeController::class,'settings'])->name('settings');
     Route::post('settings/store', [AdministrativeController::class,'settings_store'])->name('settings.store');

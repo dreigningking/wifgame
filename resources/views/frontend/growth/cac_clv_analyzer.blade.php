@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="cacClvCalculatorForm" class="form" method="POST" action="{{ route('growth.cac-clv-analyzer.calculate') }}">
+                <form id="cacClvCalculatorForm" class="form" method="POST" action="{{ route('cac-clv-analyzer.calculate') }}">
                     @csrf
                     <!-- Marketing Costs -->
                     <div class="row mb-5">

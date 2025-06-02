@@ -148,7 +148,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.roi-calculator') }}">
+                                            <a class="menu-link py-3" href="{{ route('roi-calculator') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">ROI Calculator</span>
                                             </a>
@@ -158,7 +158,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.npv-calculator') }}">
+                                            <a class="menu-link py-3" href="{{ route('npv-calculator') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">NPV/IRR Calculator</span>
                                             </a>
@@ -168,7 +168,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.breakeven-calculator') }}">
+                                            <a class="menu-link py-3" href="{{ route('breakeven-calculator') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Breakeven Analysis</span>
                                             </a>
@@ -178,7 +178,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.scenario-planner') }}">
+                                            <a class="menu-link py-3" href="{{ route('scenario-planner') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Scenario Planner</span>
                                             </a>
@@ -188,7 +188,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.market-share-calculator') }}">
+                                            <a class="menu-link py-3" href="{{ route('market-share-calculator') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Market Share Calculator</span>
                                             </a>
@@ -208,7 +208,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.working-capital-calculator') }}">
+                                            <a class="menu-link py-3" href="{{ route('working-capital-calculator') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Working Capital Calculator</span>
                                             </a>
@@ -218,7 +218,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.debt-equity-calculator') }}">
+                                            <a class="menu-link py-3" href="{{ route('debt-equity-calculator') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Debt vs Equity Analysis</span>
                                             </a>
@@ -228,7 +228,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.currency-hedging-calculator') }}">
+                                            <a class="menu-link py-3" href="{{ route('currency-hedging-calculator') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Currency Hedging</span>
                                             </a>
@@ -238,7 +238,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link py-3" href="{{ route('finance.tax-estimator') }}">
+                                            <a class="menu-link py-3" href="{{ route('tax-estimator') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Tax Estimator</span>
                                             </a>
@@ -267,13 +267,13 @@
                                     </span>
                                     <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px">
                                         <div class="menu-item">
-                                            <a class="menu-link py-3" href="{{ route('operations.process-automation-roi') }}">
+                                            <a class="menu-link py-3" href="{{ route('process-automation-roi') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Process Automation ROI</span>
                                             </a>
                                         </div>
                                         <div class="menu-item">
-                                            <a class="menu-link" href="{{ route('operations.employee-productivity') }}">
+                                            <a class="menu-link" href="{{ route('employee-productivity') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Employee Productivity Analyzer</span>
                                             </a>
@@ -463,7 +463,7 @@
                                     </span>
                                     <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px">
                                         <div class="menu-item">
-                                            <a class="menu-link py-3" href="{{ route('growth.employee-turnover-cost') }}">
+                                            <a class="menu-link py-3" href="{{ route('employee-turnover-cost') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">Turnover Cost</span>
                                             </a>
@@ -496,7 +496,7 @@
                                     </span>
                                     <div class="menu-sub menu-sub-lg-down-accordion menu-sub-lg-dropdown px-lg-2 py-lg-4 w-lg-200px">
                                         <div class="menu-item">
-                                            <a class="menu-link py-3" href="{{ route('growth.cac-clv-analyzer') }}">
+                                            <a class="menu-link py-3" href="{{ route('cac-clv-analyzer') }}">
                                                 <span class="menu-bullet"><span class="bullet bullet-dot"></span></span>
                                                 <span class="menu-title">CAC/CLV Analysis</span>
                                             </a>

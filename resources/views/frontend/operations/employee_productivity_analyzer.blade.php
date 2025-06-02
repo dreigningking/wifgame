@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="employeeProductivityForm" class="form" method="POST" action="{{ route('operations.employee-productivity.calculate') }}">
+                <form id="employeeProductivityForm" class="form" method="POST" action="{{ route('employee-productivity.calculate') }}">
                     @csrf
                     <!-- Revenue Section -->
                     <div class="row mb-5">

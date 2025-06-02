@@ -2,23 +2,23 @@
 
 namespace App\Http\Controllers\User;
 
+use Stripe\Stripe;
 use App\Models\Donation;
+use App\Traits\PaymentTrait;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Http;
+use Stripe\Checkout\Session;
 use Illuminate\Validation\Rule;
 
 // PayPal Checkout SDK v2 imports
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Validator;
 use PayPalCheckoutSdk\Core\PayPalHttpClient;
 use PayPalCheckoutSdk\Core\SandboxEnvironment;
 use PayPalCheckoutSdk\Core\ProductionEnvironment;
 use PayPalCheckoutSdk\Orders\OrdersCreateRequest;
 use PayPalCheckoutSdk\Orders\OrdersCaptureRequest;
-
-use Stripe\Stripe;
-use Stripe\Checkout\Session;
 
  
 class DonationController extends Controller
@@ -26,38 +26,29 @@ class DonationController extends Controller
     use PaymentTrait;
     public function process(Request $request)
     {
+        //dd($request->all());
         // Comprehensive validation
-        $validated = $request->validate([
-            'donation_amount' => ['required', function ($attribute, $value, $fail) use ($request) {
-                if ($value === 'custom') {
-                    if (!$request->filled('custom_amount')) {
-                        $fail('Custom amount is required when custom option is selected.');
-                    } elseif (!is_numeric($request->custom_amount) || $request->custom_amount <= 0) {
-                        $fail('Custom amount must be a positive number.');
-                    } elseif ($request->custom_amount > 10000) {
-                        $fail('Donation amount cannot exceed $10,000.');
-                    }
-                } elseif (!is_numeric($value) || $value <= 0) {
-                    $fail('Donation amount must be a positive number.');
-                }
-            }],
-            'custom_amount' => 'nullable|numeric|min:1|max:10000',
-            'payment_method' => ['required', Rule::in(['paypal', 'stripe', 'paystack', 'binance'])],
-            'donor_name' => 'nullable|string|max:255',
-            'email' => 'nullable|email|max:255',
-        ]);
-
-        $amount = $validated['donation_amount'] === 'custom' 
-            ? $validated['custom_amount'] 
-            : $validated['donation_amount'];
-
+        $validator = Validator::make($request->all(), [  
+            'email' => 'required|email',  
+            'amount' => 'required_without:custom_amount',  
+            'custom_amount' => 'required_if:amount,custom|min:0',  
+            'currency' => 'required|string|size:3',  
+            'payment_method' => 'required|in:paypal,stripe,binance,paystack',  
+        ]);  
+        
+        if ($validator->fails()) {  
+            return response()->json($validator->errors(), 422);  
+        }  
+        $amount = $request->amount === 'custom' 
+            ? $request->custom_amount 
+            : $request->amount;
         try {
             // Save donation details
             $donation = Donation::create([
-                'donor_name' => $validated['donor_name'] ?? 'Anonymous',
-                'donor_email' => $validated['email'] ?? null,
+                'donor_name' => $request->donor_name ?? 'Anonymous',
+                'donor_email' => $request->email ?? null,
                 'amount' => $amount,
-                'payment_method' => $validated['payment_method'],
+                'payment_method' => $request->payment_method,
                 'status' => 'pending',
                 'ip_address' => $request->ip(), // For security tracking
                 'user_agent' => $request->userAgent(),
@@ -66,7 +57,7 @@ class DonationController extends Controller
             Log::info('Donation created', [
                 'donation_id' => $donation->id,
                 'amount' => $amount,
-                'payment_method' => $validated['payment_method']
+                'payment_method' => $request->payment_method
             ]);
 
             // Redirect to the appropriate payment gateway
@@ -76,7 +67,7 @@ class DonationController extends Controller
             Log::error('Failed to create donation', [
                 'error' => $e->getMessage(),
                 'amount' => $amount,
-                'payment_method' => $validated['payment_method']
+                'payment_method' => $request->payment_method
             ]);
             
             return redirect()->back()

@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="scenarioPlannerForm" class="form" method="POST" action="{{ route('finance.scenario-planner.calculate') }}">
+                <form id="scenarioPlannerForm" class="form" method="POST" action="{{ route('scenario-planner.calculate') }}">
                     @csrf
                     <!-- Base Scenario -->
                     <div class="row mb-5">

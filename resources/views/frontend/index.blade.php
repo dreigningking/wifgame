@@ -86,7 +86,7 @@
             <div class="card-body py-3">
                 <div class="row g-5 g-xl-8">
                     <div class="col-xl-4">
-                        <a href="{{ route('finance.market-share-calculator') }}" class="card bg-light-primary hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('market-share-calculator') }}" class="card bg-light-primary hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-chart-line-star fs-3x text-primary"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">Market Share</div>
@@ -95,7 +95,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4">
-                        <a href="{{ route('growth.cac-clv-analyzer') }}" class="card bg-light-success hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('cac-clv-analyzer') }}" class="card bg-light-success hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-profile-user fs-3x text-success"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">CAC/CLV Analysis</div>
@@ -104,7 +104,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4">
-                        <a href="{{ route('finance.scenario-planner') }}" class="card bg-light-warning hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('scenario-planner') }}" class="card bg-light-warning hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-chart-pie-4 fs-3x text-warning"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">Market Growth</div>
@@ -127,7 +127,7 @@
             <div class="card-body py-3">
                 <div class="row g-5 g-xl-8">
                     <div class="col-xl-4">
-                        <a href="{{ route('growth.employee-turnover-cost') }}" class="card bg-light-danger hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('employee-turnover-cost') }}" class="card bg-light-danger hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-people fs-3x text-danger"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">Employee Turnover</div>
@@ -136,7 +136,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4">
-                        <a href="{{ route('operations.employee-productivity') }}" class="card bg-light-info hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('employee-productivity') }}" class="card bg-light-info hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-chart-simple fs-3x text-info"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">Productivity ROI</div>
@@ -145,7 +145,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4">
-                        <a href="{{ route('operations.process-automation-roi') }}" class="card bg-light-primary hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('process-automation-roi') }}" class="card bg-light-primary hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-dollar fs-3x text-primary"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">Process Automation ROI</div>
@@ -168,7 +168,7 @@
             <div class="card-body py-3">
                 <div class="row g-5 g-xl-8">
                     <div class="col-xl-4">
-                        <a href="{{ route('finance.roi-calculator') }}" class="card bg-light-success hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('roi-calculator') }}" class="card bg-light-success hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-chart-line fs-3x text-success"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">ROI Calculator</div>
@@ -177,7 +177,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4">
-                        <a href="{{ route('finance.breakeven-calculator') }}" class="card bg-light-warning hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('breakeven-calculator') }}" class="card bg-light-warning hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-chart-pie fs-3x text-warning"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">Break-Even</div>
@@ -186,7 +186,7 @@
                         </a>
                     </div>
                     <div class="col-xl-4">
-                        <a href="{{ route('finance.working-capital-calculator') }}" class="card bg-light-danger hoverable card-xl-stretch mb-xl-8">
+                        <a href="{{ route('working-capital-calculator') }}" class="card bg-light-danger hoverable card-xl-stretch mb-xl-8">
                             <div class="card-body">
                                 <i class="ki-duotone ki-chart-simple-3 fs-3x text-danger"></i>
                                 <div class="text-gray-900 fw-bold fs-2 mb-2 mt-5">Working Capital</div>

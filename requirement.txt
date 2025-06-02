@@ -95,5 +95,13 @@ donation - which payment gateway paypal |stripe | binance | paystack
 
 
 
+Current Requirement
 
+1. control which calculator is seen on the front - provide controls like turn off, turn on, 
+2. keep a record of which calculators are being used - show stats to admin on dashboard
+3. when admin clicks a particular calculator.. show stats like number of use today, last used, etc
+4. save calculations for users who are logged in.
+5. show calculator requests to admin
+6. move all calculator code into database
+7. Test on server environment
 

@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="taxEstimatorForm" class="form" method="POST" action="{{ route('finance.tax-estimator.calculate') }}">
+                <form id="taxEstimatorForm" class="form" method="POST" action="{{ route('tax-estimator.calculate') }}">
                     @csrf
                     <!-- Company Details -->
                     <div class="row mb-5">

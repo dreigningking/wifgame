@@ -29,7 +29,7 @@ Route::get('dashboard', function () {return view('frontend.dashboard.overview');
 Route::post('/dashboard/calculator-request', [DashboardController::class, 'storeCalculatorRequest'])
         ->name('dashboard.calculator-request');
 // Finance Calculators
-Route::prefix('finance')->as('finance.')->group(function () {
+Route::middleware(['calculator.status'])->group(function () {
     Route::get('/roi-calculator', [FinanceCalculatorController::class, 'roiCalculator'])->name('roi-calculator');
     Route::post('/roi-calculator/calculate', [FinanceCalculatorController::class, 'calculateROI'])->name('roi-calculator.calculate');
     Route::get('/npv-calculator', [FinanceCalculatorController::class, 'npvCalculator'])->name('npv-calculator');
@@ -48,23 +48,16 @@ Route::prefix('finance')->as('finance.')->group(function () {
     Route::post('/currency-hedging-calculator/calculate', [FinanceCalculatorController::class, 'calculateCurrencyHedging'])->name('currency-hedging-calculator.calculate');
     Route::get('/tax-estimator', [FinanceCalculatorController::class, 'taxEstimator'])->name('tax-estimator');
     Route::post('/tax-estimator/calculate', [FinanceCalculatorController::class, 'calculateTax'])->name('tax-estimator.calculate');
-});
 
-// Growth Calculators
-Route::prefix('growth')->as('growth.')->group(function () {
+    // Growth Calculators
     Route::get('/cac-clv-analyzer', [GrowthCalculatorController::class, 'cacClvAnalyzer'])->name('cac-clv-analyzer');
     Route::post('/cac-clv-analyzer/calculate', [GrowthCalculatorController::class, 'calculateCACCLV'])->name('cac-clv-analyzer.calculate');
     Route::get('/employee-turnover-cost', [GrowthCalculatorController::class, 'employeeTurnoverCost'])->name('employee-turnover-cost');
     Route::post('/employee-turnover-cost/calculate', [GrowthCalculatorController::class, 'calculateEmployeeTurnoverCost'])->name('employee-turnover-cost.calculate');
-});
 
-// Operations Calculators Routes
-Route::group(['prefix' => 'operations', 'as' => 'operations.'], function () {
-    // Process Automation ROI routes
+    // Operations Calculators Routes
     Route::get('/process-automation-roi', [OperationsCalculatorController::class, 'processAutomationROI'])->name('process-automation-roi');
     Route::post('/process-automation-roi/calculate', [OperationsCalculatorController::class, 'calculateProcessAutomationROI'])->name('process-automation-roi.calculate');
-
-    // Employee Productivity Analyzer routes
     Route::get('/employee-productivity', [OperationsCalculatorController::class, 'employeeProductivityAnalyzer'])->name('employee-productivity');
     Route::post('/employee-productivity/calculate', [OperationsCalculatorController::class, 'calculateEmployeeProductivity'])->name('employee-productivity.calculate');
 });

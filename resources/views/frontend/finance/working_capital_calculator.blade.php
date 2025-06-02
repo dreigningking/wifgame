@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="workingCapitalCalculatorForm" class="form" method="POST" action="{{ route('finance.working-capital-calculator.calculate') }}">
+                <form id="workingCapitalCalculatorForm" class="form" method="POST" action="{{ route('working-capital-calculator.calculate') }}">
                     @csrf
                     <!-- Current Assets -->
                     <div class="row mb-5">

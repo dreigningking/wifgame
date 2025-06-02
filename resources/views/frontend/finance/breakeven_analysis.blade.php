@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="breakevenCalculatorForm" class="form" method="POST" action="{{ route('finance.breakeven-calculator.calculate') }}">
+                <form id="breakevenCalculatorForm" class="form" method="POST" action="{{ route('breakeven-calculator.calculate') }}">
                     @csrf
                     <!-- Fixed and Variable Costs Section -->
                     <div class="row mb-5">

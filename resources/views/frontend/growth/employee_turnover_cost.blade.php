@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="turnoverCostCalculatorForm" class="form" method="POST" action="{{ route('growth.employee-turnover-cost.calculate') }}">
+                <form id="turnoverCostCalculatorForm" class="form" method="POST" action="{{ route('employee-turnover-cost.calculate') }}">
                     @csrf
                     <!-- Position Details -->
                     <div class="row mb-5">

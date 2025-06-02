@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="roiCalculatorForm" class="form" method="POST" action="{{ route('finance.roi-calculator.calculate') }}">
+                <form id="roiCalculatorForm" class="form" method="POST" action="{{ route('roi-calculator.calculate') }}">
                     @csrf
                     <div class="row mb-5">
                         <div class="col-lg-6">

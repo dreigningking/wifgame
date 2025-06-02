@@ -22,6 +22,7 @@ class FinanceCalculatorController extends Controller
 
     public function roiCalculator()
     {
+        
         $posts = Post::where('tags','LIKE',"%roi%")->take(5)->get();
         return view('frontend.finance.roi_calculator',compact('posts'));
     }

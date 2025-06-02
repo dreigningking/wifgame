@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="npvCalculatorForm" class="form" method="POST" action="{{ route('finance.npv-calculator.calculate') }}">
+                <form id="npvCalculatorForm" class="form" method="POST" action="{{ route('npv-calculator.calculate') }}">
                     @csrf
                     <!-- Initial Investment -->
                     <div class="row mb-5">

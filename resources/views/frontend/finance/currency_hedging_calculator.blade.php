@@ -28,7 +28,7 @@
                 </div>
             </div>
             <div class="card-body">
-                <form id="currencyHedgingCalculatorForm" class="form" method="POST" action="{{ route('finance.currency-hedging-calculator.calculate') }}">
+                <form id="currencyHedgingCalculatorForm" class="form" method="POST" action="{{ route('currency-hedging-calculator.calculate') }}">
                     @csrf
                     <!-- Transaction Details -->
                     <div class="row mb-5">
